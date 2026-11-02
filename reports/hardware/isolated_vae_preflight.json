@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "scope": "Isolated official VAE allocation/shape check on control reconstruction and zero camera latents; not generated sensor results",
+  "lidar_peak_allocated_bytes": 14407297024,
+  "camera_peak_allocated_bytes": 5453595136,
+  "lidar_streaming_chunk_frames": 20,
+  "lidar_streaming_context_frames": 21
+}

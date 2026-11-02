@@ -1,0 +1,13 @@
+{
+  "asset": "cosmos3-trajectory-sensors.tar.gz",
+  "sha256": "25e4f6be2c251a21517ffe5fcd2df48b6572baf874fc64262ec0b089bd4efc9c",
+  "bytes": 300554367,
+  "tar_regular_files": 158,
+  "verified_bundles": {
+    "lane-change-61": 77,
+    "straight-61": 77
+  },
+  "status": "passed",
+  "metadata_paths": "No home/mnt absolute paths found in JSON, Markdown or Python.",
+  "distribution": "Prepared locally for GitHub Release; not uploaded."
+}

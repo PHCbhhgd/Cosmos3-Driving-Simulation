@@ -1,0 +1,11 @@
+* text=auto
+*.sh text eol=lf
+*.py text eol=lf
+*.gif binary
+*.jpg binary
+*.png binary
+*.mp4 binary
+# Diff context includes significant single-space lines; preserve upstream patch bytes.
+*.patch -whitespace
+# Preserve original trajectory evidence byte-for-byte.
+*.csv -text whitespace=cr-at-eol

@@ -1,0 +1,60 @@
+{
+  "provenance": "GIFs/MP4/JPEG/PNG derived from actual generated outputs; pipeline.svg is a repository-native diagram.",
+  "files": [
+    {
+      "file": "media/camera_contact_sheet.jpg",
+      "bytes": 575391,
+      "sha256": "4d98e03e2f16823af4d50cef6d93a3f484c0de1325688019593018c5a3774171"
+    },
+    {
+      "file": "media/left-shift-sensors.gif",
+      "bytes": 4284471,
+      "sha256": "26c09b516781872ac53206b55bd2b3e4e898ed86f92087804403564866f51558"
+    },
+    {
+      "file": "media/lidar_bev.jpg",
+      "bytes": 173750,
+      "sha256": "05639f92d92b03c32c6ace69cb5007eaaddfa3cbd145bc708f02e09d77217cc1"
+    },
+    {
+      "file": "media/lidar_control_overlay.png",
+      "bytes": 525435,
+      "sha256": "01e2416918115d635c69e4b645a9abe4577aec53140482e87338a0017235a227"
+    },
+    {
+      "file": "media/nano-preview.jpg",
+      "bytes": 80143,
+      "sha256": "c07df808d00e5ee38e37503cc0032f07d30f6ee308531d436c7f7be5866eb0e4"
+    },
+    {
+      "file": "media/nano.gif",
+      "bytes": 2185683,
+      "sha256": "80a78c5d1864b235eea61de3c99195116d319ba5b1b7684045c436ad4eda307b"
+    },
+    {
+      "file": "media/pipeline.svg",
+      "bytes": 1669,
+      "sha256": "fe4c67b48c001ac4426a7a3c3ebbfb5f2c577d706667bde9b398241d86602199"
+    },
+    {
+      "file": "media/straight-sensors.gif",
+      "bytes": 4093301,
+      "sha256": "6e7ba6306a67ec87d5db3e95da31355ccb3ba246e9334b7e4199395440316822"
+    },
+    {
+      "file": "media/trajectory-comparison.gif",
+      "bytes": 4355598,
+      "sha256": "db175bdb4d6913e7302fc66415f8139a5f66daf02eedce87dc5c2ac106cbfb95"
+    },
+    {
+      "file": "media/trajectory-comparison.mp4",
+      "bytes": 2553033,
+      "sha256": "83d66706e114f690eb572bc57297807d1e349b0546784e931e2be4c7500a3541"
+    },
+    {
+      "file": "media/wsm_overlay_contact_sheet.jpg",
+      "bytes": 586607,
+      "sha256": "48fb235a54927da0946bed338965df78e5d7044acaa460658ded9fdfbf2847b2"
+    }
+  ]
+}

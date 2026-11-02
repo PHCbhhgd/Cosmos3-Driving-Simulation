@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "bundle": "outputs/bundles/lane-change-61",
+  "cameras": 7,
+  "checks": [
+    "video decode",
+    "initial slider and timestamp",
+    "seek all cameras",
+    "point cloud drag",
+    "RGB/WSM mode switch where available",
+    "playback advances",
+    "camera sync under 120 ms",
+    "no JS errors"
+  ],
+  "midpoint": {
+    "frame": 30,
+    "clock": "1.00 s \u00b7 30/60",
+    "times": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "fps": 30
+  },
+  "playback": {
+    "frame": 37,
+    "times": [
+      1.258335,
+      1.258289,
+      1.258224,
+      1.258171,
+      1.258109,
+      1.258067,
+      1.257997
+    ]
+  }
+}

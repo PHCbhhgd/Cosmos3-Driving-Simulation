@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "video_sha256": "d0ccb579d2054fc07001c9029ef86a420a1a2d6e024b09964665f8671619b1f5",
+  "stream": {
+    "codec_name": "h264",
+    "width": 848,
+    "height": 480,
+    "r_frame_rate": "24/1",
+    "duration": "5.041667",
+    "nb_read_frames": "121"
+  },
+  "full_decode": true,
+  "preview_frame_indices": [
+    0,
+    60,
+    120
+  ],
+  "scope": "File integrity and encoding checks; visual quality requires separate inspection"
+}

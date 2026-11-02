@@ -1,0 +1,7 @@
+numpy==1.26.4
+Pillow==10.4.0
+opencv-python-headless==4.11.0.86
+matplotlib==3.10.0
+safetensors==0.5.2
+attrs==24.3.0
+playwright==1.51.0

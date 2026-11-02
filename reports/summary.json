@@ -1,0 +1,95 @@
+{
+  "recorded_at": "2026-11-02",
+  "scope": "Open-loop trajectory-conditioned synthetic RGB/LiDAR generation. No policy/physics feedback, radar, GNSS or IMU. Pose is input, not estimated output.",
+  "provenance": "Historical GPU runs, exported and path-redacted; public portable scripts have separate CPU validation.",
+  "models": {
+    "Cosmos3-Nano": {
+      "repo_id": "nvidia/Cosmos3-Nano",
+      "revision": "e59a53c25979a090fa8706c9acc0c254a6e89b92",
+      "status": "generated_and_full_decode_validated",
+      "evidence": "reports/nano/result.json"
+    },
+    "Cosmos3-Nano-Transfer-Auto": {
+      "repo_id": "nvidia/Cosmos3-Nano-Transfer-Auto",
+      "revision": "cac0f44fef169a4d2271c5a2008717c7913da041",
+      "status": "two_variants_generated_and_validated",
+      "parameters": {
+        "views": 7,
+        "num_camera_frames": 61,
+        "camera_fps": 30,
+        "resolution": "480",
+        "num_steps": 35,
+        "seed": 0,
+        "guidance": 3,
+        "shift": 10,
+        "cp_size": 4,
+        "cfgp_size": 1,
+        "dp_shard_size": 4,
+        "lidar": "jointly_generated",
+        "model_mode": "text2video",
+        "raw_pixel_memory_optimization": true,
+        "save_joint_latents": true
+      },
+      "generations": [
+        {
+          "variant": "left_shift",
+          "bundle": "reports/transfer/left_shift/bundle_manifest.json",
+          "camera_frames": 61,
+          "camera_fps": 30,
+          "cameras": 7,
+          "lidar_sweeps": 20,
+          "lidar_shape": [
+            20,
+            128,
+            1800
+          ],
+          "input_ego_end_xyz_m": [
+            8.0,
+            1.0,
+            0.0
+          ],
+          "valid_point_count_min": 179812,
+          "valid_point_count_max": 182010,
+          "geometry_diagnostic": {
+            "mean_valid_coverage": 0.9112589073851357,
+            "mean_sweep_range_mae_m": 4.349431204795837,
+            "status": "diagnostic_only_no_physical_KPI_pass_claim"
+          },
+          "browser_validation": "reports/transfer/left_shift/browser_validation.json"
+        },
+        {
+          "variant": "straight",
+          "bundle": "reports/transfer/straight/bundle_manifest.json",
+          "camera_frames": 61,
+          "camera_fps": 30,
+          "cameras": 7,
+          "lidar_sweeps": 20,
+          "lidar_shape": [
+            20,
+            128,
+            1800
+          ],
+          "input_ego_end_xyz_m": [
+            8.0,
+            0.0,
+            0.0
+          ],
+          "valid_point_count_min": 179126,
+          "valid_point_count_max": 184400,
+          "geometry_diagnostic": {
+            "mean_valid_coverage": 0.9041692655397456,
+            "mean_sweep_range_mae_m": 6.730270504951477,
+            "status": "diagnostic_only_no_physical_KPI_pass_claim"
+          },
+          "browser_validation": "reports/transfer/straight/browser_validation.json"
+        }
+      ]
+    },
+    "Cosmos3-Nano-Sim-Auto": {
+      "repo_id": "nvidia/Cosmos3-Nano-Sim-Auto",
+      "revision": "e289a50a4049614eaa62c9edc10b1e8d6cc1a6c1",
+      "status": "unsupported_hardware_sm89_for_released_rolling_attention",
+      "evidence": "reports/hardware/sim_auto.json"
+    }
+  }
+}

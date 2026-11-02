@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cosmos 联合传感器回放</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#10151c;color:#e8eef7;font:15px system-ui,sans-serif}main{max-width:1600px;margin:auto;padding:24px}h1{font-size:24px;margin:0 0 10px}p{color:#9eafc2}button,select{background:#243246;color:#fff;border:1px solid #4a647d;padding:9px 16px;border-radius:7px;cursor:pointer}.bar{display:flex;align-items:center;gap:16px;position:sticky;top:0;background:#10151cf5;padding:12px 0;z-index:2}input[type=range]{flex:1}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{background:#1b2430;border-radius:9px;overflow:hidden}.label{padding:9px;color:#adc4dc;font-size:13px}video{display:block;width:100%;aspect-ratio:16/9;background:black}.sensors{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin:14px 0}canvas{display:block;width:100%;background:#0c1117;touch-action:none}#cloud{cursor:grab}.note{font-size:13px;color:#9eafc2}a{color:#8bd8dc}@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.sensors{grid-template-columns:1fr}main{padding:12px}}
+</style>
+<main><h1>Cosmos 联合传感器回放</h1><p id="title"></p>
+<div class="bar"><button id="play">播放</button><input id="time" aria-label="回放帧" type="range" min="0" step="1"><span id="clock"></span><select id="mode" aria-label="相机显示"><option value="cameras">生成 RGB</option><option value="controls">输入 WSM</option></select></div>
+<div class="sensors"><div class="card"><div class="label">生成 LiDAR · 拖动旋转，滚轮缩放 · 预览抽样点，完整点云见 pointclouds/</div><canvas id="cloud" width="1000" height="540"></canvas></div><div class="card"><div class="label">输入轨迹 · 青色自车，橙色前车 · 世界坐标 / 米</div><canvas id="trajectory" width="500" height="540"></canvas></div></div>
+<div class="grid" id="cameras"></div>
+<p class="note">相机 30 FPS，LiDAR 10 Hz；按实际 frame_ids 对齐，显示最近一次扫描。点云坐标：传感器 FLU（X 前、Y 左、Z 上），未进行逐点运动去畸变。轨迹来自场景输入。生成结果尚未经过物理一致性指标评测。</p>
+<p><a href="review/sensor_mosaic.mp4">七视角与 LiDAR 总览视频</a> · <a href="bundle_manifest.json">传感器与验证清单</a> · <a href="lidar.safetensors">距离与强度原始输出</a> · <a href="SHA256SUMS">文件校验值</a></p></main>
+<script>
+const D=__REPLAY_DATA__;
+const slider=document.getElementById('time'), play=document.getElementById('play'), mode=document.getElementById('mode');
+if(D.initialMode){mode.value=D.initialMode;mode.disabled=true}
+document.getElementById('title').textContent=D.title+' · '+D.cameras.length+' 路相机 + LiDAR';slider.max=D.frames-1;
+const videos=D.cameras.map(name=>{let card=document.createElement('div');card.className='card';let label=document.createElement('div');label.className='label';label.textContent=name;let video=document.createElement('video');video.muted=true;video.playsInline=true;video.preload='auto';video.src=(D.initialMode||'cameras')+'/'+name+'.mp4';video.onloadedmetadata=()=>{video.currentTime=frame/D.fps};card.append(label,video);document.getElementById('cameras').append(card);return video});
+let frame=0,playing=false,start=0,angle=-0.7,tilt=.7,zoom=6,drag=null;
+const canvas=document.getElementById('cloud'),ctx=canvas.getContext('2d'),tc=document.getElementById('trajectory'),tx=tc.getContext('2d');
+function draw(){let sweep=0;while(sweep+1<D.frame_ids.length&&D.frame_ids[sweep+1]<=frame)sweep++;
+document.getElementById('clock').textContent=(frame/D.fps).toFixed(2)+' s · '+frame+'/'+(D.frames-1);
+ctx.fillStyle='#0c1117';ctx.fillRect(0,0,canvas.width,canvas.height);
+const ca=Math.cos(angle),sa=Math.sin(angle),ct=Math.cos(tilt),st=Math.sin(tilt);
+function project(x,y,z){let u=ca*x-sa*y,v=sa*x+ca*y;return[canvas.width/2+u*zoom,canvas.height*.55+(v*ct-z*st)*zoom]}
+ctx.strokeStyle='#243141';ctx.lineWidth=1;for(let i=-60;i<=60;i+=10){for(const pts of [[i,-60,0,i,60,0],[-60,i,0,60,i,0]]){let a=project(...pts.slice(0,3)),b=project(...pts.slice(3));ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke()}}
+for(const p of D.clouds[sweep]){let a=project(p[0],p[1],p[2]);let h=Math.max(0,Math.min(1,(p[2]+3)/8));ctx.fillStyle='hsl('+(190-150*h)+',85%,60%)';ctx.fillRect(a[0],a[1],2,2)}
+ctx.fillStyle='#f4f8ff';let origin=project(0,0,0);ctx.fillRect(origin[0]-4,origin[1]-4,8,8);ctx.font='16px system-ui';ctx.fillText('LiDAR frame '+D.frame_ids[sweep]+' · '+(D.frame_ids[sweep]/30).toFixed(2)+' s',16,26);
+tx.fillStyle='#0c1117';tx.fillRect(0,0,tc.width,tc.height);tx.font='16px system-ui';if(!D.trajectory){tx.fillStyle='#aebed0';tx.fillText('此样例未附数值位姿',24,50);return}
+let all=[...D.trajectory.ego,...D.trajectory.lead],minX=Math.min(...all.map(p=>p[0]))-5,maxX=Math.max(...all.map(p=>p[0]))+5,minY=Math.min(...all.map(p=>p[1]))-6,maxY=Math.max(...all.map(p=>p[1]))+6;
+function xy(p){return[40+(p[0]-minX)/(maxX-minX)*(tc.width-80),tc.height-50-(p[1]-minY)/(maxY-minY)*(tc.height-100)]}
+for(const [key,color] of [['ego','#74e4dd'],['lead','#ffa763']]){let path=D.trajectory[key];tx.strokeStyle=color;tx.lineWidth=3;tx.beginPath();path.forEach((p,i)=>{let a=xy(p);i?tx.lineTo(...a):tx.moveTo(...a)});tx.stroke();let a=xy(path[frame]);tx.fillStyle=color;tx.beginPath();tx.arc(...a,7,0,2*Math.PI);tx.fill();tx.fillText(key+': '+path[frame][0].toFixed(1)+', '+path[frame][1].toFixed(1)+' m',20,key==='ego'?25:50)}
+}
+function seek(n){frame=Math.max(0,Math.min(D.frames-1,Math.round(n)));slider.value=frame;for(const v of videos){if(v.readyState>=1)v.currentTime=frame/D.fps}draw()}
+slider.oninput=()=>{playing=false;videos.forEach(v=>v.pause());play.textContent='播放';seek(+slider.value)};
+play.onclick=()=>{playing=!playing;play.textContent=playing?'暂停':'播放';if(playing){if(frame>=D.frames-1)seek(0);start=performance.now()-frame*1000/D.fps;videos.forEach(v=>v.play().catch(()=>{}))}else videos.forEach(v=>v.pause())};
+mode.onchange=()=>{playing=false;play.textContent='播放';videos.forEach((v,i)=>{v.pause();v.src=mode.value+'/'+D.cameras[i]+'.mp4';v.onloadedmetadata=()=>{v.currentTime=frame/D.fps}})};
+function tick(now){if(playing){frame=Math.min(D.frames-1,Math.floor((now-start)*D.fps/1000));slider.value=frame;if(videos[0].readyState>=2){frame=Math.min(D.frames-1,Math.floor(videos[0].currentTime*D.fps));slider.value=frame;videos.slice(1).forEach(v=>{if(Math.abs(v.currentTime-videos[0].currentTime)>.07)v.currentTime=videos[0].currentTime})}draw();if(frame>=D.frames-1||videos[0].ended){playing=false;play.textContent='播放';videos.forEach(v=>v.pause())}}requestAnimationFrame(tick)}
+canvas.onpointerdown=e=>{drag=[e.clientX,e.clientY];canvas.setPointerCapture(e.pointerId)};canvas.onpointermove=e=>{if(drag){angle+=(e.clientX-drag[0])*.006;tilt=Math.max(.1,Math.min(1.5,tilt+(e.clientY-drag[1])*.006));drag=[e.clientX,e.clientY];draw()}};canvas.onpointerup=()=>drag=null;canvas.onwheel=e=>{e.preventDefault();zoom=Math.max(1,Math.min(24,zoom*Math.exp(-e.deltaY*.001)));draw()};seek(0);requestAnimationFrame(tick);
+</script></html>

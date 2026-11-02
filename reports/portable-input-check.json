@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "method": "Public preparation/export scripts executed using existing pinned upstream and runtimes; original rendered controls reused read-only. No new GPU rendering or model generation.",
+  "cases": [
+    {
+      "variant": "straight",
+      "trajectory_csv": "byte_identical",
+      "request_and_captions": "JSON_equal_to_actual_run_inputs",
+      "seven_WSM_videos_full_decode": "passed",
+      "lidar_input_shape": [
+        3,
+        41,
+        128,
+        1800
+      ]
+    },
+    {
+      "variant": "lane_change",
+      "trajectory_csv": "byte_identical",
+      "request_and_captions": "JSON_equal_to_actual_run_inputs",
+      "seven_WSM_videos_full_decode": "passed",
+      "lidar_input_shape": [
+        3,
+        41,
+        128,
+        1800
+      ]
+    }
+  ]
+}

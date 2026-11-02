@@ -1,0 +1,21 @@
+{
+  "status": "generated",
+  "settings": {
+    "frames": 121,
+    "steps": 35,
+    "height": 480,
+    "width": 848,
+    "seed": 0,
+    "model": "nvidia/Cosmos3-Nano",
+    "revision": "e59a53c25979a090fa8706c9acc0c254a6e89b92",
+    "prompt": "{\"scene\":\"A stationary camera observes a quiet suburban road in daylight. A blue car moves slowly along its lane. Trees and buildings remain stable in the background.\"}",
+    "fps": 24,
+    "guidance_scale": 6.0,
+    "safety_checker": true,
+    "purpose": "Reduced smoke check; not an official quality benchmark"
+  },
+  "load_seconds": 4.587166730314493,
+  "elapsed_seconds": 207.06037287600338,
+  "video_sha256": "d0ccb579d2054fc07001c9029ef86a420a1a2d6e024b09964665f8671619b1f5",
+  "peak_gpu_allocated_bytes": 5193131520
+}

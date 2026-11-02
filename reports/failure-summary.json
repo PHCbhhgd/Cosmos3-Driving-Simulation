@@ -1,0 +1,25 @@
+{
+  "provenance": "Manually curated from original run logs; full logs retained locally and not included.",
+  "attempts": [
+    {
+      "id": "reference-joint-61",
+      "status": "failed_no_sensor_output",
+      "reason": "35-step sampling completed; co-resident LiDAR VAE decode OOM before media save"
+    },
+    {
+      "id": "custom-joint-121",
+      "status": "failed_sampling",
+      "reason": "First denoising step OOM; no complete latent result"
+    },
+    {
+      "id": "custom-straight-and-left-shift-61",
+      "status": "recovered_after_decode_failure",
+      "reason": "Sampling complete; co-resident decode OOM; completed using persisted latents and unchanged isolated official VAEs"
+    },
+    {
+      "id": "sim-auto-sm89",
+      "status": "unsupported_hardware",
+      "reason": "Official released rolling attention gate rejects RTX4090/sm89"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "recorded_at": "2026-11-02T13:14:20.572434+00:00",
+  "status": "passed",
+  "checks": {
+    "cpu_unittests": {
+      "passed": 12,
+      "failed": 0
+    },
+    "ruff_check": "passed",
+    "ruff_format_check": "passed",
+    "python_compileall": "passed",
+    "all_bash_syntax": "passed",
+    "pinned_upstream_patch_apply_and_reverse_check": "passed",
+    "public_input_equivalence": "reports/portable-input-check.json",
+    "release_archive_integrity": "reports/release-asset.json",
+    "public_source_audit": "passed",
+    "ruff_version": "0.11.2 (same as GitHub Actions)",
+    "release_asset_sha256_rechecked": "passed",
+    "pinned_upstream_bootstrap_idempotency": "passed"
+  },
+  "gpu_scope": "No new GPU rendering, model sampling or clean-machine environment installation in this public packaging pass. Historical generated results are recorded separately.",
+  "publication": {
+    "git_branch": "main",
+    "git_commit": "pending publisher identity",
+    "github_remote": "not configured",
+    "github_auth": "Stored account rejected with HTTP 401; device reauthorization pending.",
+    "github_publication": "not performed; owner/repository and publisher authentication required"
+  },
+  "last_checked_at": "2026-11-02T15:46:13.670944+00:00"
+}

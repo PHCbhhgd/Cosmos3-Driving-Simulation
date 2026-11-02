@@ -1,0 +1,59 @@
+diff --git a/cosmos_framework/inference/args.py b/cosmos_framework/inference/args.py
+index 39002c5..f146953 100644
+--- a/cosmos_framework/inference/args.py
++++ b/cosmos_framework/inference/args.py
+@@ -1038,6 +1038,8 @@ class _MultiviewBase:
+ class MultiviewArgs(ArgsBase, _MultiviewBase):
+     views: list[MultiviewCameraArgs]
+     """Ordered camera entries. This order is used for camera-major tensor packing and output saving."""
++    optimize_raw_pixel_memory: bool = False
++    """Keep joint raw camera tensors on CPU and release unused raw frames after VAE encoding."""
+     condition_video_as_image: bool = False
+     """If True, treat per-view video vision_path files as single-frame image conditions."""
+     load_caption_from_data: bool = False
+@@ -1055,6 +1057,8 @@ class MultiviewArgs(ArgsBase, _MultiviewBase):
+ class MultiviewOverrides(OverridesBase, _MultiviewBase):
+     views: list[MultiviewCameraOverrides] = pydantic.Field(min_length=1)
+     """Ordered camera entries. This order is used for camera-major tensor packing and output saving."""
++    optimize_raw_pixel_memory: bool = False
++    """Opt into joint raw-camera CPU retention and cleanup after VAE encoding."""
+     condition_video_as_image: bool = False
+     """If True, treat per-view video vision_path files as single-frame image conditions."""
+     load_caption_from_data: bool = False
+diff --git a/cosmos_framework/inference/lidar_transfer.py b/cosmos_framework/inference/lidar_transfer.py
+index fd7fe00..d314f69 100644
+--- a/cosmos_framework/inference/lidar_transfer.py
++++ b/cosmos_framework/inference/lidar_transfer.py
+@@ -20,6 +20,7 @@ from __future__ import annotations
+ import dataclasses
+ import logging
+ import math
++import os
+ from pathlib import Path
+ from typing import Any
+ 
+@@ -764,6 +765,24 @@ def generate_joint_cam_lidar_sample(
+     if not outputs.get("lidar"):
+         raise RuntimeError("Joint camera+LiDAR generation returned no LiDAR latents")
+ 
++    # Preserve the expensive joint sample before VAE decode, which can exceed the
++    # remaining memory on smaller GPUs even when denoising itself fits.
++    if os.environ.get("COSMOS3_SAVE_JOINT_LATENTS") == "1" and sample_args.output_dir is not None:
++        if not torch.distributed.is_initialized() or torch.distributed.get_rank() == 0:
++            sample_args.output_dir.mkdir(parents=True, exist_ok=True)
++            latent_file = sample_args.output_dir / "joint_latents.safetensors"
++            temporary = latent_file.with_suffix(".safetensors.tmp")
++            save_file(
++                {
++                    "vision": outputs["vision"][-1].detach().cpu().contiguous(),
++                    "lidar": outputs["lidar"][-1].detach().cpu().contiguous(),
++                    "frame_ids": lidar_frame_ids.detach().cpu().contiguous(),
++                },
++                temporary,
++            )
++            temporary.replace(latent_file)
++            (sample_args.output_dir / "joint_latents_args.json").write_text(sample_args.model_dump_json())
++
+     vision_latent = outputs["vision"][-1]
+     if vision_latent.ndim == 4:
+         vision_latent = vision_latent.unsqueeze(0)

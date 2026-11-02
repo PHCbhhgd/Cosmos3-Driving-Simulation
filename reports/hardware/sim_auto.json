@@ -1,0 +1,14 @@
+{
+  "status": "unsupported_hardware",
+  "device": "NVIDIA GeForce RTX 4090",
+  "compute_capability": [
+    8,
+    9
+  ],
+  "checkpoint_implementation": "multiview_maskless_kv",
+  "reason": "it needs FlashAttention-4 on Hopper (sm90) or Blackwell (sm100/sm103), got sm89",
+  "method": "Unmodified upstream function bodies evaluated from AST; no full model loaded",
+  "source": "repos/cosmos-framework/cosmos_framework/model/generator/mot/maskless_attention.py",
+  "function_line": 428,
+  "framework_commit": "55f0554d0bf167603432041c794a8babbac759b9"
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "gpu_results_provenance": "2026-11-02 original working environment; not a fresh run of the public portability wrappers",
+  "cases": [
+    {
+      "id": "nano-t2v-121",
+      "status": "generated",
+      "evidence": "reports/nano/video_validation.json"
+    },
+    {
+      "id": "transfer-straight-61",
+      "status": "generated",
+      "evidence": "reports/transfer/straight/bundle_manifest.json"
+    },
+    {
+      "id": "transfer-left-shift-61",
+      "status": "generated",
+      "evidence": "reports/transfer/left_shift/bundle_manifest.json"
+    },
+    {
+      "id": "sim-hardware",
+      "status": "unsupported_hardware",
+      "evidence": "reports/hardware/sim_auto.json"
+    },
+    {
+      "id": "transfer-121",
+      "status": "failed_sampling_oom",
+      "evidence": "reports/failure-summary.json"
+    }
+  ]
+}
