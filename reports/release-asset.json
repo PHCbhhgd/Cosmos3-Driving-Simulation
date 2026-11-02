@@ -9,5 +9,18 @@
   },
   "status": "passed",
   "metadata_paths": "No home/mnt absolute paths found in JSON, Markdown or Python.",
-  "distribution": "Prepared locally for GitHub Release; not uploaded."
+  "distribution": "Uploaded to GitHub Release v0.1.0; server-reported sizes and SHA256 digests match local files.",
+  "release_url": "https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation/releases/tag/v0.1.0",
+  "remote_assets_verified": [
+    {
+      "name": "cosmos3-trajectory-sensors.tar.gz",
+      "bytes": 300554367,
+      "sha256": "25e4f6be2c251a21517ffe5fcd2df48b6572baf874fc64262ec0b089bd4efc9c"
+    },
+    {
+      "name": "cosmos3-trajectory-sensors.tar.gz.sha256",
+      "bytes": 100,
+      "sha256": "4183f654923af861aa171cae0b1c3ab98f43ebe6aee4d8343349bdf23a7d13bb"
+    }
+  ]
 }

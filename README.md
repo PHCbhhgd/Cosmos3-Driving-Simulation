@@ -6,6 +6,7 @@
 
 An independent, evidence-backed reproduction of NVIDIA Cosmos3 driving models.
 
+[![CPU tooling checks](https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation/actions/workflows/ci.yml/badge.svg)](https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation/actions/workflows/ci.yml)
 ![Scope](https://img.shields.io/badge/simulation-open--loop-blue)
 ![Transfer](https://img.shields.io/badge/Transfer--Auto-RGB%20%2B%20LiDAR-success)
 ![Sim](https://img.shields.io/badge/Sim--Auto-sm89%20blocked-orange)
@@ -65,6 +66,8 @@ An independent, evidence-backed reproduction of NVIDIA Cosmos3 driving models.
 推荐 **Ubuntu 24.04、CUDA 13 兼容驱动、四张获分配的空闲 GPU**。实际 Auto 测试使用 4×RTX 4090 24 GiB；61 帧需要分离解码，121 帧采样 OOM。不要把四卡数量视为任意配置都能运行的保证。系统依赖、权限和环境差异见[完整复现指南](docs/REPRODUCTION.md)。
 
 ```bash
+git clone https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation.git
+cd Cosmos3-Driving-Simulation
 # 在本仓库根目录；先由管理员提供所需系统依赖
 bash scripts/bootstrap.sh
 bash scripts/run_env.sh bash scripts/install_auto.sh
@@ -96,7 +99,7 @@ python3 scripts/serve_replay.py outputs/bundles/<实际运行目录> --port 8080
 # ssh -L 8080:127.0.0.1:8080 <user>@<server>
 ```
 
-然后打开 `http://127.0.0.1:8080`，支持七路视频同步、时间轴跳转、RGB/WSM 切换和点云旋转。完整原始传感器数据不存入 Git；[发布指南](docs/PUBLISHING.md)说明如何构建并上传 Release 附件。
+然后打开 `http://127.0.0.1:8080`，支持七路视频同步、时间轴跳转、RGB/WSM 切换和点云旋转。完整传感器数据已放在 [v0.1.0 Release](https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation/releases/tag/v0.1.0)（约 287 MiB，附 SHA256）。包含两组七相机视频、LiDAR、PLY、标定和回放器。[发布指南](docs/PUBLISHING.md)说明如何重新构建附件。
 
 ## 测了什么
 

@@ -1,5 +1,8 @@
 # GitHub 发布
 
+已发布仓库：[PHCbhhgd/Cosmos3-Driving-Simulation](https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation)。
+传感器附件：[v0.1.0 Release](https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation/releases/tag/v0.1.0)。以下步骤用于维护和后续发布。
+
 ## 发布内容
 
 Git 仓库包括原创脚本／文档、上游补丁、小型演示和脱敏证据。模型权重、用户登录凭据、第三方 checkout、venv、rootfs、大日志和完整传感器数据均不提交。数据包通过 GitHub Release 附件发布。

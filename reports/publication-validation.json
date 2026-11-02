@@ -20,11 +20,23 @@
   },
   "gpu_scope": "No new GPU rendering, model sampling or clean-machine environment installation in this public packaging pass. Historical generated results are recorded separately.",
   "publication": {
+    "repository": "https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation",
+    "visibility": "public",
     "git_branch": "main",
-    "git_commit": "pending publisher identity",
-    "github_remote": "not configured",
-    "github_auth": "Stored account rejected with HTTP 401; device reauthorization pending.",
-    "github_publication": "not performed; owner/repository and publisher authentication required"
+    "initial_published_commit": "83c2bf33429f247cabcae4992621c505d68fa230",
+    "github_publication": "source pushed and verified",
+    "github_actions": {
+      "conclusion": "success",
+      "tested_commit": "83c2bf33429f247cabcae4992621c505d68fa230",
+      "url": "https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation/actions/runs/41476504856"
+    },
+    "publisher_identity": "Repository-local GitHub public profile name and noreply email; no private email exposed.",
+    "release": {
+      "tag": "v0.1.0",
+      "url": "https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation/releases/tag/v0.1.0",
+      "asset_size_and_sha256_verification": "passed",
+      "evidence": "reports/release-asset.json"
+    }
   },
-  "last_checked_at": "2026-11-02T15:46:13.670944+00:00"
+  "last_checked_at": "2026-11-02T15:57:36.513199+00:00"
 }
