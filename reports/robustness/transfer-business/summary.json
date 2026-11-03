@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-11-03T04:43:28.872502+00:00",
+  "collected_at": "2026-11-03T05:07:57.710515+00:00",
   "scope": "Snapshot of files that exist. Running, missing and failed results are not visual-quality passes; original bundle hashes differ after release redaction.",
   "cases": [
     {
@@ -31,6 +31,11 @@
       "browser_exit_code": 0,
       "total_seconds": 1689.9209369104356,
       "output": "outputs/robustness/transfer-business-20261103/clear_turn"
+    },
+    {
+      "case": "contradictory_turn",
+      "started_at": "2026-11-03T05:04:52.221187+00:00",
+      "status": "running"
     },
     {
       "case": "occluded_pedestrian",
@@ -80,7 +85,17 @@
     {
       "case": "tunnel_entry",
       "started_at": "2026-11-03T04:41:40.147235+00:00",
-      "status": "running"
+      "status": "generated_and_packaged",
+      "inference_exit_code": 1,
+      "sampling_and_decode_seconds": 1313.5231687966734,
+      "recovery": "Isolated official VAEs from complete saved joint latents; no resampling",
+      "decode_exit_code": 0,
+      "package_exit_code": 0,
+      "review_exit_code": 0,
+      "geometry_diagnostics_exit_code": 0,
+      "browser_exit_code": 0,
+      "total_seconds": 1391.7948498763144,
+      "output": "outputs/robustness/transfer-business-20261103/tunnel_entry"
     }
   ]
 }

@@ -399,6 +399,41 @@
       "file": "media/robustness/transfer-contact-front-detail.jpg",
       "bytes": 618465,
       "sha256": "ab5f07c1d099af8743e5d162ad3897afd49e211bfbd6d4a083af3305173cdc45"
+    },
+    {
+      "file": "media/robustness/transfer-tunnel-entry-detail.jpg",
+      "bytes": 397997,
+      "sha256": "2f91ec0298b1f27f4e9f2600c6edc77323169a67e947b1fbc37e35ad031477e6"
+    },
+    {
+      "file": "media/robustness/transfer-tunnel_entry-cameras.jpg",
+      "bytes": 453991,
+      "sha256": "ba081cb67c860ed18d1da4b0e83ddb15f161c1f61d9ea807ca767ee36027fdc2"
+    },
+    {
+      "file": "media/robustness/transfer-tunnel_entry-controls.jpg",
+      "bytes": 494836,
+      "sha256": "1f7359410771ce7b375624def47550febc2396dbc6c76ba55a5eb7f13d0b8ec3"
+    },
+    {
+      "file": "media/robustness/transfer-tunnel_entry-front.mp4",
+      "bytes": 215644,
+      "sha256": "a62961621e6c82dcbface8a8a88ab9625d3e948a8a3f4e2e83dbdbec06e049f7"
+    },
+    {
+      "file": "media/robustness/transfer-tunnel_entry-lidar.png",
+      "bytes": 270910,
+      "sha256": "80555855a6f3e5d1679deaaeb8bc6c6199992128aa06631b36e2c6ecbfe65132"
+    },
+    {
+      "file": "media/robustness/transfer-tunnel_entry-sensors.mp4",
+      "bytes": 518923,
+      "sha256": "6ccf9ef072d6c5d150d6f50be57457b97f205e0a680e3bc3cc7f2189a9530cfb"
+    },
+    {
+      "file": "media/robustness/transfer-tunnel_entry-timeline.jpg",
+      "bytes": 199109,
+      "sha256": "d59a91bb7e6ed363ec83a0b0043b6e52e1adebad98a135d88a690a7e947c6986"
     }
   ]
 }

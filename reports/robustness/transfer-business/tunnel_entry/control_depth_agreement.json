@@ -1,0 +1,206 @@
+{
+  "scope": "Diagnostics on sparse input HD-map rays; no physical-consistency pass/fail threshold. RGB labels are not inferred from these diagnostics.",
+  "scan_pose_note": "Generated spinning sweep is compared directly with its original motion-aware geometric control; output points are not deskewed.",
+  "sweeps": [
+    {
+      "frame_id": 0,
+      "timestamp_s": 0.0,
+      "controlled_rays": 15378,
+      "generated_valid_controlled_rays": 14868,
+      "coverage": 0.9668357393679282,
+      "range_mae_m": 1.71558678150177,
+      "range_median_error_m": 0.2346172332763672,
+      "fraction_all_controlled_rays_within_2m": 0.7868383404864091
+    },
+    {
+      "frame_id": 3,
+      "timestamp_s": 0.1,
+      "controlled_rays": 16041,
+      "generated_valid_controlled_rays": 15537,
+      "coverage": 0.9685805124368805,
+      "range_mae_m": 1.6480271816253662,
+      "range_median_error_m": 0.23046493530273438,
+      "fraction_all_controlled_rays_within_2m": 0.7944641855245932
+    },
+    {
+      "frame_id": 6,
+      "timestamp_s": 0.2,
+      "controlled_rays": 16119,
+      "generated_valid_controlled_rays": 15613,
+      "coverage": 0.9686084744711211,
+      "range_mae_m": 1.5692083835601807,
+      "range_median_error_m": 0.22209882736206055,
+      "fraction_all_controlled_rays_within_2m": 0.8036478689745021
+    },
+    {
+      "frame_id": 9,
+      "timestamp_s": 0.3,
+      "controlled_rays": 16194,
+      "generated_valid_controlled_rays": 15697,
+      "coverage": 0.9693096208472274,
+      "range_mae_m": 1.5960954427719116,
+      "range_median_error_m": 0.22066020965576172,
+      "fraction_all_controlled_rays_within_2m": 0.8020254415215512
+    },
+    {
+      "frame_id": 12,
+      "timestamp_s": 0.4,
+      "controlled_rays": 16267,
+      "generated_valid_controlled_rays": 15779,
+      "coverage": 0.9700006147415012,
+      "range_mae_m": 1.5762991905212402,
+      "range_median_error_m": 0.2200336456298828,
+      "fraction_all_controlled_rays_within_2m": 0.8108440400811459
+    },
+    {
+      "frame_id": 15,
+      "timestamp_s": 0.5,
+      "controlled_rays": 16673,
+      "generated_valid_controlled_rays": 16219,
+      "coverage": 0.9727703472680381,
+      "range_mae_m": 1.6201739311218262,
+      "range_median_error_m": 0.22164154052734375,
+      "fraction_all_controlled_rays_within_2m": 0.8001559407425178
+    },
+    {
+      "frame_id": 18,
+      "timestamp_s": 0.6,
+      "controlled_rays": 16966,
+      "generated_valid_controlled_rays": 16508,
+      "coverage": 0.9730048331958033,
+      "range_mae_m": 1.6036728620529175,
+      "range_median_error_m": 0.22358942031860352,
+      "fraction_all_controlled_rays_within_2m": 0.7992455499233762
+    },
+    {
+      "frame_id": 21,
+      "timestamp_s": 0.7,
+      "controlled_rays": 16655,
+      "generated_valid_controlled_rays": 16203,
+      "coverage": 0.9728610027018914,
+      "range_mae_m": 1.4875496625900269,
+      "range_median_error_m": 0.2175884246826172,
+      "fraction_all_controlled_rays_within_2m": 0.8154308015610927
+    },
+    {
+      "frame_id": 24,
+      "timestamp_s": 0.8,
+      "controlled_rays": 16591,
+      "generated_valid_controlled_rays": 16140,
+      "coverage": 0.9728165873063709,
+      "range_mae_m": 1.4697606563568115,
+      "range_median_error_m": 0.19625568389892578,
+      "fraction_all_controlled_rays_within_2m": 0.8214091977578205
+    },
+    {
+      "frame_id": 27,
+      "timestamp_s": 0.9,
+      "controlled_rays": 16822,
+      "generated_valid_controlled_rays": 16355,
+      "coverage": 0.9722387349898942,
+      "range_mae_m": 1.4857091903686523,
+      "range_median_error_m": 0.20697975158691406,
+      "fraction_all_controlled_rays_within_2m": 0.8063250505290691
+    },
+    {
+      "frame_id": 30,
+      "timestamp_s": 1.0,
+      "controlled_rays": 16760,
+      "generated_valid_controlled_rays": 16313,
+      "coverage": 0.9733293556085919,
+      "range_mae_m": 1.411269187927246,
+      "range_median_error_m": 0.19996261596679688,
+      "fraction_all_controlled_rays_within_2m": 0.8125894988066826
+    },
+    {
+      "frame_id": 33,
+      "timestamp_s": 1.1,
+      "controlled_rays": 17306,
+      "generated_valid_controlled_rays": 16848,
+      "coverage": 0.9735351901074771,
+      "range_mae_m": 1.4895936250686646,
+      "range_median_error_m": 0.20360183715820312,
+      "fraction_all_controlled_rays_within_2m": 0.8097191725413152
+    },
+    {
+      "frame_id": 36,
+      "timestamp_s": 1.2,
+      "controlled_rays": 17610,
+      "generated_valid_controlled_rays": 17156,
+      "coverage": 0.9742191936399773,
+      "range_mae_m": 1.4900879859924316,
+      "range_median_error_m": 0.19910240173339844,
+      "fraction_all_controlled_rays_within_2m": 0.8095400340715503
+    },
+    {
+      "frame_id": 39,
+      "timestamp_s": 1.3,
+      "controlled_rays": 17629,
+      "generated_valid_controlled_rays": 17174,
+      "coverage": 0.9741902546939701,
+      "range_mae_m": 1.4551277160644531,
+      "range_median_error_m": 0.20325064659118652,
+      "fraction_all_controlled_rays_within_2m": 0.8115037721935447
+    },
+    {
+      "frame_id": 42,
+      "timestamp_s": 1.4,
+      "controlled_rays": 17480,
+      "generated_valid_controlled_rays": 17027,
+      "coverage": 0.9740846681922197,
+      "range_mae_m": 1.4607551097869873,
+      "range_median_error_m": 0.20160865783691406,
+      "fraction_all_controlled_rays_within_2m": 0.8130434782608695
+    },
+    {
+      "frame_id": 45,
+      "timestamp_s": 1.5,
+      "controlled_rays": 17958,
+      "generated_valid_controlled_rays": 17511,
+      "coverage": 0.9751085867023054,
+      "range_mae_m": 1.5682348012924194,
+      "range_median_error_m": 0.21615982055664062,
+      "fraction_all_controlled_rays_within_2m": 0.8069940973382337
+    },
+    {
+      "frame_id": 48,
+      "timestamp_s": 1.6,
+      "controlled_rays": 17979,
+      "generated_valid_controlled_rays": 17557,
+      "coverage": 0.9765281717559375,
+      "range_mae_m": 1.5759367942810059,
+      "range_median_error_m": 0.2241058349609375,
+      "fraction_all_controlled_rays_within_2m": 0.8005450803715446
+    },
+    {
+      "frame_id": 51,
+      "timestamp_s": 1.7,
+      "controlled_rays": 17767,
+      "generated_valid_controlled_rays": 17354,
+      "coverage": 0.9767546575111161,
+      "range_mae_m": 1.5014567375183105,
+      "range_median_error_m": 0.22316551208496094,
+      "fraction_all_controlled_rays_within_2m": 0.8142061124556762
+    },
+    {
+      "frame_id": 54,
+      "timestamp_s": 1.8,
+      "controlled_rays": 17488,
+      "generated_valid_controlled_rays": 17110,
+      "coverage": 0.9783851784080513,
+      "range_mae_m": 1.4334659576416016,
+      "range_median_error_m": 0.22548890113830566,
+      "fraction_all_controlled_rays_within_2m": 0.8264524245196706
+    },
+    {
+      "frame_id": 57,
+      "timestamp_s": 1.9,
+      "controlled_rays": 17765,
+      "generated_valid_controlled_rays": 17357,
+      "coverage": 0.9770334928229665,
+      "range_mae_m": 1.4149839878082275,
+      "range_median_error_m": 0.2305736541748047,
+      "fraction_all_controlled_rays_within_2m": 0.8192513368983957
+    }
+  ]
+}

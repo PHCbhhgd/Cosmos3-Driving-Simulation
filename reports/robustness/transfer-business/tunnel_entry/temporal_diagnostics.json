@@ -1,0 +1,55 @@
+{
+  "camera_temporal_mae_8bit": {
+    "camera_front_wide_120fov": {
+      "mean": 2.8819931864738466,
+      "max": 3.3682291507720947
+    },
+    "camera_cross_left_120fov": {
+      "mean": 3.1104220032691954,
+      "max": 3.81662654876709
+    },
+    "camera_cross_right_120fov": {
+      "mean": 3.3674492597579957,
+      "max": 3.738741874694824
+    },
+    "camera_rear_left_70fov": {
+      "mean": 4.9261138041814165,
+      "max": 5.983293056488037
+    },
+    "camera_rear_right_70fov": {
+      "mean": 3.38417934179306,
+      "max": 3.8812499046325684
+    },
+    "camera_rear_tele_30fov": {
+      "mean": 1.9886324842770895,
+      "max": 2.200801372528076
+    },
+    "camera_front_tele_30fov": {
+      "mean": 2.3260042746861775,
+      "max": 2.6558494567871094
+    }
+  },
+  "lidar_points_per_sweep": [
+    219533,
+    219688,
+    219762,
+    219723,
+    219723,
+    219774,
+    219834,
+    219827,
+    219841,
+    219845,
+    219969,
+    220019,
+    220016,
+    220088,
+    220142,
+    220214,
+    220228,
+    220282,
+    220317,
+    220258
+  ],
+  "note": "Temporal pixel changes document output dynamics, not accuracy of trajectory adherence. WSM overlays require visual inspection; no physical consistency KPI claimed."
+}

@@ -1,0 +1,35 @@
+{
+  "scope": "Compare generated RGB with aligned WSM controls over an event window.\n\nCrops are manually chosen review regions, not detector predictions. Controls\ndescribe requested geometry, not measured calibration of generated imagery.",
+  "camera": "camera_front_wide_120fov",
+  "frame_ids": [
+    0,
+    3,
+    6,
+    9,
+    12,
+    15,
+    18,
+    24
+  ],
+  "timestamps_s": [
+    0.0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.8
+  ],
+  "crop_output_xywh": [
+    0,
+    0,
+    832,
+    480
+  ],
+  "generated_video_sha256": "ce09880c3c94bd58d7f99d0d534d68470e275230ef59dc311e6760c63986311f",
+  "control_video_sha256": "a81c7594f71eae994a40489684f14e875d14c1e6df64381bc36fee73027790d0",
+  "alignment": "Packaged controls already have inference resize/crop; no second transform",
+  "sheet_sha256": "2f91ec0298b1f27f4e9f2600c6edc77323169a67e947b1fbc37e35ad031477e6",
+  "display": "Paired RGB/input crops, letterboxed with ordinary resizing; no enhancement"
+}

@@ -26,7 +26,7 @@
 
 ## Transfer 联合传感器实测
 
-以下仅列已完成的场景；其余场景和 RGB 时长测试的准备不算生成成功。五例均完成 35 步联合采样，在同驻 LiDAR VAE 解码时 OOM；保存的完整 latent 已使用独立官方 VAE 解码，未重新采样。七路视频、20 次 LiDAR 扫描、点云打包和真实浏览器回放检查通过。
+以下仅列已完成的场景；其余场景和 RGB 时长测试的准备不算生成成功。六例均完成 35 步联合采样，在同驻 LiDAR VAE 解码时 OOM；保存的完整 latent 已使用独立官方 VAE 解码，未重新采样。七路视频、20 次 LiDAR 扫描、点云打包和真实浏览器回放检查通过。
 
 | 场景 | 可见结果 | 稀疏射线有效覆盖 | 平均逐扫描 range MAE | 预览 |
 | --- | --- | --- | --- | --- |
@@ -35,6 +35,7 @@
 | 降雪左转 | 前车、积雪路沿和车辙可辨，左弯运动连续；部分边缘有彩色条纹与纹理伪影 | 90.86% | 4.09 m | [七相机 + LiDAR](../media/robustness/transfer-snow_turn-sensors.mp4) / [前广角](../media/robustness/transfer-snow_turn-front.mp4) |
 | 鬼探头 | 遮挡后显露和横穿可见，但时间/位置未严格跟随控制；开头额外生成路边行人，快速运动有局部重影 | 86.11% | 5.65 m | [七相机 + LiDAR](../media/robustness/transfer-occluded_pedestrian-sensors.mp4) / [前广角](../media/robustness/transfer-occluded_pedestrian-front.mp4) |
 | 邻车接触 | 两车持续接近，1.1 秒附近有近距离接触外观，身份基本保留；没有清楚的受撞响应，未验证事故动力学 | 89.77% | 5.59 m | [七相机 + LiDAR](../media/robustness/transfer-adjacent_collision-sensors.mp4) / [前广角](../media/robustness/transfer-adjacent_collision-front.mp4) |
+| 隧道入口 | 墙顶、灯列和前车大体连续；开头已为墙顶主导视野，没有充分的室外→入口→入洞过渡证据 | 97.30% | 1.53 m | [七相机 + LiDAR](../media/robustness/transfer-tunnel_entry-sensors.mp4) / [前广角](../media/robustness/transfer-tunnel_entry-front.mp4) |
 
 ![Same geometric actor control, clear and rainy generated RGB](../media/robustness/transfer-clear-rain-car-detail.jpg)
 
@@ -57,6 +58,10 @@
 ### 邻车接触事件细查
 
 [接触前后 RGB/WSM 对照](../media/robustness/transfer-contact-front-detail.jpg) 按 0.1 秒检查 0.8–1.4 秒，并补充 0、0.5、1.6、1.8、2 秒。两车间距缩小，接触点附近可见车头接近前车尾部，后段仍基本保持两车身份；相较 Nano 的低运动邻车样本更接近要求。但未确证突发冲击、受撞车响应，不能计为真实车祸复现。输入本身未提供形变动力学，后车部分表面进入 5 m 以内，也不能据近场点云缺口单独判定生成失败。机器与抽帧证据见 [adjacent_collision](../reports/robustness/transfer-business/adjacent_collision/)。
+
+### 隧道入口证据范围
+
+[首段密集 RGB/WSM 对照](../media/robustness/transfer-tunnel-entry-detail.jpg) 包含 0–0.6 秒每 0.1 秒及 0.8 秒：上缘起初可见天空带，随后消失，但开头视野已由墙顶主导，没有清楚展示完整的室外道路和入口。初始相机比后轴前移约 1.75 m，距 x=4 m 入口只有约 2.25 m，约 0.56 秒就越过入口；线框 WSM 首帧也呈现隧道主导透视。该例只支持短距离近入口/洞内连续性观察，不能算完整入洞与曝光测试通过，也不能把缺少室外段完全归因于模型。稀疏线框指标较好同样不能证明模型补全的密集墙顶准确。[机器与事件记录](../reports/robustness/transfer-business/tunnel_entry/)
 
 ## 测试设计
 
@@ -96,6 +101,8 @@
 | Sim-Auto | 官方硬件检查 | 当前硬件能否运行，不能回答视频质量或滚动稳定时长 |
 
 长 RGB 控制来自真实连续渲染的 797 帧，未降低 FPS 或重复视频。第二个 chunk 的控制从 frame 396 开始，与第一段最后一帧一致；拼接时去掉一帧反馈。原生 joint 路径只支持一个 caption chunk，因此 RGB 续生成结果**不代表七相机 + LiDAR 的同等时长能力**。
+
+续生成沿用 Framework 的 `base_seed + chunk.index`：首 chunk 为 seed0，第二个为 seed1；同一长序列的第二段接收首段末帧作为条件。这与两次独立请求后把视频直接拼接不同，仍需检查约 13.2 秒续接附近的连续性。
 
 长测专用场景让自车和前车均以 6 m/s 行驶，沿道路弧长保持 24 m 间距，完成 90° 左弯后沿切线前进；道路和路杆延伸到弧长 280 m，最后时刻仍有至少 120 m 的前方道路控制。短联合场景原本的前车速度为 3 m/s，若直接延长，自车约 8 秒就会追上前车；该准备版本保留但不用于长测，避免把输入轨迹重叠误判为模型失稳。
 

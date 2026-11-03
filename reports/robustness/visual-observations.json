@@ -311,6 +311,41 @@
       ],
       "description": "七相机0/1/2秒、前广角密集接触窗口及左侧相机局部已检查。输入受控接近比Nano弱运动样本更充分，未见明确整体崩坏或整车融合。稀疏射线覆盖0.8977、逐扫描MAE均值5.5935m。后车部分表面在5m以内，不能据近场点云缺口单独认定质量失败。",
       "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano-Transfer-Auto",
+      "suite": "transfer-business-20261103",
+      "case": "tunnel_entry",
+      "reviewed_camera_timestamps_s": [
+        0,
+        1,
+        2
+      ],
+      "dense_review_front_frame_ids": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        24
+      ],
+      "issues": [
+        {
+          "category": "insufficient_outdoor_to_tunnel_transition_evidence",
+          "first_reviewed_timestamp_s": 0,
+          "description": "开头即为墙顶主导的近入口/洞内外观，前广角上缘短暂可见天空带，之后消失。没有清楚的室外道路→完整入口→入洞过程；相机初始只距入口2.25m，约0.56秒到门口，线框输入本身也已呈隧道主导透视，因此不能全部归因模型。",
+          "confidence": "high"
+        },
+        {
+          "category": "large_foreground_hood_and_view_color_variation",
+          "description": "前广角下缘有占据较大面积的蓝灰色车头/前景结构，不同侧后视图色温变化明显；缺少实测外观和曝光真值，不能量化其物理正确性。",
+          "confidence": "medium"
+        }
+      ],
+      "description": "七视角0/1/2秒与前广角密集首段已检查；墙、顶、灯列和前车连续，未见明确整体崩坏。稀疏射线覆盖0.9730、逐扫描MAE均值1.52865m；线框指标较好不证明密集墙顶几何正确。",
+      "temporal_collapse_threshold_s": null
     }
   ]
 }

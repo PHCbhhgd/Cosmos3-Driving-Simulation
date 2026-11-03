@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "bundle": "outputs/robustness/transfer-business-20261103/tunnel_entry/bundle",
+  "cameras": 7,
+  "checks": [
+    "video decode",
+    "initial slider and timestamp",
+    "seek all cameras",
+    "point cloud drag",
+    "RGB/WSM mode switch where available",
+    "playback advances",
+    "camera sync under 120 ms",
+    "no JS errors"
+  ],
+  "midpoint": {
+    "frame": 30,
+    "clock": "1.00 s \u00b7 30/60",
+    "times": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "fps": 30
+  },
+  "playback": {
+    "frame": 37,
+    "times": [
+      1.26117,
+      1.261065,
+      1.260978,
+      1.260903,
+      1.260834,
+      1.260763,
+      1.260694
+    ]
+  }
+}
