@@ -106,6 +106,10 @@ def main():
         result = json.loads(result.read_text()) if result.exists() else {}
         videos = sorted(sample.glob("vision_*.mp4"))
         if result.get("status") == "success" and len(videos) == 1:
+            extra_frames = []
+            if spec["chunks"] > 1:
+                boundary = spec["chunk_frames"] - 1
+                extra_frames = ["--extra-frames", *map(str, range(boundary - 3, boundary + 5))]
             with (output / "review.log").open("w") as handle:
                 reviewed = subprocess.run(
                     [
@@ -118,6 +122,7 @@ def main():
                         "1",
                         "--expected-frames",
                         str(spec["expected_frames"]),
+                        *extra_frames,
                     ],
                     stdout=handle,
                     stderr=subprocess.STDOUT,

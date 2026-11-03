@@ -1,0 +1,15 @@
+{
+  "case": "rain_turn",
+  "started_at": "2026-11-03T03:08:30.590497+00:00",
+  "status": "generated_and_packaged",
+  "inference_exit_code": 1,
+  "sampling_and_decode_seconds": 1305.1849097851664,
+  "recovery": "Isolated official VAEs from complete saved joint latents; no resampling",
+  "decode_exit_code": 0,
+  "package_exit_code": 0,
+  "review_exit_code": 0,
+  "geometry_diagnostics_exit_code": 0,
+  "browser_exit_code": 0,
+  "total_seconds": 1388.9202544186264,
+  "output": "outputs/robustness/transfer-business-20261103/rain_turn"
+}

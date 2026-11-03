@@ -24,6 +24,21 @@
 
 图中是实际视频的局部放大：原请求要求同一行人，3.375–3.875 秒出现可辨的人形重影。抽帧间隔为 3 帧 / 0.125 秒；3.375 秒是该审阅中首次明确辨认的时间，不是模型的通用极限。
 
+## Transfer 联合传感器实测
+
+以下仅列已完成的场景；其余场景和 RGB 时长测试的准备不算生成成功。两例均完成 35 步联合采样，在同驻 LiDAR VAE 解码时 OOM；保存的完整 latent 已使用独立官方 VAE 解码，未重新采样。七路视频、20 次 LiDAR 扫描、点云打包和真实浏览器回放检查通过。
+
+| 场景 | 可见结果 | 稀疏射线有效覆盖 | 平均逐扫描 range MAE | 预览 |
+| --- | --- | --- | --- | --- |
+| 晴天左转 | 车道和前车有连续左弯运动，前车大致跟随控制框；路面有轻微纹理斑 | 92.82% | 3.87 m | [七相机 + LiDAR](../media/robustness/transfer-clear_turn-sensors.mp4) / [前广角](../media/robustness/transfer-clear_turn-front.mp4) |
+| 大雨左转 | 湿路、雨水与灰暗天气可见，但前车难以辨认，车体近似白色重影，从开头即存在 | 64.08% | 6.90 m | [七相机 + LiDAR](../media/robustness/transfer-rain_turn-sensors.mp4) / [前广角](../media/robustness/transfer-rain_turn-front.mp4) |
+
+![Same geometric actor control, clear and rainy generated RGB](../media/robustness/transfer-clear-rain-car-detail.jpg)
+
+上图每列为 0、1、2 秒，上排晴天、下排大雨，均从实际前广角视频裁切。几何控制与 seed 相同，生成的背景、材质和车辆外观仍会因文字变化而改变；没有建立保持场景身份的反事实仿真。这张图支持“本次雨天样本的受控前车表现退化”，不能据单次采样估计雨天失败率。
+
+原始机器证据见 [晴天](../reports/robustness/transfer-business/clear_turn/) 和 [雨天](../reports/robustness/transfer-business/rain_turn/)。box 附近点数只是辅助诊断：晴天所抽取扫描约 900–1150 点，大雨约 29–145 点；附近点不等于语义正确的前车点。上述射线指标没有物理合格阈值，也没有提供真实雨滴散射参考。
+
 ## 测试设计
 
 模型、Framework、VAE 与低显存补丁沿用 [固定版本](../configs/versions.json)。模型权重不修改，不关闭默认安全配置。Nano 使用官方流式卸载、848×480、24 FPS、35 步、guidance 6，safety checker 开启；Transfer 使用四卡 CP4 / DP-shard4、480p、35 步、guidance 3、shift 10、官方逐视角 negative prompt。该配置下实际相机输出为 832×480。官方 negative prompt 也包含抑制“雨雾严重遮挡附近车辆和车道”的描述；解释大雨结果时必须保留这一条件，不能把输出差异全部归因于模型本身。

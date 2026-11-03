@@ -199,6 +199,96 @@
       "bytes": 93244,
       "sha256": "86b02be4017aa45faf51492948a8dbd776c0ae40599155f5b4f12d752c895214",
       "kind": "frames derived from actual generated output"
+    },
+    {
+      "file": "media/robustness/transfer-clear-rain-car-detail.jpg",
+      "bytes": 72334,
+      "sha256": "0364cf12fa274ff7643a0d37e4522391b804cca1c04a53a7eccdf92df2583bf0",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-clear_turn-cameras.jpg",
+      "bytes": 744978,
+      "sha256": "9158d5d69652eb4aed7badaf462a4a04524d41d27c6322eb65e648b4a748619d",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-clear_turn-controls.jpg",
+      "bytes": 759513,
+      "sha256": "57110c57d50fc17778c5f02e1aa6b3a4cda8943fa774d9b6b3d866e737459ff2",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-clear_turn-front.mp4",
+      "bytes": 490187,
+      "sha256": "e7b508cedb6692d43bc36150942f8af73036a3b5cbf9e90c64c618fae91e6257",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-clear_turn-lidar.png",
+      "bytes": 453108,
+      "sha256": "f6b29793fb0910e0459c6d3f876e39809b82334a843ee19e0869dc6ca5b78cf5",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-clear_turn-previews.json",
+      "bytes": 2521,
+      "sha256": "85d17d3e9549510cbca8a7c147ab3bc26bd647546c476dc2b8c12cdb7f0beeb1",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-clear_turn-sensors.mp4",
+      "bytes": 1502625,
+      "sha256": "4134fb0bb960657c9b39224efa2849570c26c288a7dcf4b2ba67df1007800640",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-clear_turn-timeline.jpg",
+      "bytes": 261596,
+      "sha256": "4a395f49b484a74279219e445ec4ebaf24a9cdae079d20811cbd3357364e5e04",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-rain_turn-cameras.jpg",
+      "bytes": 590630,
+      "sha256": "2e43f839796446845c36f109e2ea114e50b0a718b06d46e1edeed6b3aab71a4c",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-rain_turn-controls.jpg",
+      "bytes": 612256,
+      "sha256": "74a3ca3f5471fb619ae872099b708a8397c2b4447d78a33673796814d0167770",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-rain_turn-front.mp4",
+      "bytes": 483875,
+      "sha256": "531057593e0ddd3d6e722c213af8f386e2dab7d48f186702080f614f47b12fb8",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-rain_turn-lidar.png",
+      "bytes": 287198,
+      "sha256": "e6fd573f19e4811a8da655cbbe4a8ced99c3984e2d22d7a27dfa71913686d361",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-rain_turn-previews.json",
+      "bytes": 2514,
+      "sha256": "b2734351f2db1fc52b8eb661daf4f54bed80b7ef3cdedebcd1564edcf3bd8c5b",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-rain_turn-sensors.mp4",
+      "bytes": 1070643,
+      "sha256": "f8e83658018b7e3738ebdc89ac6e61b84feab0da70411888a92e0fe8501ec66b",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
+    },
+    {
+      "file": "media/robustness/transfer-rain_turn-timeline.jpg",
+      "bytes": 235327,
+      "sha256": "22fe63e92d92c17a97168b0820bb57a28061e0937a490d0e2528d47ddc717dde",
+      "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
     }
   ]
 }

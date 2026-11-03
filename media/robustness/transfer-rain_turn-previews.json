@@ -1,0 +1,54 @@
+{
+  "case": "rain_turn",
+  "scope": "Previews only; original full sensor files retained in release bundles.",
+  "files": [
+    {
+      "file": "transfer-rain_turn-front.mp4",
+      "bytes": 483875,
+      "sha256": "531057593e0ddd3d6e722c213af8f386e2dab7d48f186702080f614f47b12fb8",
+      "original_bundle_file": "cameras/camera_front_wide_120fov.mp4",
+      "original_sha256": "95281238d65b625e808274cf48a1ad810fcc44198510df5303d5f465c0fd414a",
+      "transform": "H264 CRF23 preview, original dimensions/FPS retained"
+    },
+    {
+      "file": "transfer-rain_turn-sensors.mp4",
+      "bytes": 1070643,
+      "sha256": "f8e83658018b7e3738ebdc89ac6e61b84feab0da70411888a92e0fe8501ec66b",
+      "original_bundle_file": "review/sensor_mosaic.mp4",
+      "original_sha256": "9ed173c3ecd878b0a08c7f5f20b2100a94385fff7eb5763b9e2496e241480ccb",
+      "transform": "H264 CRF23 preview, original dimensions/FPS retained"
+    },
+    {
+      "file": "transfer-rain_turn-cameras.jpg",
+      "bytes": 590630,
+      "sha256": "2e43f839796446845c36f109e2ea114e50b0a718b06d46e1edeed6b3aab71a4c",
+      "original_bundle_file": "review/camera_contact_sheet.jpg",
+      "original_sha256": "2e43f839796446845c36f109e2ea114e50b0a718b06d46e1edeed6b3aab71a4c",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-rain_turn-controls.jpg",
+      "bytes": 612256,
+      "sha256": "74a3ca3f5471fb619ae872099b708a8397c2b4447d78a33673796814d0167770",
+      "original_bundle_file": "review/wsm_overlay_contact_sheet.jpg",
+      "original_sha256": "74a3ca3f5471fb619ae872099b708a8397c2b4447d78a33673796814d0167770",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-rain_turn-lidar.png",
+      "bytes": 287198,
+      "sha256": "e6fd573f19e4811a8da655cbbe4a8ced99c3984e2d22d7a27dfa71913686d361",
+      "original_bundle_file": "review/lidar_control_overlay.png",
+      "original_sha256": "e6fd573f19e4811a8da655cbbe4a8ced99c3984e2d22d7a27dfa71913686d361",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-rain_turn-timeline.jpg",
+      "bytes": 235327,
+      "sha256": "22fe63e92d92c17a97168b0820bb57a28061e0937a490d0e2528d47ddc717dde",
+      "original_bundle_file": "review/front-timeline/timeline.jpg",
+      "original_sha256": "22fe63e92d92c17a97168b0820bb57a28061e0937a490d0e2528d47ddc717dde",
+      "transform": "Exact copy of generated-output diagnostic image"
+    }
+  ]
+}

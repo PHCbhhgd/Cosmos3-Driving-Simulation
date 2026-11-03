@@ -14,7 +14,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 
-def review(video, output, interval=1.0, expected_frames=None):
+def review(video, output, interval=1.0, expected_frames=None, extra_frames=()):
     if interval <= 0:
         raise ValueError("interval must be positive")
     output.mkdir(parents=True, exist_ok=True)
@@ -26,6 +26,9 @@ def review(video, output, interval=1.0, expected_frames=None):
         raise ValueError("Video has no valid FPS")
     declared = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     selected = set(range(0, declared, max(1, round(interval * fps)))) | {declared - 1}
+    if any(frame < 0 or frame >= declared for frame in extra_frames):
+        raise ValueError("Extra review frames must lie within the video")
+    selected.update(extra_frames)
     images, changes, brightness, sharpness = [], [], [], []
     previous = None
     count = 0
@@ -99,8 +102,9 @@ def main():
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--interval", type=float, default=1.0)
     p.add_argument("--expected-frames", type=int)
+    p.add_argument("--extra-frames", type=int, nargs="*", default=[])
     args = p.parse_args()
-    result = review(args.video, args.output, args.interval, args.expected_frames)
+    result = review(args.video, args.output, args.interval, args.expected_frames, args.extra_frames)
     print(json.dumps({k: result[k] for k in ["frames", "fps", "full_decode", "sha256"]}, indent=2))
 
 

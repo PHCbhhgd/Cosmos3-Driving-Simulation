@@ -1,0 +1,15 @@
+{
+  "case": "clear_turn",
+  "started_at": "2026-11-03T02:40:20.316850+00:00",
+  "status": "generated_and_packaged",
+  "inference_exit_code": 1,
+  "sampling_and_decode_seconds": 1599.2114583812654,
+  "recovery": "Isolated official VAEs from complete saved joint latents; no resampling",
+  "decode_exit_code": 0,
+  "package_exit_code": 0,
+  "review_exit_code": 0,
+  "geometry_diagnostics_exit_code": 0,
+  "browser_exit_code": 0,
+  "total_seconds": 1689.9209369104356,
+  "output": "outputs/robustness/transfer-business-20261103/clear_turn"
+}

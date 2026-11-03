@@ -1,0 +1,54 @@
+{
+  "case": "clear_turn",
+  "scope": "Previews only; original full sensor files retained in release bundles.",
+  "files": [
+    {
+      "file": "transfer-clear_turn-front.mp4",
+      "bytes": 490187,
+      "sha256": "e7b508cedb6692d43bc36150942f8af73036a3b5cbf9e90c64c618fae91e6257",
+      "original_bundle_file": "cameras/camera_front_wide_120fov.mp4",
+      "original_sha256": "d258f18cc17bff99b130c2706b43a75c44fc8e41aa9aba5c5a94724f6bd28182",
+      "transform": "H264 CRF23 preview, original dimensions/FPS retained"
+    },
+    {
+      "file": "transfer-clear_turn-sensors.mp4",
+      "bytes": 1502625,
+      "sha256": "4134fb0bb960657c9b39224efa2849570c26c288a7dcf4b2ba67df1007800640",
+      "original_bundle_file": "review/sensor_mosaic.mp4",
+      "original_sha256": "c24ee4a2fba058b66a765e4e49373d9a92776d0e30a64bcf1b2d16101360199e",
+      "transform": "H264 CRF23 preview, original dimensions/FPS retained"
+    },
+    {
+      "file": "transfer-clear_turn-cameras.jpg",
+      "bytes": 744978,
+      "sha256": "9158d5d69652eb4aed7badaf462a4a04524d41d27c6322eb65e648b4a748619d",
+      "original_bundle_file": "review/camera_contact_sheet.jpg",
+      "original_sha256": "9158d5d69652eb4aed7badaf462a4a04524d41d27c6322eb65e648b4a748619d",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-clear_turn-controls.jpg",
+      "bytes": 759513,
+      "sha256": "57110c57d50fc17778c5f02e1aa6b3a4cda8943fa774d9b6b3d866e737459ff2",
+      "original_bundle_file": "review/wsm_overlay_contact_sheet.jpg",
+      "original_sha256": "57110c57d50fc17778c5f02e1aa6b3a4cda8943fa774d9b6b3d866e737459ff2",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-clear_turn-lidar.png",
+      "bytes": 453108,
+      "sha256": "f6b29793fb0910e0459c6d3f876e39809b82334a843ee19e0869dc6ca5b78cf5",
+      "original_bundle_file": "review/lidar_control_overlay.png",
+      "original_sha256": "f6b29793fb0910e0459c6d3f876e39809b82334a843ee19e0869dc6ca5b78cf5",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-clear_turn-timeline.jpg",
+      "bytes": 261596,
+      "sha256": "4a395f49b484a74279219e445ec4ebaf24a9cdae079d20811cbd3357364e5e04",
+      "original_bundle_file": "review/front-timeline/timeline.jpg",
+      "original_sha256": "4a395f49b484a74279219e445ec4ebaf24a9cdae079d20811cbd3357364e5e04",
+      "transform": "Exact copy of generated-output diagnostic image"
+    }
+  ]
+}
