@@ -9,7 +9,6 @@ import json
 from pathlib import Path
 
 import cv2
-import numpy as np
 from PIL import Image, ImageDraw, ImageOps
 
 from build_release import digest
@@ -31,7 +30,6 @@ def review(bundle, output, camera, frames, crop=None):
     captures = [cv2.VideoCapture(str(p)) for p in [rgb_path, control_path]]
     if not all(cap.isOpened() for cap in captures):
         raise ValueError("Unable to open RGB or control video")
-    transform = np.asarray(geometry["control_pixel_to_output_pixel"])
     cells = []
     try:
         for index in frames:
@@ -41,8 +39,9 @@ def review(bundle, output, camera, frames, crop=None):
                 ok, frame = cap.read()
                 if not ok:
                     raise ValueError(f"Unable to decode frame {index}")
+                if (frame.shape[1], frame.shape[0]) != (width, height):
+                    raise ValueError("Packaged RGB and WSM must already share output dimensions")
                 decoded.append(frame)
-            decoded[1] = cv2.warpAffine(decoded[1], transform[:2], (width, height))
             tile = Image.new("RGB", (416, 534), (15, 22, 30))
             draw = ImageDraw.Draw(tile)
             for row, (label, frame) in enumerate(zip(["GENERATED RGB", "INPUT WSM"], decoded)):
@@ -73,7 +72,7 @@ def review(bundle, output, camera, frames, crop=None):
         crop_output_xywh=[x, y, w, h],
         generated_video_sha256=digest(rgb_path),
         control_video_sha256=digest(control_path),
-        control_pixel_to_output_pixel=transform.tolist(),
+        alignment="Packaged controls already have inference resize/crop; no second transform",
         sheet_sha256=digest(output / "event-window.jpg"),
         display="Paired RGB/input crops, letterboxed with ordinary resizing; no enhancement",
     )

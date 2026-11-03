@@ -319,6 +319,51 @@
       "file": "media/robustness/transfer-snow_turn-timeline.jpg",
       "bytes": 269920,
       "sha256": "a1c321710c236d909dfd9a66654e2c65d0649eb0c774822e52493ddbc5f85e23"
+    },
+    {
+      "file": "media/robustness/transfer-weather-diagnostics.png",
+      "bytes": 199357,
+      "sha256": "85236ee477d247926f11e3bc49e9f59b9bffaa3efa8e03072bc89fa9b34fb292"
+    },
+    {
+      "file": "media/robustness/transfer-occluded_pedestrian-cameras.jpg",
+      "bytes": 585920,
+      "sha256": "a46e9d3eb0cb717208b885c675bcd82ea0f2529db01c4676b0de74f11e3fec5b"
+    },
+    {
+      "file": "media/robustness/transfer-occluded_pedestrian-controls.jpg",
+      "bytes": 585629,
+      "sha256": "15c08d5b17129105ee1873a097d0b8233c1d39857df2a1ee78aa1c191c20b40e"
+    },
+    {
+      "file": "media/robustness/transfer-occluded_pedestrian-front.mp4",
+      "bytes": 296644,
+      "sha256": "2c6a3753f2872bc4667e5784a8120d477bf3f7c7120be4680c90dbe4fc772e33"
+    },
+    {
+      "file": "media/robustness/transfer-occluded_pedestrian-lidar.png",
+      "bytes": 416229,
+      "sha256": "05b8f09e5730dc3eff161e0a0bd7344958537175786d3443f4faeeca82371d83"
+    },
+    {
+      "file": "media/robustness/transfer-occluded_pedestrian-sensors.mp4",
+      "bytes": 952628,
+      "sha256": "8f1e2a7a409b68dbcbcb6bd02baf9adffbe116dd7bfb8ad427d751f3f030f057"
+    },
+    {
+      "file": "media/robustness/transfer-occluded_pedestrian-timeline.jpg",
+      "bytes": 227808,
+      "sha256": "89affaa6e63ca8e207818dc2e55888a4eaae985a2ff78876a3c7aab2ed5e9895"
+    },
+    {
+      "file": "media/robustness/transfer-pedestrian-front-detail.jpg",
+      "bytes": 693360,
+      "sha256": "376dae6b2b2fe70d757cafd1a5d1635da6308cdf2942d0285279ad4b875fd677"
+    },
+    {
+      "file": "media/robustness/transfer-pedestrian-right-detail.jpg",
+      "bytes": 202159,
+      "sha256": "48204d64b926ca5b81a92532d11108979578f888ff4d76213529f3deedf5df6c"
     }
   ]
 }

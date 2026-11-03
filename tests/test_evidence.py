@@ -15,6 +15,41 @@ def read(name):
 
 
 class EvidenceTests(unittest.TestCase):
+    def test_business_previews_are_tied_to_validated_original_sensor_bundles(self):
+        base = ROOT / "reports/robustness/transfer-business"
+        generated = 0
+        for folder in sorted(p for p in base.iterdir() if p.is_dir()):
+            run = json.loads((folder / "run.json").read_text())
+            if run["status"] != "generated_and_packaged":
+                continue
+            generated += 1
+            with self.subTest(case=folder.name):
+                for key in [
+                    "package_exit_code",
+                    "review_exit_code",
+                    "geometry_diagnostics_exit_code",
+                    "browser_exit_code",
+                ]:
+                    self.assertEqual(run[key], 0)
+                manifest = json.loads((folder / "bundle_manifest.json").read_text())
+                self.assertEqual((len(manifest["cameras"]), manifest["camera_frames"]), (7, 61))
+                self.assertTrue(all(row["full_decode"] for row in manifest["cameras"]))
+                self.assertEqual([s["frame_id"] for s in manifest["sweeps"]], list(range(0, 60, 3)))
+                hashes = dict(
+                    reversed(line.split("  ", 1))
+                    for line in (folder / "original-bundle-SHA256SUMS").read_text().splitlines()
+                )
+                previews = read(f"media/robustness/transfer-{folder.name}-previews.json")
+                for preview in previews["files"]:
+                    public = ROOT / "media/robustness" / preview["file"]
+                    self.assertEqual(
+                        hashlib.sha256(public.read_bytes()).hexdigest(), preview["sha256"]
+                    )
+                    self.assertEqual(
+                        hashes[preview["original_bundle_file"]], preview["original_sha256"]
+                    )
+        self.assertGreaterEqual(generated, 3)
+
     def test_robustness_nano_videos_match_full_decode_reports(self):
         aliases = {
             "nano-duration-20261103-r2": "nano-duration",

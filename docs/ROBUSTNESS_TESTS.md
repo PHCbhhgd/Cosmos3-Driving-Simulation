@@ -26,19 +26,32 @@
 
 ## Transfer 联合传感器实测
 
-以下仅列已完成的场景；其余场景和 RGB 时长测试的准备不算生成成功。三例均完成 35 步联合采样，在同驻 LiDAR VAE 解码时 OOM；保存的完整 latent 已使用独立官方 VAE 解码，未重新采样。七路视频、20 次 LiDAR 扫描、点云打包和真实浏览器回放检查通过。
+以下仅列已完成的场景；其余场景和 RGB 时长测试的准备不算生成成功。四例均完成 35 步联合采样，在同驻 LiDAR VAE 解码时 OOM；保存的完整 latent 已使用独立官方 VAE 解码，未重新采样。七路视频、20 次 LiDAR 扫描、点云打包和真实浏览器回放检查通过。
 
 | 场景 | 可见结果 | 稀疏射线有效覆盖 | 平均逐扫描 range MAE | 预览 |
 | --- | --- | --- | --- | --- |
 | 晴天左转 | 车道和前车有连续左弯运动，前车大致跟随控制框；路面有轻微纹理斑 | 92.82% | 3.87 m | [七相机 + LiDAR](../media/robustness/transfer-clear_turn-sensors.mp4) / [前广角](../media/robustness/transfer-clear_turn-front.mp4) |
 | 大雨左转 | 湿路、雨水与灰暗天气可见，但前车难以辨认，车体近似白色重影，从开头即存在 | 64.08% | 6.90 m | [七相机 + LiDAR](../media/robustness/transfer-rain_turn-sensors.mp4) / [前广角](../media/robustness/transfer-rain_turn-front.mp4) |
 | 降雪左转 | 前车、积雪路沿和车辙可辨，左弯运动连续；部分边缘有彩色条纹与纹理伪影 | 90.86% | 4.09 m | [七相机 + LiDAR](../media/robustness/transfer-snow_turn-sensors.mp4) / [前广角](../media/robustness/transfer-snow_turn-front.mp4) |
+| 鬼探头 | 遮挡后显露和横穿可见，但时间/位置未严格跟随控制；开头额外生成路边行人，快速运动有局部重影 | 86.11% | 5.65 m | [七相机 + LiDAR](../media/robustness/transfer-occluded_pedestrian-sensors.mp4) / [前广角](../media/robustness/transfer-occluded_pedestrian-front.mp4) |
 
 ![Same geometric actor control, clear and rainy generated RGB](../media/robustness/transfer-clear-rain-car-detail.jpg)
 
 上图每列为 0、1、2 秒，上排晴天、下排大雨，均从实际前广角视频裁切。几何控制与 seed 相同，生成的背景、材质和车辆外观仍会因文字变化而改变；没有建立保持场景身份的反事实仿真。这张图支持“本次雨天样本的受控前车表现退化”，不能据单次采样估计雨天失败率。
 
 原始机器证据见 [晴天](../reports/robustness/transfer-business/clear_turn/)、[雨天](../reports/robustness/transfer-business/rain_turn/) 和 [雪天](../reports/robustness/transfer-business/snow_turn/)。box 附近点数只是辅助诊断：晴天所抽取扫描约 900–1150 点，大雨约 29–145 点，雪天约 830–955 点；附近点不等于语义正确的前车点。上述射线指标没有物理合格阈值，也没有提供真实雨滴散射参考。
+
+![Matched weather per-sweep sparse-control diagnostics](../media/robustness/transfer-weather-diagnostics.png)
+
+20 次扫描的曲线表明：本次雨天从第一扫描开始就比晴天缺少有效受控射线和前车 box 邻域点，range 误差后段反而下降。因此不能把它解释成某个秒数后累积失稳。图可通过安装 Matplotlib 后运行 `python scripts/plot_weather_diagnostics.py reports/robustness/transfer-business --output weather.png` 重新生成。
+
+### 鬼探头事件细查
+
+前广角按 0.1 秒间隔检查 0.8–2 秒：[RGB 与 WSM 同位置裁切](../media/robustness/transfer-pedestrian-front-detail.jpg)。1.0 秒 WSM 已有显露的行人框，RGB 中到 1.1 秒及以后才可辨；后续横穿位置也未严格跟随控制。快速移动时有边缘/肢体重影，但不足以确认与 Nano 相同的明确身份分裂。右侧相机与前广角开头还生成了输入没有控制的路边行人；不能未经跟踪就认定其是被遮挡目标提前出现。
+
+![Right-camera generated RGB and matching input WSM](../media/robustness/transfer-pedestrian-right-detail.jpg)
+
+上图每列为 0、0.5、1、1.5 秒，上排 RGB、下排输入 WSM。打包后的 WSM 已执行推理的 resize/crop，细查工具不再重复变换。记录包括所选帧、crop 和原视频 SHA256，见 [事件证据](../reports/robustness/transfer-business/occluded_pedestrian/)。行人 box 附近点数从遮挡期 0 增至 1.0 秒 906 点，但可能混入货车附近表面，不能证明跨传感器语义正确。全部 20 次扫描中，行人 box 最近距离仍大于 5 m，不能用近场裁剪解释显露期差异。
 
 ## 测试设计
 

@@ -1,7 +1,12 @@
 {
-  "collected_at": "2026-11-03T04:03:11.441913+00:00",
+  "collected_at": "2026-11-03T04:22:22.089818+00:00",
   "scope": "Snapshot of files that exist. Running, missing and failed results are not visual-quality passes; original bundle hashes differ after release redaction.",
   "cases": [
+    {
+      "case": "adjacent_collision",
+      "started_at": "2026-11-03T04:18:17.949561+00:00",
+      "status": "running"
+    },
     {
       "case": "clear_turn",
       "started_at": "2026-11-03T02:40:20.316850+00:00",
@@ -20,7 +25,17 @@
     {
       "case": "occluded_pedestrian",
       "started_at": "2026-11-03T03:54:51.579538+00:00",
-      "status": "running"
+      "status": "generated_and_packaged",
+      "inference_exit_code": 1,
+      "sampling_and_decode_seconds": 1324.7180402465165,
+      "recovery": "Isolated official VAEs from complete saved joint latents; no resampling",
+      "decode_exit_code": 0,
+      "package_exit_code": 0,
+      "review_exit_code": 0,
+      "geometry_diagnostics_exit_code": 0,
+      "browser_exit_code": 0,
+      "total_seconds": 1406.0317875351757,
+      "output": "outputs/robustness/transfer-business-20261103/occluded_pedestrian"
     },
     {
       "case": "rain_turn",
