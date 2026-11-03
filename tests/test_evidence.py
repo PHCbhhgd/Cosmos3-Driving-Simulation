@@ -15,6 +15,21 @@ def read(name):
 
 
 class EvidenceTests(unittest.TestCase):
+    def test_readme_gallery_frames_match_original_bundle_sources(self):
+        images = read("media/scenarios/provenance.json")["images"]
+        self.assertEqual(len(images), 8)
+        for row in images:
+            image = ROOT / "media/scenarios" / row["file"]
+            self.assertEqual(hashlib.sha256(image.read_bytes()).hexdigest(), row["sha256"])
+            original = ROOT / "reports/robustness/transfer-business" / row["case"]
+            hashes = dict(
+                reversed(line.split("  ", 1))
+                for line in (original / "original-bundle-SHA256SUMS").read_text().splitlines()
+            )
+            self.assertEqual(hashes[row["source_bundle_file"]], row["source_sha256"])
+            self.assertTrue(all(0 <= frame <= 60 for frame in row["frame_ids"]))
+            self.assertEqual(row["fps"], 30)
+
     def test_business_previews_are_tied_to_validated_original_sensor_bundles(self):
         base = ROOT / "reports/robustness/transfer-business"
         generated = 0

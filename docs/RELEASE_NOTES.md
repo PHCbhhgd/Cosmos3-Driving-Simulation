@@ -7,3 +7,5 @@ Cosmos3 inference reproduction with two actual Transfer-Auto trajectory variants
 - RTX 4090 decode-memory failures and the official Sim-Auto sm89 hardware restriction documented.
 
 The trajectories are preset inputs. This is open-loop sensor generation; no policy/dynamics feedback, radar, IMU or GNSS. Sparse-control agreement is diagnostic only. Sim-Auto generation has not succeeded in this reproduction. No model weights or credentials are distributed.
+
+Full sensor archives are kept locally. Large attachments have been removed from GitHub; source, reports, images and small previews remain available in the repository.

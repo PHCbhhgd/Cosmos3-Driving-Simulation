@@ -1,0 +1,107 @@
+{
+  "scope": "Actual video frames; resized JPEG only. Original videos remain local.",
+  "images": [
+    {
+      "case": "clear_turn",
+      "file": "clear_turn.jpg",
+      "sha256": "077b81718caa8ee5b9fb9703cad06e52a51857657079d33622cc4d4afe082ee0",
+      "source_bundle_file": "cameras/camera_front_wide_120fov.mp4",
+      "source_sha256": "d258f18cc17bff99b130c2706b43a75c44fc8e41aa9aba5c5a94724f6bd28182",
+      "frame_ids": [
+        0,
+        30,
+        60
+      ],
+      "fps": 30.0
+    },
+    {
+      "case": "rain_turn",
+      "file": "rain_turn.jpg",
+      "sha256": "72dcb997c70579bd840c13d4c31b6c1c535ccc8af73d50366209998c872baa39",
+      "source_bundle_file": "cameras/camera_front_wide_120fov.mp4",
+      "source_sha256": "95281238d65b625e808274cf48a1ad810fcc44198510df5303d5f465c0fd414a",
+      "frame_ids": [
+        0,
+        30,
+        60
+      ],
+      "fps": 30.0
+    },
+    {
+      "case": "snow_turn",
+      "file": "snow_turn.jpg",
+      "sha256": "e03fbf0bf3f4f7c1d17cd73e6d53d6bf48a19dfe10c0ba72f4e5f9c24e4efb86",
+      "source_bundle_file": "cameras/camera_front_wide_120fov.mp4",
+      "source_sha256": "fba9e704be3c475736b878a625710e5c95f77c491f4140aa834eeea11d1a3686",
+      "frame_ids": [
+        0,
+        30,
+        60
+      ],
+      "fps": 30.0
+    },
+    {
+      "case": "occluded_pedestrian",
+      "file": "occluded_pedestrian.jpg",
+      "sha256": "b070b057e92df3510617740a19cdcc7e92e6675223ca350b36850618bae5df42",
+      "source_bundle_file": "cameras/camera_front_wide_120fov.mp4",
+      "source_sha256": "1810321dd608daaeece99affa5f6dd301bee7a0b9cf363f1ce640dfbbc03e747",
+      "frame_ids": [
+        0,
+        33,
+        48
+      ],
+      "fps": 30.0
+    },
+    {
+      "case": "adjacent_collision",
+      "file": "adjacent_collision.jpg",
+      "sha256": "b496c4659fa53d873697ea7a40059957250141f9e710b1dfa0b18337ba4fefd6",
+      "source_bundle_file": "cameras/camera_front_wide_120fov.mp4",
+      "source_sha256": "c1bd1ad927fe8c08cdd4fa708205266575c5e59c0168ca85c683479a57fd6afb",
+      "frame_ids": [
+        0,
+        33,
+        60
+      ],
+      "fps": 30.0
+    },
+    {
+      "case": "tunnel_entry",
+      "file": "tunnel_entry.jpg",
+      "sha256": "85b541146581da654e8374b53e3c5b126704c9828408f697662869fa3dabfe72",
+      "source_bundle_file": "cameras/camera_front_wide_120fov.mp4",
+      "source_sha256": "ce09880c3c94bd58d7f99d0d534d68470e275230ef59dc311e6760c63986311f",
+      "frame_ids": [
+        0,
+        15,
+        60
+      ],
+      "fps": 30.0
+    },
+    {
+      "case": "contradictory_turn",
+      "file": "contradictory_turn.jpg",
+      "sha256": "51173b001c8a2276f753a8eb6319ddfe0b07d1003834bd0c0500d8f4b39332c4",
+      "source_bundle_file": "cameras/camera_front_wide_120fov.mp4",
+      "source_sha256": "7b64a032292b3df5b688a5c8836fd5f300e19f1208a449769daa9aca847b5aeb",
+      "frame_ids": [
+        0,
+        30,
+        60
+      ],
+      "fps": 30.0
+    },
+    {
+      "case": "clear_turn",
+      "file": "sensors-overview.jpg",
+      "sha256": "357e9bd9d547379862ad857f436e5893223c873e551234cab122fe7984580104",
+      "source_bundle_file": "review/sensor_mosaic.mp4",
+      "source_sha256": "c24ee4a2fba058b66a765e4e49373d9a92776d0e30a64bcf1b2d16101360199e",
+      "frame_ids": [
+        30
+      ],
+      "fps": 30.0
+    }
+  ]
+}

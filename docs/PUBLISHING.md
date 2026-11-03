@@ -1,15 +1,16 @@
-# GitHub 发布
+# GitHub 内容与本地数据
 
-已发布仓库：[PHCbhhgd/Cosmos3-Driving-Simulation](https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation)。
-传感器附件：[v0.1.0 Release](https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation/releases/tag/v0.1.0)。以下步骤用于维护和后续发布。
+公开仓库：[PHCbhhgd/Cosmos3-Driving-Simulation](https://github.com/PHCbhhgd/Cosmos3-Driving-Simulation)。
 
-## 发布内容
+## 发布规则
 
-Git 仓库包括原创脚本／文档、上游补丁、小型演示和脱敏证据。模型权重、用户登录凭据、第三方 checkout、venv、rootfs、大日志和完整传感器数据均不提交。数据包通过 GitHub Release 附件发布。
+GitHub 只保存原创代码、文档、配置、上游补丁、脱敏报告、场景图片与小视频。**大文件保留在本地，不提交 Git，也不上传 GitHub Release。** 完整传感器归档、模型权重、第三方 checkout、venv、rootfs 和原始长视频均属于本地内容。
 
-当前仓库名建议 `Cosmos3-Driving-Simulation`；账号由发布者选择。发布前需要发布者已登录 GitHub，并配置自己认可的 Git 提交身份。工具不会推断用户账号，也不会把 Hugging Face 登录当作 GitHub 登录。
+公开目录执行每个文件 **10 MiB** 的大小上限检查；场景在 README 使用一张代表性实测图片，已有小视频保留链接。该上限是本仓库维护规则，不是 GitHub 平台限制。`outputs/`、`release/`、`storage/`、`repos/` 和 `artifacts/` 已被 Git 忽略。
 
-## 本地检查
+原先上传的 v0.1.0 约 287 MiB 传感器附件，以及 v0.2.0 草稿约 1.09 GiB 业务附件，已从 GitHub 撤下；本地文件与 SHA256 校验文件保留。Release 可用于版本说明，不附带这些大型数据。
+
+## 提交前检查
 
 ```bash
 python3 -m unittest discover -s tests -v
@@ -18,42 +19,34 @@ ruff check scripts tests
 ruff format --check scripts tests
 ```
 
-`reports/publication-validation.json` 记录本次整理验证；GitHub Actions 只验证 CPU 工具链，不跑 GPU 模型。
+`audit_public_repo.py` 检查文件大小、被追踪的运行数据、本地绝对路径、凭据格式与文档链接。GitHub Actions 只验证 CPU 工具链，不跑 GPU 模型。
 
-## 创建仓库并 push
+已有仓库维护时，审查 `git diff` 和 `git status` 后正常提交、push；不要把被忽略的运行目录强制加入 Git。`publish_github.sh` 用于首次创建新仓库，已有 origin 或目标仓库时会退出。
 
-需要 GitHub CLI `gh`（可由管理员安装，也可放入个人工具目录），登录并在当前仓库配置作者。当前整理机器已在忽略目录 `storage/bin/gh` 准备校验过的 CLI，可先执行 `export PATH="$PWD/storage/bin:$PATH"`：
-
-```bash
-gh auth login --hostname github.com --web
-# 使用自己的真实/公开提交身份；邮箱可用 GitHub noreply 地址
-git config user.name '<提交者姓名>'
-git config user.email '<GitHub邮箱或noreply地址>'
-# 该命令检查、提交并创建公开仓库；账号/仓库名由自己填写
-bash scripts/publish_github.sh <owner>/Cosmos3-Driving-Simulation
-```
-
-脚本先检查目标仓库不存在；如果已有 origin、已有同名仓库或认证/权限不足会退出。已有仓库的维护需单独审查 remote 后操作，不覆盖他人的历史。
-
-## 构建完整传感器附件
+## 场景图片与小视频
 
 ```bash
-python3 scripts/build_release.py   --straight /path/to/straight-bundle   --left-shift /path/to/left-shift-bundle   --comparison media/trajectory-comparison.mp4   --redact-root /path/to/original-reproduction   --output release
+python scripts/export_readme_gallery.py outputs/robustness/<业务suite> --output media/scenarios-new
 ```
 
-构建器验证源 bundle SHA256，拒绝 symlink 和非预期文件类型，复制传感器输出并替换 JSON 中的原始服务器绝对路径，为两个新 bundle 重新生成校验清单，再生成 `.tar.gz` 与 SHA256 sidecar。包含七路 RGB/WSM、原生 LiDAR、40份 PLY（每场景20份）、标定、输入位姿、viewer 和评阅素材；不包含模型权重。
+该工具从实际验证过的视频抽帧，记录源视频哈希、帧号和图片哈希；输出目录必须是新目录。README 图片不经过图像生成模型加工。
 
-本次整理若已有 `release/cosmos3-trajectory-sensors.tar.gz`，可直接使用，先核对同目录 SHA256。对外发布前查看其中 README 的范围说明。
+`export_business_previews.py` 可以导出保留原尺寸、FPS 的小型 H264 预览，并记录源视频和预览哈希。原始七相机/LiDAR 数据留在本地 bundle。长时序原视频优先只放代表性图片与诊断 JSON；如导出小预览，提交前同样执行大小检查。
+
+## 本地完整归档
+
+这些命令只构建本地备份，不执行 GitHub 上传。
+
+基础直行/左横移：
 
 ```bash
-gh release create v0.1.0   release/cosmos3-trajectory-sensors.tar.gz   release/cosmos3-trajectory-sensors.tar.gz.sha256   --title 'Cosmos3 trajectory-conditioned RGB + LiDAR reproduction'   --notes-file docs/RELEASE_NOTES.md
+python scripts/build_release.py \
+  --straight /path/to/straight-bundle --left-shift /path/to/left-shift-bundle \
+  --comparison media/trajectory-comparison.mp4 \
+  --redact-root /path/to/reproduction-parent --output release
 ```
 
-仓库公开成功和 Release 上传是两个步骤，只有命令实际成功后才应在 README 填写在线链接。
-
-## 业务与时长附件
-
-七个联合场景的附件构建方式：
+七个联合业务场景：
 
 ```bash
 python scripts/build_robustness_release.py outputs/robustness/<业务suite> \
@@ -61,6 +54,20 @@ python scripts/build_robustness_release.py outputs/robustness/<业务suite> \
 python scripts/audit_release_archive.py release/v0.2.0/cosmos3-business-sensors.tar.gz
 ```
 
-单相机时长附件使用 `build_duration_release.py`，提供 `--scene`、`--output` 和 `--source-root`；只有四档请求均为终态才构建，不把请求帧数当作实际输出帧数。`--cases` 和 `--archive-name` 可用于独立的单场景补测。构建时保留失败记录，已生成的 MP4 字节保持原样，JSON 路径脱敏后重新生成 SHA256。
+单相机时长与补测：
 
-`audit_release_archive.py` 流式读取压缩包，不解压到文件系统，核对所有 bundle/时长清单、JSON 中的本地路径和凭据格式。该检查只证明分发完整性，不评价模型画面或传感器物理质量。公开预览由 `export_business_previews.py` / `export_duration_previews.py` 降码率导出；帧数、尺寸、FPS 和源视频 SHA256 另行记录。
+```bash
+python scripts/build_duration_release.py outputs/robustness/<时长suite> \
+  --scene storage/scenarios/temporal_following \
+  --output release/v0.2.0 --source-root /path/to/reproduction-parent
+```
+
+时长构建器要求四档请求均为终态，保留失败记录；`--cases`、`--archive-name` 用于独立补测。构建器验证源数据并替换 JSON 中的服务器路径，MP4 原始字节保留，归档内重新生成 SHA256。`audit_release_archive.py` 流式核对压缩包清单与 JSON 元数据，不评价画面或传感器物理质量。
+
+回放本地 bundle：
+
+```bash
+python scripts/serve_replay.py outputs/robustness/<业务suite>/clear_turn/bundle --port 8080
+```
+
+打开 `http://127.0.0.1:8080`，可切换 RGB/WSM、同步播放和旋转点云。

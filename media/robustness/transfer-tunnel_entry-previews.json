@@ -1,6 +1,6 @@
 {
   "case": "tunnel_entry",
-  "scope": "Previews only; original full sensor files retained in release bundles.",
+  "scope": "Previews only; original full sensor files retained in local bundles; no large GitHub assets.",
   "files": [
     {
       "file": "transfer-tunnel_entry-front.mp4",

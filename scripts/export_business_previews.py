@@ -66,7 +66,7 @@ def export(bundle, output, case):
         )
     report = dict(
         case=case,
-        scope="Previews only; original full sensor files retained in release bundles.",
+        scope="Previews only; original full sensor files retained in local bundles; no large GitHub assets.",
         files=rows,
     )
     (output / f"{prefix}-previews.json").write_text(json.dumps(report, indent=2) + "\n")

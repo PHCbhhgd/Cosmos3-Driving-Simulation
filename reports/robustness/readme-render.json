@@ -1,0 +1,110 @@
+{
+  "status": "passed",
+  "method": "Local Markdown rendering in real Chromium; approximation of GitHub styling, not a screenshot of github.com",
+  "checks": [
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "localImages": [
+        {
+          "src": "media/scenarios/sensors-overview.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/clear_turn.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/rain_turn.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/snow_turn.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/occluded_pedestrian.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/adjacent_collision.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/tunnel_entry.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/contradictory_turn.jpg",
+          "loaded": true
+        }
+      ],
+      "headings": [
+        "1. 三个模型，目前测到了什么",
+        "2. 业务场景实测",
+        "晴天左转：天气对照基线",
+        "大雨左转：关键车辆明显退化",
+        "降雪左转：外观连续，未验证雪地物理",
+        "鬼探头：显露偏差与身份保持问题",
+        "邻车接触：接近可见，事故动力学未成立",
+        "隧道：洞内连续，联合样本的室外段不足",
+        "转向冲突：左弯几何与右转文字",
+        "3. 多长时间后会不稳定",
+        "4. 复现与本地回放",
+        "致谢与许可"
+      ]
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "localImages": [
+        {
+          "src": "media/scenarios/sensors-overview.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/clear_turn.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/rain_turn.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/snow_turn.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/occluded_pedestrian.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/adjacent_collision.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/tunnel_entry.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/contradictory_turn.jpg",
+          "loaded": true
+        }
+      ],
+      "headings": [
+        "1. 三个模型，目前测到了什么",
+        "2. 业务场景实测",
+        "晴天左转：天气对照基线",
+        "大雨左转：关键车辆明显退化",
+        "降雪左转：外观连续，未验证雪地物理",
+        "鬼探头：显露偏差与身份保持问题",
+        "邻车接触：接近可见，事故动力学未成立",
+        "隧道：洞内连续，联合样本的室外段不足",
+        "转向冲突：左弯几何与右转文字",
+        "3. 多长时间后会不稳定",
+        "4. 复现与本地回放",
+        "致谢与许可"
+      ]
+    }
+  ]
+}

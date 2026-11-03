@@ -1,6 +1,6 @@
 {
   "case": "snow_turn",
-  "scope": "Previews only; original full sensor files retained in release bundles.",
+  "scope": "Previews only; original full sensor files retained in local bundles; no large GitHub assets.",
   "files": [
     {
       "file": "transfer-snow_turn-front.mp4",

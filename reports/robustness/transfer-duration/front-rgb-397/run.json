@@ -11,6 +11,10 @@
   ],
   "scope": "One RGB view only; no LiDAR or seven-camera stability claim",
   "case": "front-rgb-397",
-  "status": "running",
-  "started_at": "2026-11-03T05:48:42.335265+00:00"
+  "status": "generated_and_decoded",
+  "started_at": "2026-11-03T05:48:42.335265+00:00",
+  "inference_exit_code": 0,
+  "sampling_and_decode_seconds": 1374.344670170918,
+  "review_exit_code": 0,
+  "total_seconds": 1375.2502352576703
 }

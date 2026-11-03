@@ -232,8 +232,8 @@
     },
     {
       "file": "media/robustness/transfer-clear_turn-previews.json",
-      "bytes": 2521,
-      "sha256": "85d17d3e9549510cbca8a7c147ab3bc26bd647546c476dc2b8c12cdb7f0beeb1",
+      "bytes": 2543,
+      "sha256": "f9cb5ff05d8f02e285521dcad9323ec4ea88678ae08e31e8a1cb64e0a88ddf99",
       "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
     },
     {
@@ -274,8 +274,8 @@
     },
     {
       "file": "media/robustness/transfer-rain_turn-previews.json",
-      "bytes": 2514,
-      "sha256": "b2734351f2db1fc52b8eb661daf4f54bed80b7ef3cdedebcd1564edcf3bd8c5b",
+      "bytes": 2536,
+      "sha256": "500d2f489e5ded935b18a78b955d3e5d28fd86912c3f0d6e303b57500a2039a2",
       "kind": "actual generated sensor preview or derived diagnostic; provenance in case previews JSON"
     },
     {
@@ -474,6 +474,51 @@
       "file": "media/robustness/transfer-duration-front-rgb-241-controls.jpg",
       "bytes": 305922,
       "sha256": "c7eb7f929eb6f02767ec9a031bd6ccba5b3c27e284a7ff2875be0e6ed7008f97"
+    },
+    {
+      "file": "media/robustness/transfer-duration-front-rgb-397-controls.jpg",
+      "bytes": 495718,
+      "sha256": "7cc386bd86847d7d6ab1bcfe33687355ed59a13249110a782ec89a90dd9646f8"
+    },
+    {
+      "file": "media/scenarios/adjacent_collision.jpg",
+      "bytes": 71916,
+      "sha256": "b496c4659fa53d873697ea7a40059957250141f9e710b1dfa0b18337ba4fefd6"
+    },
+    {
+      "file": "media/scenarios/clear_turn.jpg",
+      "bytes": 71979,
+      "sha256": "077b81718caa8ee5b9fb9703cad06e52a51857657079d33622cc4d4afe082ee0"
+    },
+    {
+      "file": "media/scenarios/contradictory_turn.jpg",
+      "bytes": 96067,
+      "sha256": "51173b001c8a2276f753a8eb6319ddfe0b07d1003834bd0c0500d8f4b39332c4"
+    },
+    {
+      "file": "media/scenarios/occluded_pedestrian.jpg",
+      "bytes": 65576,
+      "sha256": "b070b057e92df3510617740a19cdcc7e92e6675223ca350b36850618bae5df42"
+    },
+    {
+      "file": "media/scenarios/rain_turn.jpg",
+      "bytes": 64098,
+      "sha256": "72dcb997c70579bd840c13d4c31b6c1c535ccc8af73d50366209998c872baa39"
+    },
+    {
+      "file": "media/scenarios/sensors-overview.jpg",
+      "bytes": 217347,
+      "sha256": "357e9bd9d547379862ad857f436e5893223c873e551234cab122fe7984580104"
+    },
+    {
+      "file": "media/scenarios/snow_turn.jpg",
+      "bytes": 72198,
+      "sha256": "e03fbf0bf3f4f7c1d17cd73e6d53d6bf48a19dfe10c0ba72f4e5f9c24e4efb86"
+    },
+    {
+      "file": "media/scenarios/tunnel_entry.jpg",
+      "bytes": 53823,
+      "sha256": "85b541146581da654e8374b53e3c5b126704c9828408f697662869fa3dabfe72"
     }
   ]
 }

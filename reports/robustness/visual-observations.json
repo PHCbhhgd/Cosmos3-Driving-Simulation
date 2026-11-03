@@ -399,6 +399,25 @@
       ],
       "description": "完整解码241帧30FPS，按1秒抽帧0–8秒道路、挡墙和前车大体连续，有持续前进视差；未见明确整体崩坏。与4秒独立请求外观/前车不同，不共享同一初始世界。",
       "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano-Transfer-Auto",
+      "suite": "transfer-duration-20261103",
+      "case": "front-rgb-397",
+      "review_interval_s": 1,
+      "reviewed_extra_timestamps_s": [
+        13.2
+      ],
+      "issues": [
+        {
+          "category": "initial_large_hood",
+          "first_reviewed_timestamp_s": 0,
+          "description": "下缘有较大车头/前景，从首帧开始存在，不是13.2秒末段才出现的累积失稳。",
+          "confidence": "high"
+        }
+      ],
+      "description": "完整解码397帧30FPS，最后时刻13.2秒。0–13.2秒抽帧可见持续前进视差，左弯后沿直路行驶，道路、树篱/墙面和前车大体连续；已核对0/4/8/10/11/12/13/13.2秒的精确Framework控制。未见明确整体崩坏，不能据抽帧证明全帧物理一致。",
+      "temporal_collapse_threshold_s": null
     }
   ]
 }

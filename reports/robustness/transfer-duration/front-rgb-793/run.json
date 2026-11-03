@@ -1,0 +1,20 @@
+{
+  "request": "request-front-rgb-793.json",
+  "expected_frames": 793,
+  "chunks": 2,
+  "chunk_frames": 397,
+  "caption_ranges": [
+    [
+      0,
+      400
+    ],
+    [
+      396,
+      796
+    ]
+  ],
+  "scope": "One RGB view only; no LiDAR or seven-camera stability claim",
+  "case": "front-rgb-793",
+  "status": "running",
+  "started_at": "2026-11-03T06:11:37.858357+00:00"
+}

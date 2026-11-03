@@ -11,5 +11,6 @@
     "tunnel_entry",
     "contradictory_turn"
   ],
-  "bundle_checksums_verified": true
+  "bundle_checksums_verified": true,
+  "distribution": "Local only; no large GitHub assets."
 }
