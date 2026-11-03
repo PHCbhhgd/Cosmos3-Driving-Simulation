@@ -18,6 +18,7 @@ def main():
     p.add_argument("--gpus", required=True)
     p.add_argument("--scene", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
+    p.add_argument("--wait-for-idle", action="store_true")
     args = p.parse_args()
     args.output = args.output.resolve()
     args.output.mkdir(parents=True, exist_ok=False)
@@ -29,11 +30,19 @@ def main():
         request = args.scene / spec["request"]
         payload = json.loads(request.read_text())
         name = payload["name"]
-        checked = subprocess.run(
-            ["python3", str(ROOT / "scripts/check_gpus.py"), "--gpus", args.gpus],
-            capture_output=True,
-            text=True,
-        )
+
+        def ready():
+            return subprocess.run(
+                ["python3", str(ROOT / "scripts/check_gpus.py"), "--gpus", args.gpus],
+                capture_output=True,
+                text=True,
+            )
+
+        checked = ready()
+        while checked.returncode and args.wait_for_idle:
+            print("WAIT allocated GPU group busy", flush=True)
+            time.sleep(15)
+            checked = ready()
         if checked.returncode:
             raise RuntimeError("Selected GPUs busy: no inference started")
         output = args.output / name

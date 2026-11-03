@@ -16,6 +16,26 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from build_release import copy_bundle, digest, verify  # noqa: E402
 from request_window import shorten_request  # noqa: E402
 from serve_replay import ReplayHandler  # noqa: E402
+from collect_robustness import collect  # noqa: E402
+
+
+class BenchmarkCollectionTests(unittest.TestCase):
+    def test_pending_and_missing_results_are_not_reported_as_passes(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            suite = root / "suite"
+            (suite / "pending").mkdir(parents=True)
+            (suite / "no-record").mkdir()
+            (suite / "pending/run.json").write_text(
+                json.dumps(
+                    {"status": "running", "case": "pending", "path": str(root / "raw/output.mp4")}
+                )
+            )
+            report = collect(suite, root / "reports", source_root=root)
+            self.assertEqual(len(report["cases"]), 1)
+            self.assertEqual(report["cases"][0]["status"], "running")
+            self.assertEqual(report["cases"][0]["path"], "raw/output.mp4")
+            self.assertFalse((root / "reports/no-record").exists())
 
 
 class QuietHandler(ReplayHandler):

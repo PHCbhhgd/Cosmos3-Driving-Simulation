@@ -32,6 +32,16 @@ def near_box(points_world, actor, tolerance=0.35):
     return inside_expanded & (surface_distance <= tolerance)
 
 
+def box_range_bounds(sensor_origin_world, actor):
+    """Exact nearest/farthest Euclidean range of a rigid box from a sensor origin."""
+    transform = np.asarray(actor["object_to_world"])
+    local_origin = (sensor_origin_world - transform[:3, 3]) @ transform[:3, :3]
+    half = np.asarray(actor["object_lwh"]) / 2
+    nearest = np.linalg.norm(np.maximum(np.abs(local_origin) - half, 0))
+    farthest = np.linalg.norm(np.abs(local_origin) + half)
+    return float(nearest), float(farthest)
+
+
 def evaluate(bundle, scene):
     manifest = json.loads((bundle / "bundle_manifest.json").read_text())
     actors = json.loads((scene / "actors.json").read_text())["frames"]
@@ -43,12 +53,27 @@ def evaluate(bundle, scene):
         sensor_to_world = trajectory["vehicle_to_world"][index] @ trajectory["lidar_to_vehicle"]
         world = points @ sensor_to_world[:3, :3].T + sensor_to_world[:3, 3]
         counts = {key: int(near_box(world, actor).sum()) for key, actor in actors[index].items()}
+        bounds = {
+            key: box_range_bounds(sensor_to_world[:3, 3], actor)
+            for key, actor in actors[index].items()
+        }
+        limits = manifest["range_projection"]
         records.append(
             dict(
                 frame_id=index,
                 timestamp_s=sweep["timestamp_s"],
                 generated_points=len(points),
                 points_near_actor_box=counts,
+                actor_range_bounds_m={
+                    key: dict(
+                        nearest_m=values[0],
+                        farthest_m=values[1],
+                        entirely_below_min_range=values[1] < limits["min_range_m"],
+                        intersects_below_min_range=values[0] < limits["min_range_m"],
+                        entirely_above_max_range=values[0] > limits["max_range_m"],
+                    )
+                    for key, values in bounds.items()
+                },
             )
         )
     report = dict(tolerance_m=0.35, scope=__doc__.strip(), sweeps=records)

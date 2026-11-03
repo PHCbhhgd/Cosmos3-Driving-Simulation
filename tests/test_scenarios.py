@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from prepare_business_scene import centerline, pose, scenario_state  # noqa: E402
 from prepare_temporal_requests import chunk_ranges  # noqa: E402
-from evaluate_actor_support import near_box  # noqa: E402
+from evaluate_actor_support import box_range_bounds, near_box  # noqa: E402
 
 
 class ScenarioTests(unittest.TestCase):
@@ -76,6 +76,15 @@ class TemporalAlignmentTests(unittest.TestCase):
 
 
 class ActorSupportTests(unittest.TestCase):
+    def test_box_range_bounds_distinguish_near_field_blind_region(self):
+        actor = dict(object_lwh=[2, 2, 2], object_to_world=pose(10, 0, 0).tolist())
+        nearest, farthest = box_range_bounds(np.zeros(3), actor)
+        self.assertAlmostEqual(nearest, 9)
+        self.assertAlmostEqual(farthest, np.sqrt(123))
+        nearest, farthest = box_range_bounds(np.array([10, 0, 0]), actor)
+        self.assertEqual(nearest, 0)
+        self.assertAlmostEqual(farthest, np.sqrt(3))
+
     def test_rotated_translated_box_and_deep_interior(self):
         transform = pose(12, 3, 1, np.pi / 2)
         actor = dict(object_lwh=[4, 2, 2], object_to_world=transform.tolist())

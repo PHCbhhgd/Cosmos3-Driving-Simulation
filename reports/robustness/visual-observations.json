@@ -1,0 +1,175 @@
+{
+  "review_method": "Visual review of timestamped contact sheets; original video frames retained. Selected-frame inspection does not establish that every intervening frame is free of defects.",
+  "observations": [
+    {
+      "model": "Cosmos3-Nano",
+      "suite": "nano-duration-20261103-r2",
+      "case": "frames-121",
+      "review_interval_s": 1,
+      "issues": [
+        {
+          "category": "weak_motion_adherence",
+          "first_reviewed_timestamp_s": 0,
+          "description": "蓝车在 0–5 秒抽帧中位置和尺寸变化很小，未清晰表现向前驶离。背景稳定本身不能证明动态世界仿真有效。",
+          "confidence": "medium"
+        }
+      ],
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano",
+      "suite": "nano-duration-20261103-r2",
+      "case": "frames-241",
+      "review_interval_s": 0.5,
+      "issues": [
+        {
+          "category": "initial_prompt_noncompliance",
+          "first_reviewed_timestamp_s": 0,
+          "description": "要求路边固定相机，开头即出现明显车头与广角暗角，构图不符合路边相机设定。0–10 秒画面运动很弱。",
+          "confidence": "high"
+        }
+      ],
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano",
+      "suite": "nano-business-20261103",
+      "case": "clear_turn",
+      "review_interval_s": 0.5,
+      "issues": [],
+      "description": "0–5 秒左弯有可见连续前进视差，前车大致保持外观；在已检查抽帧中未见明显身份突变。",
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano",
+      "suite": "nano-business-20261103",
+      "case": "rain_turn",
+      "review_interval_s": 0.5,
+      "issues": [
+        {
+          "category": "foreground_artifact_candidate",
+          "first_reviewed_timestamp_s": 0,
+          "worst_reviewed_timestamp_s": 2,
+          "description": "湿路、玻璃水迹和雨刷运动可见；上缘反复出现大块黑色/粉色结构，2 秒附近占据较大画面。可能与不合理雨刷/前景结构有关，抽帧不能单独给出物理真伪判定。",
+          "confidence": "medium"
+        }
+      ],
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano",
+      "suite": "nano-business-20261103",
+      "case": "snow_turn",
+      "review_interval_s": 0.5,
+      "issues": [],
+      "description": "0–5 秒可见降雪、积雪路沿与湿滑车辙，连续左弯运动存在；远景模糊，已检查抽帧中未见天气突然切换。未验证真实轮胎/路面动力学。",
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano",
+      "suite": "nano-business-20261103",
+      "case": "occluded_pedestrian",
+      "review_interval_s": 0.5,
+      "dense_review_frame_ids": [
+        48,
+        51,
+        54,
+        57,
+        60,
+        63,
+        66,
+        69,
+        72,
+        75,
+        78,
+        81,
+        84,
+        87,
+        90,
+        93,
+        96
+      ],
+      "issues": [
+        {
+          "category": "actor_identity_split_after_occlusion",
+          "first_unambiguous_reviewed_frame_id": 81,
+          "first_unambiguous_reviewed_timestamp_s": 3.375,
+          "description": "单行人经过路灯杆遮挡后，frame81/3.375s 可辨两个人头/身体，3.5–3.875 秒持续重影，4 秒附近再次融合；没有保持同一单行人身份。时间是该 seed 与已审查帧中的证据，不是通用失稳阈值。",
+          "confidence": "high"
+        },
+        {
+          "category": "partial_event_adherence",
+          "description": "行人从货车附近出现并向左移动，但主要沿远侧路沿行走，未清楚实现横穿自车主车道的险情；相机前进也较弱。",
+          "confidence": "medium"
+        }
+      ],
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano",
+      "suite": "nano-duration-20261103-r2",
+      "case": "frames-397",
+      "review_interval_s": 0.5,
+      "issues": [
+        {
+          "category": "weak_motion_adherence",
+          "description": "0–16.5 秒背景和蓝车位置/尺寸变化很小；未清楚实现蓝车持续驶离。不能将低运动画面当成长时动态稳定性的强证据。",
+          "confidence": "medium"
+        }
+      ],
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano",
+      "suite": "nano-motion-duration-20261103",
+      "case": "moving_camera_frames_397",
+      "review_interval_s": 1,
+      "issues": [
+        {
+          "category": "partial_prompt_adherence",
+          "description": "文字要求前方蓝车驶离，开头抽帧未见蓝车；约3秒从左侧驶入，随后前驶。不是在已有前车初态上进行受控仿真。",
+          "confidence": "high"
+        }
+      ],
+      "description": "0–16.5 秒道路与路边房屋有持续前进视差，蓝车出现后大致保持身份。在按1秒抽帧检查的窗口中未见整体画面崩溃；没有相同道路的3D真值，不能证明全局物理一致。",
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano",
+      "suite": "nano-business-20261103",
+      "case": "tunnel_entry",
+      "review_interval_s": 0.5,
+      "issues": [],
+      "description": "约2秒进入隧道，室外到暗部/暖灯的曝光变化可见；0–5秒抽帧中墙顶和道路大体连续。",
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano",
+      "suite": "nano-contact-20261103",
+      "case": "adjacent_contact",
+      "review_interval_s": 0.5,
+      "issues": [
+        {
+          "category": "event_omission",
+          "description": "低速接触描述通过Guardrail并生成两辆邻车，但0–5秒抽帧中相对位置基本不变，没有清晰的接近→接触→停止事件。不能计为事故复现成功。",
+          "confidence": "high"
+        }
+      ],
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano",
+      "suite": "nano-business-20261103",
+      "case": "moving_camera_seed_1",
+      "review_interval_s": 0.5,
+      "issues": [
+        {
+          "category": "partial_prompt_adherence",
+          "description": "前进视差存在，但蓝车由右侧静止路边车/近似来向车辆的形式出现，未清楚遵循前车向前驶离。与16.5秒请求并非共享相同前缀。",
+          "confidence": "medium"
+        }
+      ],
+      "temporal_collapse_threshold_s": null
+    }
+  ]
+}
