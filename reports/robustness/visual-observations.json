@@ -278,6 +278,39 @@
       ],
       "description": "0–2秒自车前进、货车遮挡与行人横穿可见。稀疏射线覆盖0.8611、逐扫描MAE均值5.6499m。行人box附近点数从遮挡期0到1.0秒906再变化，邻近货车会造成假支持；不能据点数宣称RGB/LiDAR语义完全一致。所有生成扫描中行人最近距离仍>5m，不能用5m裁剪解释显露期差异。",
       "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano-Transfer-Auto",
+      "suite": "transfer-business-20261103",
+      "case": "adjacent_collision",
+      "reviewed_camera_timestamps_s": [
+        0,
+        1,
+        2
+      ],
+      "dense_review_front_frame_ids": [
+        0,
+        15,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39,
+        42,
+        48,
+        54,
+        60
+      ],
+      "issues": [
+        {
+          "category": "impact_response_not_established",
+          "description": "两车间距缩小，1.1秒附近近距离接触外观可见，后段前车和后车大致保留身份。没有清楚的受撞车响应或突发冲击，不能确证事故动力学。输入本身只有刚体box停止及小幅偏航，没有形变/力学。",
+          "confidence": "high"
+        }
+      ],
+      "description": "七相机0/1/2秒、前广角密集接触窗口及左侧相机局部已检查。输入受控接近比Nano弱运动样本更充分，未见明确整体崩坏或整车融合。稀疏射线覆盖0.8977、逐扫描MAE均值5.5935m。后车部分表面在5m以内，不能据近场点云缺口单独认定质量失败。",
+      "temporal_collapse_threshold_s": null
     }
   ]
 }

@@ -1,0 +1,666 @@
+{
+  "tolerance_m": 0.35,
+  "scope": "Count generated LiDAR points near prescribed actor boxes, without semantic claims.\n\nThis diagnostic uses a sweep-start pose and therefore does not deskew a spinning\nscan. A nearby road, wall or other actor can create false support. Counts are not\nobject detection accuracy or collision-physics validation.",
+  "sweeps": [
+    {
+      "frame_id": 0,
+      "timestamp_s": 0.0,
+      "generated_points": 175302,
+      "points_near_actor_box": {
+        "lead_car": 749,
+        "stopped_adjacent_car": 1066,
+        "impacting_car": 6199
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 20.652179061784253,
+          "farthest_m": 25.23771978606625,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 13.89865101367755,
+          "farthest_m": 18.77212028514627,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 4.4913806340589755,
+          "farthest_m": 9.454760705591655,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 3,
+      "timestamp_s": 0.1,
+      "generated_points": 175721,
+      "points_near_actor_box": {
+        "lead_car": 745,
+        "stopped_adjacent_car": 1093,
+        "impacting_car": 6110
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 20.55218966436423,
+          "farthest_m": 25.138068740458166,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 13.506017177539794,
+          "farthest_m": 18.38566017308054,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 4.57301869665979,
+          "farthest_m": 9.541095324961384,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 6,
+      "timestamp_s": 0.2,
+      "generated_points": 175521,
+      "points_near_actor_box": {
+        "lead_car": 746,
+        "stopped_adjacent_car": 1095,
+        "impacting_car": 6031
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 20.452200370620275,
+          "farthest_m": 25.038420477338423,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 13.113828579022984,
+          "farthest_m": 17.99979166546102,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 4.65537323960174,
+          "farthest_m": 9.627694428054932,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 9,
+      "timestamp_s": 0.3,
+      "generated_points": 175507,
+      "points_near_actor_box": {
+        "lead_car": 764,
+        "stopped_adjacent_car": 1186,
+        "impacting_car": 5865
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 20.352211182080435,
+          "farthest_m": 24.938775030061116,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 12.722126394593003,
+          "farthest_m": 17.614553641804267,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 4.738406905279453,
+          "farthest_m": 9.714550941757421,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 12,
+      "timestamp_s": 0.4,
+      "generated_points": 175477,
+      "points_near_actor_box": {
+        "lead_car": 756,
+        "stopped_adjacent_car": 1358,
+        "impacting_car": 5754
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 20.25222210030297,
+          "farthest_m": 24.839132432514624,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 12.330956978272205,
+          "farthest_m": 17.229988392335034,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 4.822084611451774,
+          "farthest_m": 9.801658023008148,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 15,
+      "timestamp_s": 0.5,
+      "generated_points": 174843,
+      "points_near_actor_box": {
+        "lead_car": 788,
+        "stopped_adjacent_car": 1590,
+        "impacting_car": 5702
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 20.15223312687703,
+          "farthest_m": 24.739492719132297,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 11.940372691000897,
+          "farthest_m": 16.8461419915659,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 4.906373406091306,
+          "farthest_m": 9.889009050455966,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 18,
+      "timestamp_s": 0.6,
+      "generated_points": 174731,
+      "points_near_actor_box": {
+        "lead_car": 788,
+        "stopped_adjacent_car": 1651,
+        "impacting_car": 5553
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 20.052244263423486,
+          "farthest_m": 24.639855924903458,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 11.55043289232053,
+          "farthest_m": 16.46306472076205,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 4.991242330322182,
+          "farthest_m": 9.976597616422143,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 21,
+      "timestamp_s": 0.7,
+      "generated_points": 174466,
+      "points_near_actor_box": {
+        "lead_car": 755,
+        "stopped_adjacent_car": 1689,
+        "impacting_car": 5472
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 19.952255511595677,
+          "farthest_m": 24.54022208538464,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 11.161205132063474,
+          "farthest_m": 16.080811546685077,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 5.076662289339325,
+          "farthest_m": 10.064417519161255,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 24,
+      "timestamp_s": 0.8,
+      "generated_points": 174241,
+      "points_near_actor_box": {
+        "lead_car": 788,
+        "stopped_adjacent_car": 1715,
+        "impacting_car": 5458
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 19.85226687308026,
+          "farthest_m": 24.44059123671111,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 10.772766589878387,
+          "farthest_m": 15.699442665266815,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 5.162605931116571,
+          "farthest_m": 10.15246275541063,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 27,
+      "timestamp_s": 0.9,
+      "generated_points": 173601,
+      "points_near_actor_box": {
+        "lead_car": 762,
+        "stopped_adjacent_car": 1752,
+        "impacting_car": 5393
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 19.752278349598054,
+          "farthest_m": 24.340963415608677,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 10.385205823670518,
+          "farthest_m": 15.319024120354404,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 5.249047532648185,
+          "farthest_m": 10.240727513218971,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 30,
+      "timestamp_s": 1.0,
+      "generated_points": 173504,
+      "points_near_actor_box": {
+        "lead_car": 767,
+        "stopped_adjacent_car": 1745,
+        "impacting_car": 5322
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 19.652289942904872,
+          "farthest_m": 24.241338659405752,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 9.99862490545575,
+          "farthest_m": 14.939628509437577,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 5.335962893424204,
+          "farthest_m": 10.329206165044825,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 33,
+      "timestamp_s": 1.1,
+      "generated_points": 173257,
+      "points_near_actor_box": {
+        "lead_car": 775,
+        "stopped_adjacent_car": 1739,
+        "impacting_car": 5726
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 19.552301654792462,
+          "farthest_m": 24.14171700604578,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 9.613142046178243,
+          "farthest_m": 14.56133579037308,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 5.423329235810786,
+          "farthest_m": 10.417893261115704,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 36,
+      "timestamp_s": 1.2,
+      "generated_points": 172926,
+      "points_near_actor_box": {
+        "lead_car": 829,
+        "stopped_adjacent_car": 1815,
+        "impacting_car": 5974
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 19.4523134870894,
+          "farthest_m": 24.04209849409989,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 9.22889484174568,
+          "farthest_m": 14.184234205624216,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 5.070784141170753,
+          "farthest_m": 10.084810270582743,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 39,
+      "timestamp_s": 1.3,
+      "generated_points": 173061,
+      "points_near_actor_box": {
+        "lead_car": 832,
+        "stopped_adjacent_car": 1831,
+        "impacting_car": 5651
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 19.35232544166204,
+          "farthest_m": 23.94248316277992,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 8.846044313703159,
+          "farthest_m": 13.80842134351353,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 4.730601800284681,
+          "farthest_m": 9.75455824766777,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 42,
+      "timestamp_s": 1.4,
+      "generated_points": 173182,
+      "points_near_actor_box": {
+        "lead_car": 809,
+        "stopped_adjacent_car": 2031,
+        "impacting_car": 5514
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 19.25233752041554,
+          "farthest_m": 23.842871051951775,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 8.464779973513783,
+          "farthest_m": 13.43400535953444,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 4.402909481816426,
+          "farthest_m": 9.428713490976964,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 45,
+      "timestamp_s": 1.5,
+      "generated_points": 172428,
+      "points_near_actor_box": {
+        "lead_car": 874,
+        "stopped_adjacent_car": 2228,
+        "impacting_car": 5359
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 19.152349725294805,
+          "farthest_m": 23.74326220214905,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 8.085326214816568,
+          "farthest_m": 13.061106384988985,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 4.087839160987015,
+          "farthest_m": 9.10903787421597,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 48,
+      "timestamp_s": 1.6,
+      "generated_points": 170499,
+      "points_near_actor_box": {
+        "lead_car": 881,
+        "stopped_adjacent_car": 2587,
+        "impacting_car": 4170
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 19.05236205828558,
+          "farthest_m": 23.643656654587083,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 7.707950440940834,
+          "farthest_m": 12.689858155235623,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 3.7855503949342477,
+          "farthest_m": 8.797491586095047,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 51,
+      "timestamp_s": 1.7,
+      "generated_points": 169218,
+      "points_near_actor_box": {
+        "lead_car": 912,
+        "stopped_adjacent_car": 2958,
+        "impacting_car": 3044
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 18.952374521415518,
+          "farthest_m": 23.544054451177267,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 7.332973476019124,
+          "farthest_m": 12.320409895778631,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 3.496263106162515,
+          "farthest_m": 8.496242951592595,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 54,
+      "timestamp_s": 1.8,
+      "generated_points": 168080,
+      "points_near_actor_box": {
+        "lead_car": 905,
+        "stopped_adjacent_car": 3271,
+        "impacting_car": 2247
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 18.852387116755267,
+          "farthest_m": 23.44445563454182,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 6.960783001933043,
+          "farthest_m": 11.95292851145693,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 3.1981735570459384,
+          "farthest_m": 8.216321311816628,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    },
+    {
+      "frame_id": 57,
+      "timestamp_s": 1.9,
+      "generated_points": 167378,
+      "points_near_actor_box": {
+        "lead_car": 903,
+        "stopped_adjacent_car": 3296,
+        "impacting_car": 1940
+      },
+      "actor_range_bounds_m": {
+        "lead_car": {
+          "nearest_m": 18.752399846419657,
+          "farthest_m": 23.3448602480289,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "stopped_adjacent_car": {
+          "nearest_m": 6.5918510298701385,
+          "farthest_m": 11.58760113224476,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": false,
+          "entirely_above_max_range": false
+        },
+        "impacting_car": {
+          "nearest_m": 2.9035951781316265,
+          "farthest_m": 7.954504072632736,
+          "entirely_below_min_range": false,
+          "intersects_below_min_range": true,
+          "entirely_above_max_range": false
+        }
+      }
+    }
+  ]
+}

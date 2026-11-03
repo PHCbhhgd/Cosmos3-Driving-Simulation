@@ -364,6 +364,41 @@
       "file": "media/robustness/transfer-pedestrian-right-detail.jpg",
       "bytes": 202159,
       "sha256": "48204d64b926ca5b81a92532d11108979578f888ff4d76213529f3deedf5df6c"
+    },
+    {
+      "file": "media/robustness/transfer-adjacent_collision-cameras.jpg",
+      "bytes": 630576,
+      "sha256": "6e850f2dc1575b1e064e3d65871ae5d98b387980f957989c92a86e1fcf07bc98"
+    },
+    {
+      "file": "media/robustness/transfer-adjacent_collision-controls.jpg",
+      "bytes": 632543,
+      "sha256": "0dceb3da9362452a765cd311854cc74d92009a7e556474d4f71a7f64dd15529e"
+    },
+    {
+      "file": "media/robustness/transfer-adjacent_collision-front.mp4",
+      "bytes": 353138,
+      "sha256": "2681131092b84b90d85dd06b7164f90915a07c03ae1e73b2491f9a1ca8edb656"
+    },
+    {
+      "file": "media/robustness/transfer-adjacent_collision-lidar.png",
+      "bytes": 487891,
+      "sha256": "de8b87f0d5e309188e1c675c43ea73aa9daa7104cc98ed0fd506922640c8394c"
+    },
+    {
+      "file": "media/robustness/transfer-adjacent_collision-sensors.mp4",
+      "bytes": 1092900,
+      "sha256": "ad52054561ac4599efc6b6b51cd06dc541ab7674d6bc67cccc222157e3bda791"
+    },
+    {
+      "file": "media/robustness/transfer-adjacent_collision-timeline.jpg",
+      "bytes": 252320,
+      "sha256": "1eb29e95396a24317174bc768ef8ec0e8e946634675d66ed4ae99c5c9d58514f"
+    },
+    {
+      "file": "media/robustness/transfer-contact-front-detail.jpg",
+      "bytes": 618465,
+      "sha256": "ab5f07c1d099af8743e5d162ad3897afd49e211bfbd6d4a083af3305173cdc45"
     }
   ]
 }

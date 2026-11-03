@@ -49,6 +49,11 @@ def centerline(s, offset=0, curved=False):
     return base
 
 
+def map_end_for_frames(frames):
+    # Keep at least 120 m of road ahead even at the final alignment-tail pose.
+    return max(180, int(np.ceil(6 * (frames + 2) / 30)) + 120)
+
+
 def scenario_state(geometry, times, lead_speed=3):
     if not np.isfinite(lead_speed) or lead_speed < 0:
         raise ValueError("lead_speed must be finite and nonnegative")
@@ -167,7 +172,8 @@ def build(case, frames, output):
             }
         )
 
-    s = np.linspace(-30, 180, 211)
+    map_end = map_end_for_frames(frames)
+    s = np.arange(-30, map_end + 1, dtype=float)
     curved = case["geometry"] == "left_turn"
     for y in [-5.5, 5.5]:
         line(
@@ -184,7 +190,9 @@ def build(case, frames, output):
                 {"name": "styles", "enumsList": {"enumsList": ["LONG_DASHED_SINGLE"]}},
             ],
         )
-    for dist in [5, 20, 35, 50, 65, 80, 100, 130, 160]:
+    pole_distances = [5, 20, 35, 50, 65, 80, 100, 130, 160]
+    pole_distances.extend(range(190, map_end + 1, 15))
+    for dist in pole_distances:
         for side in [-5.5, 5.5]:
             p = centerline(np.array(float(dist)), side, curved)
             line("3d_poles", [p, p + [0, 0, 5]])
@@ -274,6 +282,7 @@ def build(case, frames, output):
         camera_rig_sha256=hashlib.sha256(rig_path.read_bytes()).hexdigest(),
         lidar_mount_source="Synthetic [1.1,0,1.9] m FLU",
         coordinate_system="World initial rear axle; vehicle FLU; camera OpenCV",
+        road_arc_length_extent_m=[-30, map_end],
         benchmark_case=case,
         structural_validation=report,
     )

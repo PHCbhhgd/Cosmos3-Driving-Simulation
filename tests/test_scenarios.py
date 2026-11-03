@@ -9,7 +9,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from prepare_business_scene import centerline, pose, scenario_state  # noqa: E402
+from prepare_business_scene import centerline, map_end_for_frames, pose, scenario_state  # noqa: E402
 from prepare_temporal_requests import chunk_ranges  # noqa: E402
 from evaluate_actor_support import box_range_bounds, near_box  # noqa: E402
 
@@ -47,6 +47,10 @@ class ScenarioTests(unittest.TestCase):
         for speed in [-1, float("nan")]:
             with self.assertRaises(ValueError):
                 scenario_state("left_turn", times, lead_speed=speed)
+
+    def test_long_controls_keep_road_ahead_of_ego(self):
+        self.assertEqual(map_end_for_frames(61), 180)
+        self.assertGreaterEqual(map_end_for_frames(797) - 6 * 799 / 30, 120)
 
     def test_pedestrian_really_starts_behind_occluder(self):
         ego, _, actors = scenario_state("occluded_pedestrian", np.array([0.0, 1.6]))

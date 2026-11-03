@@ -26,7 +26,7 @@
 
 ## Transfer 联合传感器实测
 
-以下仅列已完成的场景；其余场景和 RGB 时长测试的准备不算生成成功。四例均完成 35 步联合采样，在同驻 LiDAR VAE 解码时 OOM；保存的完整 latent 已使用独立官方 VAE 解码，未重新采样。七路视频、20 次 LiDAR 扫描、点云打包和真实浏览器回放检查通过。
+以下仅列已完成的场景；其余场景和 RGB 时长测试的准备不算生成成功。五例均完成 35 步联合采样，在同驻 LiDAR VAE 解码时 OOM；保存的完整 latent 已使用独立官方 VAE 解码，未重新采样。七路视频、20 次 LiDAR 扫描、点云打包和真实浏览器回放检查通过。
 
 | 场景 | 可见结果 | 稀疏射线有效覆盖 | 平均逐扫描 range MAE | 预览 |
 | --- | --- | --- | --- | --- |
@@ -34,12 +34,13 @@
 | 大雨左转 | 湿路、雨水与灰暗天气可见，但前车难以辨认，车体近似白色重影，从开头即存在 | 64.08% | 6.90 m | [七相机 + LiDAR](../media/robustness/transfer-rain_turn-sensors.mp4) / [前广角](../media/robustness/transfer-rain_turn-front.mp4) |
 | 降雪左转 | 前车、积雪路沿和车辙可辨，左弯运动连续；部分边缘有彩色条纹与纹理伪影 | 90.86% | 4.09 m | [七相机 + LiDAR](../media/robustness/transfer-snow_turn-sensors.mp4) / [前广角](../media/robustness/transfer-snow_turn-front.mp4) |
 | 鬼探头 | 遮挡后显露和横穿可见，但时间/位置未严格跟随控制；开头额外生成路边行人，快速运动有局部重影 | 86.11% | 5.65 m | [七相机 + LiDAR](../media/robustness/transfer-occluded_pedestrian-sensors.mp4) / [前广角](../media/robustness/transfer-occluded_pedestrian-front.mp4) |
+| 邻车接触 | 两车持续接近，1.1 秒附近有近距离接触外观，身份基本保留；没有清楚的受撞响应，未验证事故动力学 | 89.77% | 5.59 m | [七相机 + LiDAR](../media/robustness/transfer-adjacent_collision-sensors.mp4) / [前广角](../media/robustness/transfer-adjacent_collision-front.mp4) |
 
 ![Same geometric actor control, clear and rainy generated RGB](../media/robustness/transfer-clear-rain-car-detail.jpg)
 
 上图每列为 0、1、2 秒，上排晴天、下排大雨，均从实际前广角视频裁切。几何控制与 seed 相同，生成的背景、材质和车辆外观仍会因文字变化而改变；没有建立保持场景身份的反事实仿真。这张图支持“本次雨天样本的受控前车表现退化”，不能据单次采样估计雨天失败率。
 
-原始机器证据见 [晴天](../reports/robustness/transfer-business/clear_turn/)、[雨天](../reports/robustness/transfer-business/rain_turn/) 和 [雪天](../reports/robustness/transfer-business/snow_turn/)。box 附近点数只是辅助诊断：晴天所抽取扫描约 900–1150 点，大雨约 29–145 点，雪天约 830–955 点；附近点不等于语义正确的前车点。上述射线指标没有物理合格阈值，也没有提供真实雨滴散射参考。
+原始机器证据见 [晴天](../reports/robustness/transfer-business/clear_turn/)、[雨天](../reports/robustness/transfer-business/rain_turn/) 和 [雪天](../reports/robustness/transfer-business/snow_turn/)。box 附近点数只是辅助诊断：各 20 次扫描中，晴天为 803–1154 点，大雨为 23–194 点，雪天为 779–1011 点；附近点不等于语义正确的前车点。上述射线指标没有物理合格阈值，也没有提供真实雨滴散射参考。
 
 ![Matched weather per-sweep sparse-control diagnostics](../media/robustness/transfer-weather-diagnostics.png)
 
@@ -52,6 +53,10 @@
 ![Right-camera generated RGB and matching input WSM](../media/robustness/transfer-pedestrian-right-detail.jpg)
 
 上图每列为 0、0.5、1、1.5 秒，上排 RGB、下排输入 WSM。打包后的 WSM 已执行推理的 resize/crop，细查工具不再重复变换。记录包括所选帧、crop 和原视频 SHA256，见 [事件证据](../reports/robustness/transfer-business/occluded_pedestrian/)。行人 box 附近点数从遮挡期 0 增至 1.0 秒 906 点，但可能混入货车附近表面，不能证明跨传感器语义正确。全部 20 次扫描中，行人 box 最近距离仍大于 5 m，不能用近场裁剪解释显露期差异。
+
+### 邻车接触事件细查
+
+[接触前后 RGB/WSM 对照](../media/robustness/transfer-contact-front-detail.jpg) 按 0.1 秒检查 0.8–1.4 秒，并补充 0、0.5、1.6、1.8、2 秒。两车间距缩小，接触点附近可见车头接近前车尾部，后段仍基本保持两车身份；相较 Nano 的低运动邻车样本更接近要求。但未确证突发冲击、受撞车响应，不能计为真实车祸复现。输入本身未提供形变动力学，后车部分表面进入 5 m 以内，也不能据近场点云缺口单独判定生成失败。机器与抽帧证据见 [adjacent_collision](../reports/robustness/transfer-business/adjacent_collision/)。
 
 ## 测试设计
 
@@ -92,7 +97,7 @@
 
 长 RGB 控制来自真实连续渲染的 797 帧，未降低 FPS 或重复视频。第二个 chunk 的控制从 frame 396 开始，与第一段最后一帧一致；拼接时去掉一帧反馈。原生 joint 路径只支持一个 caption chunk，因此 RGB 续生成结果**不代表七相机 + LiDAR 的同等时长能力**。
 
-长测专用场景让自车和前车均以 6 m/s 行驶，沿道路弧长保持 24 m 间距，完成 90° 左弯后沿切线前进。短联合场景原本的前车速度为 3 m/s，若直接延长，自车约 8 秒就会追上前车；该准备版本保留但不用于长测，避免把输入轨迹重叠误判为模型失稳。
+长测专用场景让自车和前车均以 6 m/s 行驶，沿道路弧长保持 24 m 间距，完成 90° 左弯后沿切线前进；道路和路杆延伸到弧长 280 m，最后时刻仍有至少 120 m 的前方道路控制。短联合场景原本的前车速度为 3 m/s，若直接延长，自车约 8 秒就会追上前车；该准备版本保留但不用于长测，避免把输入轨迹重叠误判为模型失稳。
 
 不同时长请求使用相同 seed，也不保证共享相同前缀。它们是独立采样，不能通过对比“5 秒视频”和“10 秒视频”认定某个具体秒数开始失稳。
 
@@ -109,6 +114,8 @@
 已执行的 [LiDAR 边界探针](../reports/robustness/lidar-boundaries.json) 直接调用未修改的官方编码与保存函数，未运行生成模型：2 m、4.99 m 和 100.01 m 的有效输入被置为无效；5 m 与 100 m 保留。默认 validity 阈值 0.5，0.49 被丢弃，0.5 保留。因此，发布配置下 **5 米内近场险情无法通过该 LiDAR 表示直接保真**；不能只看 RGB 是否生成了行人。探针脚本为 [probe_lidar_boundaries.py](../scripts/probe_lidar_boundaries.py)。
 
 CUDA OOM 单独记为该配置的容量限制。Sim 的 sm89 拒绝单独记为硬件兼容限制。这两类都不能说明“世界在某秒崩坏”。
+
+历史联合容量尝试保留在 [失败索引](../reports/failure-summary.json)：七相机 + LiDAR 的 121 帧请求在第一采样步 OOM；61 帧采样可完成，但需要分离官方 VAE 解码。因此不能将本轮联合输出最后采样时刻 2 秒解释成“模型只能稳定 2 秒”，也不能用单视角 RGB 长测替代联合传感器长测。
 
 ## 复跑方式
 

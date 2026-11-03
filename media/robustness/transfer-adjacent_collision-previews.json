@@ -1,0 +1,54 @@
+{
+  "case": "adjacent_collision",
+  "scope": "Previews only; original full sensor files retained in release bundles.",
+  "files": [
+    {
+      "file": "transfer-adjacent_collision-front.mp4",
+      "bytes": 353138,
+      "sha256": "2681131092b84b90d85dd06b7164f90915a07c03ae1e73b2491f9a1ca8edb656",
+      "original_bundle_file": "cameras/camera_front_wide_120fov.mp4",
+      "original_sha256": "c1bd1ad927fe8c08cdd4fa708205266575c5e59c0168ca85c683479a57fd6afb",
+      "transform": "H264 CRF23 preview, original dimensions/FPS retained"
+    },
+    {
+      "file": "transfer-adjacent_collision-sensors.mp4",
+      "bytes": 1092900,
+      "sha256": "ad52054561ac4599efc6b6b51cd06dc541ab7674d6bc67cccc222157e3bda791",
+      "original_bundle_file": "review/sensor_mosaic.mp4",
+      "original_sha256": "a647ee518c75e0168aad8d253f6bd0639cd22726bee15d7a608c49ca3546e1de",
+      "transform": "H264 CRF23 preview, original dimensions/FPS retained"
+    },
+    {
+      "file": "transfer-adjacent_collision-cameras.jpg",
+      "bytes": 630576,
+      "sha256": "6e850f2dc1575b1e064e3d65871ae5d98b387980f957989c92a86e1fcf07bc98",
+      "original_bundle_file": "review/camera_contact_sheet.jpg",
+      "original_sha256": "6e850f2dc1575b1e064e3d65871ae5d98b387980f957989c92a86e1fcf07bc98",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-adjacent_collision-controls.jpg",
+      "bytes": 632543,
+      "sha256": "0dceb3da9362452a765cd311854cc74d92009a7e556474d4f71a7f64dd15529e",
+      "original_bundle_file": "review/wsm_overlay_contact_sheet.jpg",
+      "original_sha256": "0dceb3da9362452a765cd311854cc74d92009a7e556474d4f71a7f64dd15529e",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-adjacent_collision-lidar.png",
+      "bytes": 487891,
+      "sha256": "de8b87f0d5e309188e1c675c43ea73aa9daa7104cc98ed0fd506922640c8394c",
+      "original_bundle_file": "review/lidar_control_overlay.png",
+      "original_sha256": "de8b87f0d5e309188e1c675c43ea73aa9daa7104cc98ed0fd506922640c8394c",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-adjacent_collision-timeline.jpg",
+      "bytes": 252320,
+      "sha256": "1eb29e95396a24317174bc768ef8ec0e8e946634675d66ed4ae99c5c9d58514f",
+      "original_bundle_file": "review/front-timeline/timeline.jpg",
+      "original_sha256": "1eb29e95396a24317174bc768ef8ec0e8e946634675d66ed4ae99c5c9d58514f",
+      "transform": "Exact copy of generated-output diagnostic image"
+    }
+  ]
+}

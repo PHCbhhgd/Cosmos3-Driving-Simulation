@@ -1,5 +1,15 @@
 {
   "case": "adjacent_collision",
   "started_at": "2026-11-03T04:18:17.949561+00:00",
-  "status": "running"
+  "status": "generated_and_packaged",
+  "inference_exit_code": 1,
+  "sampling_and_decode_seconds": 1319.2980262804776,
+  "recovery": "Isolated official VAEs from complete saved joint latents; no resampling",
+  "decode_exit_code": 0,
+  "package_exit_code": 0,
+  "review_exit_code": 0,
+  "geometry_diagnostics_exit_code": 0,
+  "browser_exit_code": 0,
+  "total_seconds": 1401.9085073005408,
+  "output": "outputs/robustness/transfer-business-20261103/adjacent_collision"
 }
