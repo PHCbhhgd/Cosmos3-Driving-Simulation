@@ -170,6 +170,67 @@
         }
       ],
       "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano-Transfer-Auto",
+      "suite": "transfer-business-20261103",
+      "case": "clear_turn",
+      "reviewed_camera_timestamps_s": [
+        0,
+        1,
+        2
+      ],
+      "front_wide_interval_s": 0.26666666666666666,
+      "issues": [
+        {
+          "category": "mild_road_surface_texture_artifact",
+          "description": "前广角路面存在轻微灰白纹理斑；未作像素语义标注，不能据此量化物理精度。",
+          "confidence": "medium"
+        }
+      ],
+      "description": "已检查七视角0/1/2秒和前广角约0.267秒抽帧。左弯车道、前车与路杆连续移动，前车大致跟随WSM框；未发现明确的整体画面崩坏。跨视角仍需带标定的定量几何验证。",
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano-Transfer-Auto",
+      "suite": "transfer-business-20261103",
+      "case": "rain_turn",
+      "reviewed_camera_timestamps_s": [
+        0,
+        1,
+        2
+      ],
+      "front_wide_interval_s": 0.26666666666666666,
+      "issues": [
+        {
+          "category": "weak_or_ghosted_controlled_actor",
+          "first_reviewed_timestamp_s": 0,
+          "description": "前车控制仍存在，前广角中车体难以辨认，近似白色半透明重影，0/1/2秒局部放大均可见。属于初始生成与控制遵循退化，未定位为随时间累积崩坏。",
+          "confidence": "high"
+        }
+      ],
+      "description": "七视角湿路/雨水/低照度总体一致。相同几何输入下稀疏射线覆盖0.6408、平均逐扫描MAE6.8996m，低于晴天；前车box邻域点数显著减少。计数不等于目标识别或物理散射真值，单seed不代表失败率。",
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano-Transfer-Auto",
+      "suite": "transfer-business-20261103",
+      "case": "snow_turn",
+      "reviewed_camera_timestamps_s": [
+        0,
+        1,
+        2
+      ],
+      "front_wide_interval_s": 0.26666666666666666,
+      "issues": [
+        {
+          "category": "color_fringing_and_texture_artifacts",
+          "description": "部分路边缘存在青色/彩色边缘，后长焦开头可见局部不规则黑色/彩色纹理。未作全帧像素标注。",
+          "confidence": "medium"
+        }
+      ],
+      "description": "前广角有连续左弯运动、积雪与车辙，受控前车可辨，优于本次雨天样本的白色重影。七视角天气总体为雪景；LiDAR稀疏受控射线与道路/车框总体重合，不能视为经过验证的降雪传感器物理。",
+      "temporal_collapse_threshold_s": null
     }
   ]
 }

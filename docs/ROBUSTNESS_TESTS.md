@@ -26,18 +26,19 @@
 
 ## Transfer 联合传感器实测
 
-以下仅列已完成的场景；其余场景和 RGB 时长测试的准备不算生成成功。两例均完成 35 步联合采样，在同驻 LiDAR VAE 解码时 OOM；保存的完整 latent 已使用独立官方 VAE 解码，未重新采样。七路视频、20 次 LiDAR 扫描、点云打包和真实浏览器回放检查通过。
+以下仅列已完成的场景；其余场景和 RGB 时长测试的准备不算生成成功。三例均完成 35 步联合采样，在同驻 LiDAR VAE 解码时 OOM；保存的完整 latent 已使用独立官方 VAE 解码，未重新采样。七路视频、20 次 LiDAR 扫描、点云打包和真实浏览器回放检查通过。
 
 | 场景 | 可见结果 | 稀疏射线有效覆盖 | 平均逐扫描 range MAE | 预览 |
 | --- | --- | --- | --- | --- |
 | 晴天左转 | 车道和前车有连续左弯运动，前车大致跟随控制框；路面有轻微纹理斑 | 92.82% | 3.87 m | [七相机 + LiDAR](../media/robustness/transfer-clear_turn-sensors.mp4) / [前广角](../media/robustness/transfer-clear_turn-front.mp4) |
 | 大雨左转 | 湿路、雨水与灰暗天气可见，但前车难以辨认，车体近似白色重影，从开头即存在 | 64.08% | 6.90 m | [七相机 + LiDAR](../media/robustness/transfer-rain_turn-sensors.mp4) / [前广角](../media/robustness/transfer-rain_turn-front.mp4) |
+| 降雪左转 | 前车、积雪路沿和车辙可辨，左弯运动连续；部分边缘有彩色条纹与纹理伪影 | 90.86% | 4.09 m | [七相机 + LiDAR](../media/robustness/transfer-snow_turn-sensors.mp4) / [前广角](../media/robustness/transfer-snow_turn-front.mp4) |
 
 ![Same geometric actor control, clear and rainy generated RGB](../media/robustness/transfer-clear-rain-car-detail.jpg)
 
 上图每列为 0、1、2 秒，上排晴天、下排大雨，均从实际前广角视频裁切。几何控制与 seed 相同，生成的背景、材质和车辆外观仍会因文字变化而改变；没有建立保持场景身份的反事实仿真。这张图支持“本次雨天样本的受控前车表现退化”，不能据单次采样估计雨天失败率。
 
-原始机器证据见 [晴天](../reports/robustness/transfer-business/clear_turn/) 和 [雨天](../reports/robustness/transfer-business/rain_turn/)。box 附近点数只是辅助诊断：晴天所抽取扫描约 900–1150 点，大雨约 29–145 点；附近点不等于语义正确的前车点。上述射线指标没有物理合格阈值，也没有提供真实雨滴散射参考。
+原始机器证据见 [晴天](../reports/robustness/transfer-business/clear_turn/)、[雨天](../reports/robustness/transfer-business/rain_turn/) 和 [雪天](../reports/robustness/transfer-business/snow_turn/)。box 附近点数只是辅助诊断：晴天所抽取扫描约 900–1150 点，大雨约 29–145 点，雪天约 830–955 点；附近点不等于语义正确的前车点。上述射线指标没有物理合格阈值，也没有提供真实雨滴散射参考。
 
 ## 测试设计
 
@@ -78,6 +79,8 @@
 
 长 RGB 控制来自真实连续渲染的 797 帧，未降低 FPS 或重复视频。第二个 chunk 的控制从 frame 396 开始，与第一段最后一帧一致；拼接时去掉一帧反馈。原生 joint 路径只支持一个 caption chunk，因此 RGB 续生成结果**不代表七相机 + LiDAR 的同等时长能力**。
 
+长测专用场景让自车和前车均以 6 m/s 行驶，沿道路弧长保持 24 m 间距，完成 90° 左弯后沿切线前进。短联合场景原本的前车速度为 3 m/s，若直接延长，自车约 8 秒就会追上前车；该准备版本保留但不用于长测，避免把输入轨迹重叠误判为模型失稳。
+
 不同时长请求使用相同 seed，也不保证共享相同前缀。它们是独立采样，不能通过对比“5 秒视频”和“10 秒视频”认定某个具体秒数开始失稳。
 
 ## 如何判断退化
@@ -111,12 +114,12 @@ python scripts/export_scene_request.py storage/scenarios/rain_turn --frames 61
 对其余场景重复准备步骤。[批量执行器](../scripts/benchmark_transfer.py) 接受 `--runtime`（在命令前执行的环境包装脚本）、`--python`（Auto 虚拟环境解释器）、`--gpus`、`--cases`、`--output`，自动预检 GPU，保存每例结果，并在完整 joint latent 已保存而同驻解码 OOM 时尝试独立官方 VAE 解码。输出目录必须是新目录。
 
 ```bash
-python scripts/prepare_business_scene.py clear_turn --frames 797 \
-  --output storage/scenarios/temporal_turn
-python scripts/render_scene_wsm.py storage/scenarios/temporal_turn --frames 797
-python scripts/prepare_temporal_requests.py storage/scenarios/temporal_turn
+python scripts/prepare_business_scene.py clear_turn --frames 797 --lead-speed 6 \
+  --output storage/scenarios/temporal_following
+python scripts/render_scene_wsm.py storage/scenarios/temporal_following --frames 797 --front-only
+python scripts/prepare_temporal_requests.py storage/scenarios/temporal_following
 ```
 
-[RGB 时长执行器](../scripts/benchmark_transfer_rgb.py) 使用 `--scene storage/scenarios/temporal_turn` 和同样的 runtime / python / GPU 参数。Nano 的 [执行器](../scripts/benchmark_nano.py) 默认执行三档时长，也可通过 `--cases-config` 指定 [业务提示词](../configs/nano-business-cases.json) 或 [持续行驶长视频](../configs/nano-motion-duration.json)。Nano safety checker 保持开启；事故原提示词被 Guardrail 拒绝的结果须单独保留，不能计为画面质量失败。独立 VAE 恢复只做解码，不额外重跑 Guardrail。
+[RGB 时长执行器](../scripts/benchmark_transfer_rgb.py) 使用 `--scene storage/scenarios/temporal_following` 和同样的 runtime / python / GPU 参数。Nano 的 [执行器](../scripts/benchmark_nano.py) 默认执行三档时长，也可通过 `--cases-config` 指定 [业务提示词](../configs/nano-business-cases.json) 或 [持续行驶长视频](../configs/nano-motion-duration.json)。Nano safety checker 保持开启；事故原提示词被 Guardrail 拒绝的结果须单独保留，不能计为画面质量失败。独立 VAE 恢复只做解码，不额外重跑 Guardrail。
 
 本轮机器使用已有隔离环境。可移植源码经过 CPU 检查不等于已在一台全新机器上重新安装并跑完全部 GPU 测试。

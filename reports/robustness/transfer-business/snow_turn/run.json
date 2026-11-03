@@ -1,0 +1,15 @@
+{
+  "case": "snow_turn",
+  "started_at": "2026-11-03T03:31:39.834033+00:00",
+  "status": "generated_and_packaged",
+  "inference_exit_code": 1,
+  "sampling_and_decode_seconds": 1301.2074710801244,
+  "recovery": "Isolated official VAEs from complete saved joint latents; no resampling",
+  "decode_exit_code": 0,
+  "package_exit_code": 0,
+  "review_exit_code": 0,
+  "geometry_diagnostics_exit_code": 0,
+  "browser_exit_code": 0,
+  "total_seconds": 1391.4297878593206,
+  "output": "outputs/robustness/transfer-business-20261103/snow_turn"
+}

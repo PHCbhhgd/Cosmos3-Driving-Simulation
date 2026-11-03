@@ -1,0 +1,54 @@
+{
+  "case": "snow_turn",
+  "scope": "Previews only; original full sensor files retained in release bundles.",
+  "files": [
+    {
+      "file": "transfer-snow_turn-front.mp4",
+      "bytes": 765286,
+      "sha256": "8230933d428749f7a6e138f9c3cecdca71e22076d40a03f268882d32d5c4c300",
+      "original_bundle_file": "cameras/camera_front_wide_120fov.mp4",
+      "original_sha256": "fba9e704be3c475736b878a625710e5c95f77c491f4140aa834eeea11d1a3686",
+      "transform": "H264 CRF23 preview, original dimensions/FPS retained"
+    },
+    {
+      "file": "transfer-snow_turn-sensors.mp4",
+      "bytes": 1870884,
+      "sha256": "a8b27b75e38d9de278d4734b82d4f80453e4f0154862151b9d49bbe53a2c4b7a",
+      "original_bundle_file": "review/sensor_mosaic.mp4",
+      "original_sha256": "8bb681cabda0b1a1ad73954d0252d16041b2b8cfa51a7130b9bb31150b8d4fc4",
+      "transform": "H264 CRF23 preview, original dimensions/FPS retained"
+    },
+    {
+      "file": "transfer-snow_turn-cameras.jpg",
+      "bytes": 770579,
+      "sha256": "fadc799909fc5bff6e343dd3d4691872fad27c0a901d85b9f63b6738c9b586dc",
+      "original_bundle_file": "review/camera_contact_sheet.jpg",
+      "original_sha256": "fadc799909fc5bff6e343dd3d4691872fad27c0a901d85b9f63b6738c9b586dc",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-snow_turn-controls.jpg",
+      "bytes": 784112,
+      "sha256": "00fa9db76447fc0c9087517a115d8ae39fa8fd9972054a1329f3b5f5de66d2c9",
+      "original_bundle_file": "review/wsm_overlay_contact_sheet.jpg",
+      "original_sha256": "00fa9db76447fc0c9087517a115d8ae39fa8fd9972054a1329f3b5f5de66d2c9",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-snow_turn-lidar.png",
+      "bytes": 498758,
+      "sha256": "361159cd67a1b24a52c6b9e30138b9dfabd17704c2e8b9b6ffdc43dfb8a89dfc",
+      "original_bundle_file": "review/lidar_control_overlay.png",
+      "original_sha256": "361159cd67a1b24a52c6b9e30138b9dfabd17704c2e8b9b6ffdc43dfb8a89dfc",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-snow_turn-timeline.jpg",
+      "bytes": 269920,
+      "sha256": "a1c321710c236d909dfd9a66654e2c65d0649eb0c774822e52493ddbc5f85e23",
+      "original_bundle_file": "review/front-timeline/timeline.jpg",
+      "original_sha256": "a1c321710c236d909dfd9a66654e2c65d0649eb0c774822e52493ddbc5f85e23",
+      "transform": "Exact copy of generated-output diagnostic image"
+    }
+  ]
+}

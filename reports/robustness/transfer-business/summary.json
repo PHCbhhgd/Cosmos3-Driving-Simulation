@@ -1,0 +1,56 @@
+{
+  "collected_at": "2026-11-03T04:03:11.441913+00:00",
+  "scope": "Snapshot of files that exist. Running, missing and failed results are not visual-quality passes; original bundle hashes differ after release redaction.",
+  "cases": [
+    {
+      "case": "clear_turn",
+      "started_at": "2026-11-03T02:40:20.316850+00:00",
+      "status": "generated_and_packaged",
+      "inference_exit_code": 1,
+      "sampling_and_decode_seconds": 1599.2114583812654,
+      "recovery": "Isolated official VAEs from complete saved joint latents; no resampling",
+      "decode_exit_code": 0,
+      "package_exit_code": 0,
+      "review_exit_code": 0,
+      "geometry_diagnostics_exit_code": 0,
+      "browser_exit_code": 0,
+      "total_seconds": 1689.9209369104356,
+      "output": "outputs/robustness/transfer-business-20261103/clear_turn"
+    },
+    {
+      "case": "occluded_pedestrian",
+      "started_at": "2026-11-03T03:54:51.579538+00:00",
+      "status": "running"
+    },
+    {
+      "case": "rain_turn",
+      "started_at": "2026-11-03T03:08:30.590497+00:00",
+      "status": "generated_and_packaged",
+      "inference_exit_code": 1,
+      "sampling_and_decode_seconds": 1305.1849097851664,
+      "recovery": "Isolated official VAEs from complete saved joint latents; no resampling",
+      "decode_exit_code": 0,
+      "package_exit_code": 0,
+      "review_exit_code": 0,
+      "geometry_diagnostics_exit_code": 0,
+      "browser_exit_code": 0,
+      "total_seconds": 1388.9202544186264,
+      "output": "outputs/robustness/transfer-business-20261103/rain_turn"
+    },
+    {
+      "case": "snow_turn",
+      "started_at": "2026-11-03T03:31:39.834033+00:00",
+      "status": "generated_and_packaged",
+      "inference_exit_code": 1,
+      "sampling_and_decode_seconds": 1301.2074710801244,
+      "recovery": "Isolated official VAEs from complete saved joint latents; no resampling",
+      "decode_exit_code": 0,
+      "package_exit_code": 0,
+      "review_exit_code": 0,
+      "geometry_diagnostics_exit_code": 0,
+      "browser_exit_code": 0,
+      "total_seconds": 1391.4297878593206,
+      "output": "outputs/robustness/transfer-business-20261103/snow_turn"
+    }
+  ]
+}

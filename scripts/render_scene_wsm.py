@@ -10,6 +10,7 @@ import cosmos_auto.wm
 parser = argparse.ArgumentParser()
 parser.add_argument("scene", type=Path)
 parser.add_argument("--frames", type=int, default=121)
+parser.add_argument("--front-only", action="store_true", help="Render only front-wide controls")
 args = parser.parse_args()
 scene = args.scene.resolve()
 config = Path(cosmos_auto.wm.__file__).parent / "conf"
@@ -20,7 +21,7 @@ with initialize_config_dir(config_dir=str(config), version_base=None):
             f"input_root={scene}",
             f"output_root={scene}/camera_controls",
             "version=v4",
-            "camera_spec=internal_7cam",
+            f"camera_spec={'internal_1cam' if args.front_only else 'internal_7cam'}",
             "input_fps_spec.input_pose_fps=30",
             "resolution_spec=resize_1280x720",
             "output_frame_spec.target_render_fps=30",

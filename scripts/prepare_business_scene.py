@@ -49,7 +49,9 @@ def centerline(s, offset=0, curved=False):
     return base
 
 
-def scenario_state(geometry, times):
+def scenario_state(geometry, times, lead_speed=3):
+    if not np.isfinite(lead_speed) or lead_speed < 0:
+        raise ValueError("lead_speed must be finite and nonnegative")
     curved = geometry == "left_turn"
     speed = 6 if curved else 4
     positions = centerline(speed * times, curved=curved)
@@ -70,8 +72,8 @@ def scenario_state(geometry, times):
             )
             return p
 
-        lp = centerline(np.array(24 + 3 * t), curved=curved)
-        lyaw = min((24 + 3 * t) / 22, np.pi / 2) if curved else 0
+        lp = centerline(np.array(24 + lead_speed * t), curved=curved)
+        lyaw = min((24 + lead_speed * t) / 22, np.pi / 2) if curved else 0
         lead = actor("lead_car", "Car", [4.5, 1.8, 1.6], lp[0], lp[1], 0.8, lyaw, True)
         if geometry == "occluded_pedestrian":
             actor("occluding_van", "Truck", [5.8, 2.3, 2.8], 13, -3.5, 1.4)
@@ -150,7 +152,7 @@ def build(case, frames, output):
     rig_path = WSM / "skills/scenario-to-rds-hq/assets/hyperion8.json"
     rig = json.loads(rig_path.read_text())
     times = np.arange(frames + 3, dtype=float) / 30
-    ego, lead, objects = scenario_state(case["geometry"], times)
+    ego, lead, objects = scenario_state(case["geometry"], times, case.get("lead_speed_mps", 3))
     layers = {k: {"labels": []} for k in io.MAP_GEOMETRY}
 
     def line(layer, vertices, attributes=None):
@@ -287,9 +289,12 @@ def main():
     p.add_argument("case")
     p.add_argument("--frames", type=int, default=61)
     p.add_argument("--output", type=Path)
+    p.add_argument("--lead-speed", type=float, help="Override lead speed in m/s; default 3")
     args = p.parse_args()
     cases = json.loads((ROOT / "configs/robustness-cases.json").read_text())["cases"]
     case = next(c for c in cases if c["id"] == args.case)
+    if args.lead_speed is not None:
+        case = case | {"lead_speed_mps": args.lead_speed}
     build(case, args.frames, args.output or ROOT / "storage/scenarios" / case["id"])
 
 

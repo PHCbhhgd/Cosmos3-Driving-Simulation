@@ -37,6 +37,17 @@ class ScenarioTests(unittest.TestCase):
         np.testing.assert_allclose(points[0], [0, 0, 0], atol=1e-10)
         np.testing.assert_allclose(points[1:], [[22, 22, 0], [22, 32, 0]], atol=1e-10)
 
+    def test_long_following_keeps_lead_ahead_without_prescribed_contact(self):
+        times = np.arange(800) / 30
+        ego, lead, _ = scenario_state("left_turn", times, lead_speed=6)
+        # Same arc-length speed and a 24 m lead; Euclidean gap shortens on the turn.
+        distances = np.linalg.norm(lead[:, :2, 3] - ego[:, :2, 3], axis=1)
+        self.assertGreater(distances.min(), 22)
+        np.testing.assert_allclose(distances[times > 6], 24)
+        for speed in [-1, float("nan")]:
+            with self.assertRaises(ValueError):
+                scenario_state("left_turn", times, lead_speed=speed)
+
     def test_pedestrian_really_starts_behind_occluder(self):
         ego, _, actors = scenario_state("occluded_pedestrian", np.array([0.0, 1.6]))
         # Check camera-to-person sight line crosses the van's axis-aligned footprint.
