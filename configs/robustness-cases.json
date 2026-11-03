@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "suite": "driving-boundaries-20261103",
+  "scope": "Synthetic business-scenario stress tests, not real recorded driving data or a collision physics simulator.",
+  "common": {"camera_frames": 61, "camera_fps": 30, "steps": 35, "seed": 0, "resolution": "480", "guidance": 3, "shift": 10, "sensors": "7 cameras and joint LiDAR"},
+  "cases": [
+    {"id": "clear_turn", "geometry": "left_turn", "weather": "clear", "purpose": "Matched geometry baseline for rainy and snowy turns"},
+    {"id": "rain_turn", "geometry": "left_turn", "weather": "heavy_rain", "purpose": "Wet road, rain visibility and geometry adherence during a left turn"},
+    {"id": "snow_turn", "geometry": "left_turn", "weather": "snow", "purpose": "Snow accumulation, snowfall and lane/actor preservation during a left turn"},
+    {"id": "occluded_pedestrian", "geometry": "occluded_pedestrian", "weather": "clear", "purpose": "Pedestrian emerges from behind a parked van and crosses from right to left; appearance/occlusion test, not policy braking evaluation"},
+    {"id": "adjacent_collision", "geometry": "adjacent_collision", "weather": "clear", "purpose": "Rigid prescribed vehicle contact and yaw change in adjacent lane; no deformation, debris or impact dynamics supplied"},
+    {"id": "tunnel_entry", "geometry": "tunnel_entry", "weather": "tunnel", "purpose": "Daylight-to-dark tunnel entry; only wireframe portal/ceiling structural anchors, no dense wall/roof mesh"},
+    {"id": "contradictory_turn", "geometry": "left_turn", "weather": "contradictory", "purpose": "Deliberately conflicting captions: text asks right turn while geometric controls turn left; robustness negative control"}
+  ]
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "clear_turn",
+    "frames": 121,
+    "seed": 0,
+    "prompt": "{\"scene\": \"Forward-facing dashcam footage from a car driving at a visible moderate speed. Roadside objects move past the camera continuously. Clear daylight on a dry paved road, white dashed lane markings, low curbs and regularly spaced roadside poles. The road curves left and the camera rig follows a smooth left turn. A car farther ahead follows the same left curve. Lane geometry and roadside objects move smoothly with the turning perspective. One continuous realistic shot with visible motion, no cuts.\"}"
+  },
+  {
+    "id": "rain_turn",
+    "frames": 121,
+    "seed": 0,
+    "prompt": "{\"scene\": \"Forward-facing dashcam footage from a car driving at a visible moderate speed. Roadside objects move past the camera continuously. Heavy rain in overcast daylight. Visible falling rain, wet dark asphalt, puddles, tire spray and reflections. Reduced visibility, consistent rainy weather across all views. The road curves left and the camera rig follows a smooth left turn. A car farther ahead follows the same left curve. Lane geometry and roadside objects move smoothly with the turning perspective. One continuous realistic shot with visible motion, no cuts.\"}"
+  },
+  {
+    "id": "snow_turn",
+    "frames": 121,
+    "seed": 0,
+    "prompt": "{\"scene\": \"Forward-facing dashcam footage from a car driving at a visible moderate speed. Roadside objects move past the camera continuously. Winter daytime with steady visible snowfall, overcast sky, accumulated white snow along the curbs and slushy wheel tracks on the road. Snowy trees and reduced visibility, consistent winter weather across all views. The road curves left and the camera rig follows a smooth left turn. A car farther ahead follows the same left curve. Lane geometry and roadside objects move smoothly with the turning perspective. One continuous realistic shot with visible motion, no cuts.\"}"
+  },
+  {
+    "id": "occluded_pedestrian",
+    "frames": 121,
+    "seed": 0,
+    "prompt": "{\"scene\": \"Forward-facing dashcam footage from a car driving at a visible moderate speed. Roadside objects move past the camera continuously. Clear daylight on a dry paved road, white dashed lane markings, low curbs and regularly spaced roadside poles. A tall van is parked on the right. A pedestrian initially hidden behind the van suddenly emerges near its front and moves from the right curb toward the left across the road. The same pedestrian remains present and keeps a consistent appearance. One continuous realistic shot with visible motion, no cuts.\"}"
+  },
+  {
+    "id": "adjacent_collision",
+    "frames": 121,
+    "seed": 0,
+    "prompt": "{\"scene\": \"Forward-facing dashcam footage from a car driving at a visible moderate speed. Roadside objects move past the camera continuously. Clear daylight on a dry paved road, white dashed lane markings, low curbs and regularly spaced roadside poles. In the adjacent lane to the left, a moving car approaches a stopped car and bumps its rear around the middle of the shot. The moving car abruptly slows and rotates slightly after contact. Both vehicles remain visible and keep their identities. No injured people, no gore. One continuous realistic shot with visible motion, no cuts.\"}"
+  },
+  {
+    "id": "tunnel_entry",
+    "frames": 121,
+    "seed": 0,
+    "prompt": "{\"scene\": \"Forward-facing dashcam footage from a car driving at a visible moderate speed. Roadside objects move past the camera continuously. A paved urban road enters a concrete tunnel. The vehicle approaches the dark tunnel portal in daylight, enters beneath a continuous concrete roof, then moves between concrete side walls under regularly spaced warm overhead lamps. Exposure gradually adjusts from bright daylight to the dim tunnel interior. One continuous realistic shot with visible motion, no cuts.\"}"
+  },
+  {
+    "id": "moving_camera_seed_1",
+    "frames": 121,
+    "seed": 1,
+    "prompt": "{\"scene\": \"A forward-facing dashcam on a car drives forward briskly along a suburban road in daylight. Lane markings move toward and underneath the camera. Houses, trees and lamp posts pass on both sides with clear parallax. A blue sedan ahead moves away. Continuous driving motion throughout the entire shot. One continuous shot, no cuts.\"}"
+  }
+]
