@@ -55,7 +55,7 @@ Transfer 两次均约 18 分钟采样，不含场景准备、独立解码与回�
 
 ## 公开证据的可追溯性
 
-[reports/](../reports/README.md) 的 JSON 从实际输出导出，仅替换本地绝对路径。原 bundle 的 `bundle-SHA256SUMS` 用于原始77文件产物；脱敏发布包会重新计算各自 `SHA256SUMS`，两者不能混用。首页 GIF 是从生成 MP4 下采样的展示副本，SHA256 见 media manifest。版本锁定不保证不同硬件/算子之间逐字节一致。
+[reports/](../reports/README.md) 的 JSON 从实际输出导出，仅替换本地绝对路径。原 bundle 的 `bundle-SHA256SUMS` 用于原始77文件产物；脱敏发布包会重新计算各自 `SHA256SUMS`，两者不能混用。仓库保留的 GIF 是从生成 MP4 下采样的展示副本；首页现以实际视频抽帧图展示各场景，SHA256 见 media manifest。版本锁定不保证不同硬件/算子之间逐字节一致。
 
 ## 公开整理版的实际检查
 

@@ -58,11 +58,19 @@
 
 ### 邻车接触事件细查
 
-[接触前后 RGB/WSM 对照](../media/robustness/transfer-contact-front-detail.jpg) 按 0.1 秒检查 0.8–1.4 秒，并补充 0、0.5、1.6、1.8、2 秒。两车间距缩小，接触点附近可见车头接近前车尾部，后段仍基本保持两车身份；相较 Nano 的低运动邻车样本更接近要求。但未确证突发冲击、受撞车响应，不能计为真实车祸复现。输入本身未提供形变动力学，后车部分表面进入 5 m 以内，也不能据近场点云缺口单独判定生成失败。机器与抽帧证据见 [adjacent_collision](../reports/robustness/transfer-business/adjacent_collision/)。
+[接触前后 RGB/WSM 对照](../media/robustness/transfer-contact-front-detail.jpg) 按 0.1 秒检查 0.8–1.4 秒，并补充 0、0.5、1.6、1.8、2 秒。两车间距缩小，接触点附近可见车头接近前车尾部，后段仍基本保持两车身份；相较 Nano 的低运动邻车样本更接近要求。但未确证突发冲击、受撞车响应，不能计为真实车祸复现。输入本身仅为预设刚体轨迹，受撞车保持静止，没有提供真实冲量响应或形变动力学；因此该例不能区分模型缺乏碰撞推演能力与控制未包含受撞响应。后车部分表面进入 5 m 以内，也不能据近场点云缺口单独判定生成失败。机器与抽帧证据见 [adjacent_collision](../reports/robustness/transfer-business/adjacent_collision/)。
 
 ### 隧道入口证据范围
 
 [首段密集 RGB/WSM 对照](../media/robustness/transfer-tunnel-entry-detail.jpg) 包含 0–0.6 秒每 0.1 秒及 0.8 秒：上缘起初可见天空带，随后消失，但开头视野已由墙顶主导，没有清楚展示完整的室外道路和入口。初始相机比后轴前移约 1.75 m，距 x=4 m 入口只有约 2.25 m，约 0.56 秒就越过入口；线框 WSM 首帧也呈现隧道主导透视。该例只支持短距离近入口/洞内连续性观察，不能算完整入洞与曝光测试通过，也不能把缺少室外段完全归因于模型。稀疏线框指标较好同样不能证明模型补全的密集墙顶准确。[机器与事件记录](../reports/robustness/transfer-business/tunnel_entry/)
+
+### 入口移远的前广角补测
+
+将入口从 x=4 m 移至 x=10 m，生成 121 帧/30 FPS，最后时刻 4 秒，耗时 422.34 秒。相机初始距入口 8.25 m，自车 4 m/s，应于约 2.063 秒越过入口。但 RGB 首帧已经几乎贴近洞口，0.5–1 秒成为洞内主导视野，未充分保留室外接近段；首段还有灰雾/弱前车与大车头前景。灯列、墙顶和前车在后段大体连续，抽帧未见整体崩坏。这个反例支持事件时序/外观遵循不足，不能给出密集墙面几何误差，输入仍只有线框。仅前广角 RGB，没有 LiDAR。
+
+![Tunnel input timing followup](../media/scenarios/tunnel-approach.jpg)
+
+[RGB / 精确 WSM 对照](../media/robustness/transfer-tunnel-approach-controls.jpg) · [运行与完整解码](../reports/robustness/transfer-tunnel/) · [输入时序](../reports/robustness/tunnel-approach-input.json)。审阅帧为 0、15、30、45、54、60、63、66、75、90、105、120；原视频只在本地。
 
 冲突测试的左右转条件不能同时满足，遵循左弯几何本身不计失败。前后长焦首帧的彩色网纹比晴天基线明显，但其他短样本也有较轻的开头伪影；单次采样不能建立“文字冲突导致伪影”的因果关系。[七视角抽帧](../media/robustness/transfer-contradictory_turn-cameras.jpg) · [控制叠加](../media/robustness/transfer-contradictory_turn-controls.jpg)
 
@@ -73,8 +81,9 @@
 | 121 帧 / 30 FPS，最后时刻 4 秒 | 单 chunk，35 步，427.56 秒 | 有前进视差和可辨前车；首帧已有大车头/暗角；每秒抽帧未见整体崩坏 | [RGB / WSM / 叠加](../media/robustness/transfer-duration-front-rgb-121-controls.jpg) |
 | 241 帧 / 30 FPS，最后时刻 8 秒 | 单 chunk，35 步，758.03 秒 | 道路、挡墙和前车大体连续；首帧已有车头/暗角，非 8 秒后才累积出现 | [RGB / WSM / 叠加](../media/robustness/transfer-duration-front-rgb-241-controls.jpg) |
 | 397 帧 / 30 FPS，最后时刻 13.2 秒 | 单 chunk，35 步，1375.25 秒 | 有持续前进视差，左弯后沿直路行驶，前车和背景大体连续；首帧即有大车头前景，每秒抽帧未见整体崩坏 | [RGB / WSM / 叠加](../media/robustness/transfer-duration-front-rgb-397-controls.jpg) |
+| 793 帧 / 30 FPS，最后时刻 26.4 秒 | 两个 397 帧 chunk，一帧反馈，35 步/段，2710.64 秒 | 每秒抽帧和续接 393–400 帧逐帧未见明确切镜、前车消失或整体崩坏；首帧已有较大车头 | [时序图](../media/robustness/transfer-duration-front-rgb-793.jpg) / [RGB / WSM / 叠加](../media/robustness/transfer-duration-front-rgb-793-controls.jpg) |
 
-对照使用 Framework 实际保存的控制视频，验证相同帧数、尺寸和 FPS，未二次裁切。远方道路逐渐呈直线的透视在控制中也可见，不能只据 RGB 认定提前转直。不同请求为独立生成，前车外观和背景不同；这些结果不共享同一个初始世界。更长请求仍以逐次 [运行记录](../reports/robustness/transfer-duration/) 的终态为准。
+对照使用 Framework 实际保存的控制视频，验证相同帧数、尺寸和 FPS，未二次裁切。远方道路逐渐呈直线的透视在控制中也可见，不能只据 RGB 认定提前转直。不同请求为独立生成，前车外观和背景不同；这些结果不共享同一个初始世界。四档请求均已生成并完整解码，见逐次 [运行记录](../reports/robustness/transfer-duration/)。26.4 秒样本已检查 0–26 秒每秒、最后 26.4 秒，以及 13.1–13.333 秒的续接逐帧；抽帧未见整体崩坏不是全帧物理一致性证明。原始长视频只在本地保留。
 
 ## 测试设计
 

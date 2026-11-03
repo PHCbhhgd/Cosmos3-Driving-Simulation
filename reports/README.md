@@ -17,9 +17,14 @@
 | [robustness/nano/](robustness/nano/) | Nano 逐次业务与时长请求、Guardrail 拒绝、完整解码诊断 |
 | [robustness/transfer-business/](robustness/transfer-business/) | Transfer 各业务场景运行状态、七相机/点云检查、逐扫描控制一致性和事件细查 |
 | [robustness/transfer-duration/](robustness/transfer-duration/) | 单相机 RGB 独立时长/续生成请求、完整解码与对齐 WSM 抽帧；running 不算完成 |
+| [robustness/duration-release-asset.json](robustness/duration-release-asset.json) / [校验](robustness/duration-release-audit.json) | 四档原始 RGB 时长视频与控制的本地归档；无 GitHub 大附件 |
 | [robustness/business-release-asset.json](robustness/business-release-asset.json) / [校验](robustness/business-release-audit.json) | 七场景本地完整传感器归档的大小、SHA256、内部清单与元数据审计 |
+| [robustness/distribution-policy.json](robustness/distribution-policy.json) | GitHub 大附件已撤下、本地归档保留及 SHA256 核验 |
+| [robustness/readme-render.json](robustness/readme-render.json) | README 本地 Chromium 桌面/手机排版与场景图片加载检查 |
 | [robustness/matched-controls.json](robustness/matched-controls.json) | 晴雨雪与冲突文字测试的几何、控制数组/视频一致性 |
 | [robustness/lidar-boundaries.json](robustness/lidar-boundaries.json) | 官方 LiDAR 表示 5–100 m 与 validity 边界；不含生成模型运行 |
+| [robustness/transfer-tunnel/](robustness/transfer-tunnel/) / [输入时序](robustness/tunnel-approach-input.json) | 入口移远至 10 m 的前广角补测，完整解码和精确 WSM 对照 |
+| [robustness/tunnel-release-asset.json](robustness/tunnel-release-asset.json) / [校验](robustness/tunnel-release-audit.json) | 隧道补测本地原视频、输入及校验归档 |
 | [robustness/sim-hardware.json](robustness/sim-hardware.json) | Sim 官方 sm89 硬件拒绝；没有生成视频 |
 | [robustness/visual-observations.json](robustness/visual-observations.json) | 人工抽帧的具体缺陷、时间戳与结论范围 |
 

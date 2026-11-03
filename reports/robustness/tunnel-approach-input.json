@@ -1,0 +1,11 @@
+{
+  "scope": "Synthetic input timing only; not generated-video evidence",
+  "portal_x_m": 10.0,
+  "ego_speed_mps": 4,
+  "front_camera_x_in_vehicle_m": 1.7494261264801025,
+  "initial_camera_to_portal_m": 8.250573873519897,
+  "expected_front_camera_portal_crossing_s": 2.0626434683799744,
+  "requested_output_last_timestamp_s": 4,
+  "output_scope": "One RGB view only; no LiDAR",
+  "dense_tunnel_mesh": false
+}

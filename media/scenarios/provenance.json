@@ -103,5 +103,34 @@
       ],
       "fps": 30.0
     }
+  ],
+  "duration_images": [
+    {
+      "file": "duration-26s.jpg",
+      "sha256": "4c09f8960252163a7ed3bd596e2b1cac9ce2f8c2e550ac39ba52f4440a868928",
+      "source_sha256": "74c1de11957e08df037bbebaf1b0e6dbb417ce7f7b3039697eb6e6e5811d56c4",
+      "source_report": "reports/robustness/transfer-duration/front-rgb-793/video_diagnostics.json",
+      "frame_ids": [
+        0,
+        396,
+        397,
+        792
+      ],
+      "fps": 30
+    }
+  ],
+  "tunnel_followup_images": [
+    {
+      "file": "tunnel-approach.jpg",
+      "sha256": "03fd4a2cc8c751d3c30f1a6c1f8be35b99587d5144d2fb970e132d444433e242",
+      "source_sha256": "3ac2b74ce76d7e09faba6782c71b8fa58d3939040e23abf6ee81ee120708ab76",
+      "source_report": "reports/robustness/transfer-tunnel/front-rgb-121/video_diagnostics.json",
+      "frame_ids": [
+        0,
+        60,
+        120
+      ],
+      "fps": 30
+    }
   ]
 }

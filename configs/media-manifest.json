@@ -519,6 +519,61 @@
       "file": "media/scenarios/tunnel_entry.jpg",
       "bytes": 53823,
       "sha256": "85b541146581da654e8374b53e3c5b126704c9828408f697662869fa3dabfe72"
+    },
+    {
+      "file": "media/robustness/transfer-adjacent_collision-previews.json",
+      "bytes": 2599,
+      "sha256": "d62ee3d4a3dbe8542cd317684b93e6ab45add66c285bb14fdf1ad010985abd27"
+    },
+    {
+      "file": "media/robustness/transfer-contradictory_turn-previews.json",
+      "bytes": 2600,
+      "sha256": "6a33ff3213502f0ef598f008ee8b4b9a7ed6bdf42b71acb73896f3745fadb6e9"
+    },
+    {
+      "file": "media/robustness/transfer-duration-front-rgb-793-controls.jpg",
+      "bytes": 737006,
+      "sha256": "b8d7d43fe75e8cd89f783b28d82483ceae7a9f75172ff1053f11a9e86c97c8d4"
+    },
+    {
+      "file": "media/robustness/transfer-duration-front-rgb-793.jpg",
+      "bytes": 811008,
+      "sha256": "15c32278961196397174f01c931d31e9072d309aedd63e168b26ac1158617ed7"
+    },
+    {
+      "file": "media/robustness/transfer-occluded_pedestrian-previews.json",
+      "bytes": 2605,
+      "sha256": "c877ba146752702b4785df8de83193329ddc46c330b383e403969f355f9a2f9d"
+    },
+    {
+      "file": "media/robustness/transfer-snow_turn-previews.json",
+      "bytes": 2536,
+      "sha256": "3af8e79176460ccdae59d0a9b7c8514fe8a45bd3fd1d27db7b03d739bb76a0e0"
+    },
+    {
+      "file": "media/robustness/transfer-tunnel_entry-previews.json",
+      "bytes": 2556,
+      "sha256": "5a2167273dcae6ea5f51f8f19f76495833707c0568089e63e59273034a3b4a6d"
+    },
+    {
+      "file": "media/scenarios/duration-26s.jpg",
+      "bytes": 42432,
+      "sha256": "4c09f8960252163a7ed3bd596e2b1cac9ce2f8c2e550ac39ba52f4440a868928"
+    },
+    {
+      "file": "media/scenarios/provenance.json",
+      "bytes": 4192,
+      "sha256": "c6e5ad9bf0167654a83e8bbbeaac109d9d628e8bccc96020a5affd5ee45a2ac7"
+    },
+    {
+      "file": "media/robustness/transfer-tunnel-approach-controls.jpg",
+      "bytes": 774289,
+      "sha256": "8bab6f9936ad537acbd809384aeb4d4164d555fc051e38ed0f145254c9e4332f"
+    },
+    {
+      "file": "media/scenarios/tunnel-approach.jpg",
+      "bytes": 47040,
+      "sha256": "03fd4a2cc8c751d3c30f1a6c1f8be35b99587d5144d2fb970e132d444433e242"
     }
   ]
 }

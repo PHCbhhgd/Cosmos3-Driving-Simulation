@@ -79,9 +79,15 @@ Transfer 两车持续接近，约 **1.1 秒**出现接触外观，身份基本�
 
 ![Joint tunnel sample at 0, 0.5 and 2 seconds](media/scenarios/tunnel_entry.jpg)
 
-Transfer 墙顶、灯列和前车大体连续，但相机起点距入口仅约 **2.25 m**，缺少完整室外过渡证据；Nano 可见约 2 秒入洞。该输入限制保留在报告中，入口更远的前广角补测另行记录。
+Transfer 墙顶、灯列和前车大体连续，但相机起点距入口仅约 **2.25 m**，缺少完整室外过渡证据；Nano 可见约 2 秒入洞。入口移至 10 m 的 4 秒前广角补测仍过早呈现洞内外观，未充分遵循预计约 2.06 秒越过入口的过程。
 
 [Transfer 前视视频](media/robustness/transfer-tunnel_entry-front.mp4) · [七相机 + LiDAR](media/robustness/transfer-tunnel_entry-sensors.mp4) · [Nano 入洞视频](media/robustness/nano-business-tunnel_entry.mp4) · [入口细查](media/robustness/transfer-tunnel-entry-detail.jpg)
+
+**隧道补测：入口移远后**
+
+![Tunnel approach followup at 0, 2 and 4 seconds](media/scenarios/tunnel-approach.jpg)
+
+相机初始距入口约 8.25 m，生成首帧却已几乎贴近洞口，缺少应有的室外接近段。[RGB / WSM 对照](media/robustness/transfer-tunnel-approach-controls.jpg) · [机器记录](reports/robustness/transfer-tunnel/)；原始视频仅本地保留。
 
 ### 转向冲突：左弯几何与右转文字
 
@@ -100,8 +106,10 @@ WSM/LiDAR 要求左转，文字要求右转；实际道路和前车仍跟随左�
 | Nano 文本生成 | 最后时刻 5 / 10 / 16.5 秒 | [5 秒](media/robustness/nano-duration-frames-121.mp4)、[10 秒](media/robustness/nano-duration-frames-241.mp4)、[16.5 秒](media/robustness/nano-duration-frames-397.mp4)；部分样本车辆运动很弱 |
 | Nano 持续行驶 | 397 帧 / 24 FPS，最后时刻 16.5 秒 | [实际运动视频](media/robustness/nano-motion-duration-moving_camera_frames_397.mp4)；每秒抽帧未见整体崩坏，前车初始出现位置不符合要求 |
 | Transfer 前广角 RGB | 121 / 241 / 397 帧，最后时刻 4 / 8 / 13.2 秒 | 有持续前进运动，每秒抽帧未见整体崩坏；大车头/暗角从首帧即存在。[13.2 秒控制对照](media/robustness/transfer-duration-front-rgb-397-controls.jpg) |
-| Transfer 分段续生成 | 请求 793 帧 / 30 FPS，最后时刻 26.4 秒 | 正在测试；结果以[逐次终态记录](reports/robustness/transfer-duration/)为准 |
+| Transfer 分段续生成 | 已完整解码 793 帧 / 30 FPS，最后时刻 26.4 秒 | 每秒抽帧和 13.2 秒续接逐帧未见明确整体崩坏；仅晴天单视角。[时序图](media/robustness/transfer-duration-front-rgb-793.jpg) / [控制对照](media/robustness/transfer-duration-front-rgb-793-controls.jpg) |
 | 联合七相机 + LiDAR | 61 帧，最后时刻 2 秒 | 121 帧请求采样 OOM，属于当前配置容量限制，不代表 2 秒后世界失稳 |
+
+![Actual 26.4-second RGB sequence at start, continuation and end](media/scenarios/duration-26s.jpg)
 
 单视角 RGB 长测不代表七相机与 LiDAR 的同等时长能力。LiDAR 发布表示只保留 **5–100 m**，5 m 内险情不能由本配置直接保真。所有质量结论均只覆盖本次场景和 seed，没有实车物理真值。
 

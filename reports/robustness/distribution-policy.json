@@ -1,0 +1,29 @@
+{
+  "verified_at": "2026-11-03T06:27:36.095295+00:00",
+  "status": "passed",
+  "policy": "Large data local only; no GitHub Release data assets. Public source per-file budget 10 MiB.",
+  "releases": [
+    {
+      "tag": "v0.1.0",
+      "is_draft": false,
+      "assets": []
+    },
+    {
+      "tag": "v0.2.0",
+      "is_draft": true,
+      "assets": []
+    }
+  ],
+  "local_archives_verified": [
+    {
+      "file": "release/cosmos3-trajectory-sensors.tar.gz",
+      "bytes": 300554367,
+      "sha256": "25e4f6be2c251a21517ffe5fcd2df48b6572baf874fc64262ec0b089bd4efc9c"
+    },
+    {
+      "file": "release/v0.2.0/cosmos3-business-sensors.tar.gz",
+      "bytes": 1167223253,
+      "sha256": "ca1487d7f47acd8a0f71508ebd037258c29dea341ce34a8bd01c51c7a3714fe3"
+    }
+  ]
+}

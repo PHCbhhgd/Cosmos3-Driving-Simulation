@@ -63,7 +63,7 @@ class EvidenceTests(unittest.TestCase):
                     self.assertEqual(
                         hashes[preview["original_bundle_file"]], preview["original_sha256"]
                     )
-        self.assertGreaterEqual(generated, 3)
+        self.assertEqual(generated, 7)
 
     def test_robustness_nano_videos_match_full_decode_reports(self):
         aliases = {
@@ -99,6 +99,29 @@ class EvidenceTests(unittest.TestCase):
             expected = 5 <= row["input_range_m"] <= 100 and row["input_validity"] >= 0.5
             self.assertEqual(row["encoded_valid_fraction"], float(expected))
             self.assertEqual(row["saved_nonzero_fraction"], float(expected))
+
+    def test_duration_outputs_and_continuation_match_decoded_evidence(self):
+        base = ROOT / "reports/robustness/transfer-duration"
+        rows = json.loads((base / "summary.json").read_text())["cases"]
+        self.assertEqual({r["expected_frames"] for r in rows}, {121, 241, 397, 793})
+        for row in rows:
+            folder = base / row["case"]
+            self.assertEqual(row["status"], "generated_and_decoded")
+            report = json.loads((folder / "video_diagnostics.json").read_text())
+            self.assertTrue(report["full_decode"])
+            self.assertEqual(report["frames"], row["expected_frames"])
+            self.assertEqual(report["fps"], 30)
+            control = json.loads((folder / "rgb-control.json").read_text())
+            self.assertEqual(control["rgb_sha256"], report["sha256"])
+            if row["chunks"] == 2:
+                self.assertEqual(row["caption_ranges"], [[0, 400], [396, 796]])
+                self.assertTrue(set(range(393, 401)) <= set(report["selected_frame_ids"]))
+        for row in read("media/scenarios/provenance.json")["duration_images"]:
+            self.assertEqual(
+                hashlib.sha256((ROOT / "media/scenarios" / row["file"]).read_bytes()).hexdigest(),
+                row["sha256"],
+            )
+            self.assertEqual(read(row["source_report"])["sha256"], row["source_sha256"])
 
     def test_transfer_sensor_clocks_and_diagnostics(self):
         summary = read("reports/summary.json")["models"]["Cosmos3-Nano-Transfer-Auto"]

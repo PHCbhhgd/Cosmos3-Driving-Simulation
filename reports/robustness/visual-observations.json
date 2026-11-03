@@ -418,6 +418,81 @@
       ],
       "description": "完整解码397帧30FPS，最后时刻13.2秒。0–13.2秒抽帧可见持续前进视差，左弯后沿直路行驶，道路、树篱/墙面和前车大体连续；已核对0/4/8/10/11/12/13/13.2秒的精确Framework控制。未见明确整体崩坏，不能据抽帧证明全帧物理一致。",
       "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano-Transfer-Auto",
+      "suite": "transfer-duration-20261103",
+      "case": "front-rgb-793",
+      "review_interval_s": 1,
+      "reviewed_seam_frame_ids": [
+        393,
+        394,
+        395,
+        396,
+        397,
+        398,
+        399,
+        400
+      ],
+      "exact_control_comparison_frame_ids": [
+        390,
+        393,
+        396,
+        397,
+        398,
+        400,
+        420,
+        450,
+        480,
+        600,
+        720,
+        792
+      ],
+      "issues": [
+        {
+          "category": "initial_large_hood",
+          "first_reviewed_timestamp_s": 0,
+          "description": "较大车头/前景首帧即存在，贯穿长片，非续接后首次出现。",
+          "confidence": "high"
+        }
+      ],
+      "description": "完整解码793帧30FPS，最后时刻26.4秒。两个397帧chunk、末帧反馈，续接附近393–400帧逐帧与0–26.4秒每秒抽帧均已查看。未见明确切镜、前车消失或整体崩坏，车道/边界与精确保存的WSM大体对应；细微纹理和形状变化未作语义真值量化。仅晴天单视角，不证明恶劣天气、七相机/LiDAR长时稳定。",
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano-Transfer-Auto",
+      "suite": "transfer-tunnel-20261103",
+      "case": "tunnel_approach_front_rgb_121",
+      "reviewed_frame_ids": [
+        0,
+        15,
+        30,
+        45,
+        54,
+        60,
+        63,
+        66,
+        75,
+        90,
+        105,
+        120
+      ],
+      "issues": [
+        {
+          "category": "premature_tunnel_interior_appearance",
+          "first_reviewed_timestamp_s": 0,
+          "description": "相机初始距入口8.25m，按4m/s应在2.063秒越过；生成首帧已几乎贴近入口/屋顶主导，0.5–1秒已为洞内视野，未充分表达室外接近段。线框本身提供入口透视但无密集外墙/屋顶，不能量化完整几何误差。",
+          "confidence": "high"
+        },
+        {
+          "category": "initial_haze_and_large_hood",
+          "first_reviewed_timestamp_s": 0,
+          "description": "首段有灰雾/较弱前车，大车头前景贯穿输出，后续灯列/墙顶大体连续。",
+          "confidence": "high"
+        }
+      ],
+      "description": "完整解码121帧30FPS，最后时刻4秒；已核对精确保存的Framework WSM和入口时序。单视角无LiDAR，未见整体崩坏，但入洞事件时序/外观遵循不足。",
+      "temporal_collapse_threshold_s": null
     }
   ]
 }

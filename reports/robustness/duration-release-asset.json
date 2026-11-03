@@ -1,0 +1,13 @@
+{
+  "archive": "cosmos3-rgb-duration.tar.gz",
+  "bytes": 220143232,
+  "sha256": "ce63085fe02454ac2c17a141f8df737edd50730dcd4b8cce48a983f9d20055d1",
+  "generated_cases": [
+    "front-rgb-121",
+    "front-rgb-241",
+    "front-rgb-397",
+    "front-rgb-793"
+  ],
+  "terminal_cases": 4,
+  "checksums_verified": true
+}

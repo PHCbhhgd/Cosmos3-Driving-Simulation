@@ -35,7 +35,15 @@
           "loaded": true
         },
         {
+          "src": "media/scenarios/tunnel-approach.jpg",
+          "loaded": true
+        },
+        {
           "src": "media/scenarios/contradictory_turn.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/duration-26s.jpg",
           "loaded": true
         }
       ],
@@ -87,7 +95,15 @@
           "loaded": true
         },
         {
+          "src": "media/scenarios/tunnel-approach.jpg",
+          "loaded": true
+        },
+        {
           "src": "media/scenarios/contradictory_turn.jpg",
+          "loaded": true
+        },
+        {
+          "src": "media/scenarios/duration-26s.jpg",
           "loaded": true
         }
       ],
