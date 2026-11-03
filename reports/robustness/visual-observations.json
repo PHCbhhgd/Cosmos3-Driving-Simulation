@@ -346,6 +346,27 @@
       ],
       "description": "七视角0/1/2秒与前广角密集首段已检查；墙、顶、灯列和前车连续，未见明确整体崩坏。稀疏射线覆盖0.9730、逐扫描MAE均值1.52865m；线框指标较好不证明密集墙顶几何正确。",
       "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano-Transfer-Auto",
+      "suite": "transfer-business-20261103",
+      "case": "contradictory_turn",
+      "reviewed_camera_timestamps_s": [
+        0,
+        1,
+        2
+      ],
+      "front_wide_interval_s": 0.26666666666666666,
+      "issues": [
+        {
+          "category": "initial_telephoto_color_mesh_artifacts",
+          "first_reviewed_timestamp_s": 0,
+          "description": "前后长焦开头有明显彩色网纹/局部重建伪影，1秒抽帧较少。其他短样本开头也有较轻同类现象，单seed不能归因于文字几何冲突。",
+          "confidence": "high"
+        }
+      ],
+      "description": "要求右转的文字与左弯WSM/LiDAR冲突，前广角和左侧视图车道、前车仍跟随左弯几何；没有右转主导证据，抽帧中未见整体崩坏。条件相互矛盾，遵循几何本身不计失败。",
+      "temporal_collapse_threshold_s": null
     }
   ]
 }

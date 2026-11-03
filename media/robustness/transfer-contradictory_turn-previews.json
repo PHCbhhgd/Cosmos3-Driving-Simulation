@@ -1,0 +1,54 @@
+{
+  "case": "contradictory_turn",
+  "scope": "Previews only; original full sensor files retained in release bundles.",
+  "files": [
+    {
+      "file": "transfer-contradictory_turn-front.mp4",
+      "bytes": 1152255,
+      "sha256": "23696b0354cb9ffd8772d9689530cc5f9648ebf0187149ed08d5170bbedf3a55",
+      "original_bundle_file": "cameras/camera_front_wide_120fov.mp4",
+      "original_sha256": "7b64a032292b3df5b688a5c8836fd5f300e19f1208a449769daa9aca847b5aeb",
+      "transform": "H264 CRF23 preview, original dimensions/FPS retained"
+    },
+    {
+      "file": "transfer-contradictory_turn-sensors.mp4",
+      "bytes": 1956012,
+      "sha256": "18825da714ac583c2793a2e13e257e6a11117a5ac1c3d63735af33885b6aa2f7",
+      "original_bundle_file": "review/sensor_mosaic.mp4",
+      "original_sha256": "b9e896765b50bbbb67afb271bfe2f7a5acca9f707d24a385441a2c6c10a9c074",
+      "transform": "H264 CRF23 preview, original dimensions/FPS retained"
+    },
+    {
+      "file": "transfer-contradictory_turn-cameras.jpg",
+      "bytes": 861718,
+      "sha256": "21e25bef7440b2166df4d4979cb3d4a16b429d8f04d3d4e8227570b6a73f691d",
+      "original_bundle_file": "review/camera_contact_sheet.jpg",
+      "original_sha256": "21e25bef7440b2166df4d4979cb3d4a16b429d8f04d3d4e8227570b6a73f691d",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-contradictory_turn-controls.jpg",
+      "bytes": 873836,
+      "sha256": "7a52b80b91e2deb9a45ade968702129143e67b5e9a22a0d60e2b4b5ac6e1e802",
+      "original_bundle_file": "review/wsm_overlay_contact_sheet.jpg",
+      "original_sha256": "7a52b80b91e2deb9a45ade968702129143e67b5e9a22a0d60e2b4b5ac6e1e802",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-contradictory_turn-lidar.png",
+      "bytes": 369829,
+      "sha256": "67ce9746c54f16fffd4cd40e2e7308356babb64442ec727253c281211490bfa0",
+      "original_bundle_file": "review/lidar_control_overlay.png",
+      "original_sha256": "67ce9746c54f16fffd4cd40e2e7308356babb64442ec727253c281211490bfa0",
+      "transform": "Exact copy of generated-output diagnostic image"
+    },
+    {
+      "file": "transfer-contradictory_turn-timeline.jpg",
+      "bytes": 340380,
+      "sha256": "78a4a48f6d4b880e9d8c3e69f11640f1ccafc11ea6b8db3b1f1bc3120c1ee14b",
+      "original_bundle_file": "review/front-timeline/timeline.jpg",
+      "original_sha256": "78a4a48f6d4b880e9d8c3e69f11640f1ccafc11ea6b8db3b1f1bc3120c1ee14b",
+      "transform": "Exact copy of generated-output diagnostic image"
+    }
+  ]
+}

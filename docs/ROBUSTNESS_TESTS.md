@@ -26,7 +26,7 @@
 
 ## Transfer 联合传感器实测
 
-以下仅列已完成的场景；其余场景和 RGB 时长测试的准备不算生成成功。六例均完成 35 步联合采样，在同驻 LiDAR VAE 解码时 OOM；保存的完整 latent 已使用独立官方 VAE 解码，未重新采样。七路视频、20 次 LiDAR 扫描、点云打包和真实浏览器回放检查通过。
+七个联合业务场景均完成 35 步采样，在同驻 LiDAR VAE 解码时 OOM；保存的完整 latent 已使用独立官方 VAE 解码，未重新采样。七路视频、20 次 LiDAR 扫描、点云打包和真实浏览器回放检查通过。格式检查通过不代表事件、几何或物理质量合格。
 
 | 场景 | 可见结果 | 稀疏射线有效覆盖 | 平均逐扫描 range MAE | 预览 |
 | --- | --- | --- | --- | --- |
@@ -36,6 +36,7 @@
 | 鬼探头 | 遮挡后显露和横穿可见，但时间/位置未严格跟随控制；开头额外生成路边行人，快速运动有局部重影 | 86.11% | 5.65 m | [七相机 + LiDAR](../media/robustness/transfer-occluded_pedestrian-sensors.mp4) / [前广角](../media/robustness/transfer-occluded_pedestrian-front.mp4) |
 | 邻车接触 | 两车持续接近，1.1 秒附近有近距离接触外观，身份基本保留；没有清楚的受撞响应，未验证事故动力学 | 89.77% | 5.59 m | [七相机 + LiDAR](../media/robustness/transfer-adjacent_collision-sensors.mp4) / [前广角](../media/robustness/transfer-adjacent_collision-front.mp4) |
 | 隧道入口 | 墙顶、灯列和前车大体连续；开头已为墙顶主导视野，没有充分的室外→入口→入洞过渡证据 | 97.30% | 1.53 m | [七相机 + LiDAR](../media/robustness/transfer-tunnel_entry-sensors.mp4) / [前广角](../media/robustness/transfer-tunnel_entry-front.mp4) |
+| 左弯几何 + 右转文字 | 道路和前车仍跟随左弯几何，未见文字右转主导；前后长焦开头有明显彩色网纹伪影 | 94.70% | 5.54 m | [七相机 + LiDAR](../media/robustness/transfer-contradictory_turn-sensors.mp4) / [前广角](../media/robustness/transfer-contradictory_turn-front.mp4) |
 
 ![Same geometric actor control, clear and rainy generated RGB](../media/robustness/transfer-clear-rain-car-detail.jpg)
 
@@ -62,6 +63,8 @@
 ### 隧道入口证据范围
 
 [首段密集 RGB/WSM 对照](../media/robustness/transfer-tunnel-entry-detail.jpg) 包含 0–0.6 秒每 0.1 秒及 0.8 秒：上缘起初可见天空带，随后消失，但开头视野已由墙顶主导，没有清楚展示完整的室外道路和入口。初始相机比后轴前移约 1.75 m，距 x=4 m 入口只有约 2.25 m，约 0.56 秒就越过入口；线框 WSM 首帧也呈现隧道主导透视。该例只支持短距离近入口/洞内连续性观察，不能算完整入洞与曝光测试通过，也不能把缺少室外段完全归因于模型。稀疏线框指标较好同样不能证明模型补全的密集墙顶准确。[机器与事件记录](../reports/robustness/transfer-business/tunnel_entry/)
+
+冲突测试的左右转条件不能同时满足，遵循左弯几何本身不计失败。前后长焦首帧的彩色网纹比晴天基线明显，但其他短样本也有较轻的开头伪影；单次采样不能建立“文字冲突导致伪影”的因果关系。[七视角抽帧](../media/robustness/transfer-contradictory_turn-cameras.jpg) · [控制叠加](../media/robustness/transfer-contradictory_turn-controls.jpg)
 
 ## 测试设计
 
@@ -146,6 +149,8 @@ python scripts/prepare_business_scene.py clear_turn --frames 797 --lead-speed 6 
 python scripts/render_scene_wsm.py storage/scenarios/temporal_following --frames 797 --front-only
 python scripts/prepare_temporal_requests.py storage/scenarios/temporal_following
 ```
+
+共享服务器可为渲染命令添加 `--egl-device <获分配的物理编号>`。非 Ray 的上游 EGL 默认选设备 0，CUDA 可见设备变量不能代替 EGL 设备选择；本脚本仅在当前渲染进程指定 EGL 设备，不修改已安装上游包。
 
 [RGB 时长执行器](../scripts/benchmark_transfer_rgb.py) 使用 `--scene storage/scenarios/temporal_following` 和同样的 runtime / python / GPU 参数。Nano 的 [执行器](../scripts/benchmark_nano.py) 默认执行三档时长，也可通过 `--cases-config` 指定 [业务提示词](../configs/nano-business-cases.json) 或 [持续行驶长视频](../configs/nano-motion-duration.json)。Nano safety checker 保持开启；事故原提示词被 Guardrail 拒绝的结果须单独保留，不能计为画面质量失败。独立 VAE 恢复只做解码，不额外重跑 Guardrail。
 
