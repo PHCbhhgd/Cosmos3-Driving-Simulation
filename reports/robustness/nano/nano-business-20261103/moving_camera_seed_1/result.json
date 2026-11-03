@@ -1,0 +1,18 @@
+{
+  "model": "Cosmos3-Nano",
+  "steps": 35,
+  "seed": 1,
+  "width": 848,
+  "height": 480,
+  "fps": 24,
+  "guidance": 6,
+  "safety_checker": true,
+  "prompt": "{\"scene\": \"A forward-facing dashcam on a car drives forward briskly along a suburban road in daylight. Lane markings move toward and underneath the camera. Houses, trees and lamp posts pass on both sides with clear parallax. A blue sedan ahead moves away. Continuous driving motion throughout the entire shot. One continuous shot, no cuts.\"}",
+  "id": "moving_camera_seed_1",
+  "frames": 121,
+  "status": "generated",
+  "scope": "Independent T2V duration stress, not a continuation of shorter output; no geometry controls or physical GT.",
+  "video_sha256": "8b00520baaa47cab6e9de7cdd526a8da6b450a7e3445445e67b0fcc639aae702",
+  "elapsed_seconds": 218.33406154811382,
+  "peak_gpu_allocated_bytes": 5189018624
+}

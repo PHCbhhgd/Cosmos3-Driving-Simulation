@@ -1,0 +1,19 @@
+{
+  "model": "Cosmos3-Nano",
+  "steps": 35,
+  "seed": 0,
+  "width": 848,
+  "height": 480,
+  "fps": 24,
+  "guidance": 6,
+  "safety_checker": true,
+  "prompt": "{\"scene\": \"Forward-facing dashcam footage from a car driving at a visible moderate speed. Roadside objects move past the camera continuously. Clear daylight on a dry paved road, white dashed lane markings, low curbs and regularly spaced roadside poles. In the adjacent lane to the left, a moving car approaches a stopped car and bumps its rear around the middle of the shot. The moving car abruptly slows and rotates slightly after contact. Both vehicles remain visible and keep their identities. No injured people, no gore. One continuous realistic shot with visible motion, no cuts.\"}",
+  "id": "adjacent_collision",
+  "frames": 121,
+  "status": "failed",
+  "scope": "Independent T2V duration stress, not a continuation of shorter output; no geometry controls or physical GT.",
+  "error_type": "ValueError",
+  "error": "Cosmos Guardrail detected unsafe text in the prompt: {\"scene\": \"Forward-facing dashcam footage from a car driving at a visible moderate speed. Roadside objects move past the camera continuously. Clear daylight on a dry paved road, white dashed lane markings, low curbs and regularly spaced roadside poles. In the adjacent lane to the left, a moving car approaches a stopped car and bumps its rear around the middle of the shot. The moving car abruptly slows and rotates slightly after contact. Both vehicles remain visible and keep their identities. No injured people, no gore. One continuous realistic shot with visible motion, no cuts.\"}. Please ensure that the prompt abides by the NVIDIA Open Model License Agreement.",
+  "elapsed_seconds": 0.7058283928781748,
+  "peak_gpu_allocated_bytes": 1338494464
+}

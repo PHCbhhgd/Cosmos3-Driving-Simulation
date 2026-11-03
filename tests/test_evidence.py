@@ -15,6 +15,41 @@ def read(name):
 
 
 class EvidenceTests(unittest.TestCase):
+    def test_robustness_nano_videos_match_full_decode_reports(self):
+        aliases = {
+            "nano-duration-20261103-r2": "nano-duration",
+            "nano-business-20261103": "nano-business",
+            "nano-motion-duration-20261103": "nano-motion-duration",
+            "nano-contact-20261103": "nano-contact",
+        }
+        generated, rejected = 0, 0
+        for suite, alias in aliases.items():
+            base = f"reports/robustness/nano/{suite}"
+            for row in read(f"{base}/results.json"):
+                case = row.get("id", f"frames-{row['frames']}")
+                if row["status"] == "generated":
+                    video = ROOT / f"media/robustness/{alias}-{case}.mp4"
+                    report = read(f"{base}/{case}/video_diagnostics.json")
+                    self.assertEqual(
+                        hashlib.sha256(video.read_bytes()).hexdigest(), row["video_sha256"]
+                    )
+                    self.assertEqual(report["sha256"], row["video_sha256"])
+                    self.assertEqual(report["frames"], row["frames"])
+                    self.assertTrue(report["full_decode"])
+                    generated += 1
+                else:
+                    self.assertIn("Guardrail", row["error"])
+                    rejected += 1
+        self.assertEqual((generated, rejected), (11, 1))
+
+    def test_lidar_boundary_evidence_is_not_model_generation(self):
+        report = read("reports/robustness/lidar-boundaries.json")
+        self.assertIn("no denoiser", report["method"])
+        for row in report["results"]:
+            expected = 5 <= row["input_range_m"] <= 100 and row["input_validity"] >= 0.5
+            self.assertEqual(row["encoded_valid_fraction"], float(expected))
+            self.assertEqual(row["saved_nonzero_fraction"], float(expected))
+
     def test_transfer_sensor_clocks_and_diagnostics(self):
         summary = read("reports/summary.json")["models"]["Cosmos3-Nano-Transfer-Auto"]
         for variant in ["straight", "left_shift"]:

@@ -12,7 +12,7 @@ An independent, evidence-backed reproduction of NVIDIA Cosmos3 driving models.
 ![Sim](https://img.shields.io/badge/Sim--Auto-sm89%20blocked-orange)
 ![License](https://img.shields.io/badge/original%20code-Apache--2.0-blue)
 
-[复现指南](docs/REPRODUCTION.md) · [实测报告](docs/TEST_REPORT.md) · [输入输出](docs/INPUT_OUTPUT.md) · [已知问题](docs/KNOWN_ISSUES.md)
+[复现指南](docs/REPRODUCTION.md) · [实测报告](docs/TEST_REPORT.md) · [输入输出](docs/INPUT_OUTPUT.md) · [已知问题](docs/KNOWN_ISSUES.md) · [业务场景与边界测试](docs/ROBUSTNESS_TESTS.md)
 
 </div>
 

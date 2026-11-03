@@ -1,0 +1,53 @@
+[
+  {
+    "model": "Cosmos3-Nano",
+    "steps": 35,
+    "seed": 0,
+    "width": 848,
+    "height": 480,
+    "fps": 24,
+    "guidance": 6,
+    "safety_checker": true,
+    "prompt": "{\"scene\":\"A fixed stationary roadside camera observes the same suburban road in clear daylight. A single blue sedan drives slowly straight ahead away from the camera. The road, lane markings, houses, lamp posts and trees stay fixed in world coordinates. Continuous uninterrupted shot, no cuts, no zoom.\"}",
+    "frames": 121,
+    "status": "generated",
+    "scope": "Independent T2V duration stress, not a continuation of shorter output; no geometry controls or physical GT.",
+    "video_sha256": "56eee2821aee0ba0028bd4aaf7376a82f7231175945f47d2cf60954fb9bd944e",
+    "elapsed_seconds": 457.49878453835845,
+    "peak_gpu_allocated_bytes": 5189017088
+  },
+  {
+    "model": "Cosmos3-Nano",
+    "steps": 35,
+    "seed": 0,
+    "width": 848,
+    "height": 480,
+    "fps": 24,
+    "guidance": 6,
+    "safety_checker": true,
+    "prompt": "{\"scene\":\"A fixed stationary roadside camera observes the same suburban road in clear daylight. A single blue sedan drives slowly straight ahead away from the camera. The road, lane markings, houses, lamp posts and trees stay fixed in world coordinates. Continuous uninterrupted shot, no cuts, no zoom.\"}",
+    "frames": 241,
+    "status": "generated",
+    "scope": "Independent T2V duration stress, not a continuation of shorter output; no geometry controls or physical GT.",
+    "video_sha256": "d7fb89987735cacb2c8c514708ecf065e55cc36a1b6cbffdda316fb6428101f4",
+    "elapsed_seconds": 456.2099840696901,
+    "peak_gpu_allocated_bytes": 5547266048
+  },
+  {
+    "model": "Cosmos3-Nano",
+    "steps": 35,
+    "seed": 0,
+    "width": 848,
+    "height": 480,
+    "fps": 24,
+    "guidance": 6,
+    "safety_checker": true,
+    "prompt": "{\"scene\":\"A fixed stationary roadside camera observes the same suburban road in clear daylight. A single blue sedan drives slowly straight ahead away from the camera. The road, lane markings, houses, lamp posts and trees stay fixed in world coordinates. Continuous uninterrupted shot, no cuts, no zoom.\"}",
+    "frames": 397,
+    "status": "generated",
+    "scope": "Independent T2V duration stress, not a continuation of shorter output; no geometry controls or physical GT.",
+    "video_sha256": "f35038e7a4704ea747ff65e65cf5f57cfc00144ba115c0fde2ff856b3ca2bd87",
+    "elapsed_seconds": 882.1555175632238,
+    "peak_gpu_allocated_bytes": 7479660544
+  }
+]

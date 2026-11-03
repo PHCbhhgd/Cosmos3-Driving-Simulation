@@ -1,5 +1,5 @@
 {
-  "provenance": "GIFs/MP4/JPEG/PNG derived from actual generated outputs; pipeline.svg is a repository-native diagram.",
+  "provenance": "Generated video outputs and derived GIF/JPEG/PNG; explicitly marked input-control images are synthetic WSM controls. pipeline.svg is a repository-native diagram.",
   "files": [
     {
       "file": "media/camera_contact_sheet.jpg",
@@ -55,6 +55,150 @@
       "file": "media/wsm_overlay_contact_sheet.jpg",
       "bytes": 586607,
       "sha256": "48fb235a54927da0946bed338965df78e5d7044acaa460658ded9fdfbf2847b2"
+    },
+    {
+      "file": "media/robustness/input-controls.jpg",
+      "bytes": 104849,
+      "sha256": "e397d36e59bbcd62b5188eba90d685b2dabdd18a3f32cb3d29ae117de6fb3622",
+      "kind": "synthetic WSM input, not generated RGB"
+    },
+    {
+      "file": "media/robustness/nano-business-clear_turn.jpg",
+      "bytes": 203114,
+      "sha256": "f46a623c747cc6ffb3f80edf64c96599f79625b8b42ec9f3235ddba1b040e3d3",
+      "kind": "frames derived from actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-business-clear_turn.mp4",
+      "bytes": 393267,
+      "sha256": "f51276c2a43bb9dd5cc3b223777caa7b9161845365144978dcf4f52fbb426de5",
+      "kind": "actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-business-moving_camera_seed_1.jpg",
+      "bytes": 265473,
+      "sha256": "9ee938274f49652884c4ab05a4106ace02a63044bed1c45a777d8ff601f71bc6",
+      "kind": "frames derived from actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-business-moving_camera_seed_1.mp4",
+      "bytes": 586498,
+      "sha256": "8b00520baaa47cab6e9de7cdd526a8da6b450a7e3445445e67b0fcc639aae702",
+      "kind": "actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-business-occluded_pedestrian.jpg",
+      "bytes": 208837,
+      "sha256": "48882183c219c25e3f77d239706e29e1b1f1fd532358a3c8014d7a58fa50eb1b",
+      "kind": "frames derived from actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-business-occluded_pedestrian.mp4",
+      "bytes": 191339,
+      "sha256": "2daaa6f97849b83dc2e6e4745adf54671110bee738a44d76c09dbf7a5276cbbc",
+      "kind": "actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-business-rain_turn.jpg",
+      "bytes": 226929,
+      "sha256": "64a4bb782f50e2ee3cec7ee19af96ce67b7b3ae7f2734528aaadff1c02bce251",
+      "kind": "frames derived from actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-business-rain_turn.mp4",
+      "bytes": 527729,
+      "sha256": "7a68945d95cd570b40e0799eb69d8dffa799d3535d64ed578ea726713294be41",
+      "kind": "actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-business-snow_turn.jpg",
+      "bytes": 259622,
+      "sha256": "cf28eaf4eebd2c1dafd77df6901d02843dbaa98983a8b9dbd8e370bd4533305e",
+      "kind": "frames derived from actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-business-snow_turn.mp4",
+      "bytes": 572650,
+      "sha256": "c940a77a77f4f7e702ab85e2b47678909813324fefde276ef5c7202b69f37be6",
+      "kind": "actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-business-tunnel_entry.jpg",
+      "bytes": 223600,
+      "sha256": "fd60d5ffe621dbea228e5cc2043336bccc443e7493869d7a72fa833eca40b615",
+      "kind": "frames derived from actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-business-tunnel_entry.mp4",
+      "bytes": 625070,
+      "sha256": "7b284b7f7b146c357b62ef5f19b460b7c33809e0a6c695f4d34a139c57131fde",
+      "kind": "actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-contact-adjacent_contact.jpg",
+      "bytes": 218937,
+      "sha256": "ffa99ef63ef668fc228ada03d2c186a166469c3238d253674118f7f0dae82cb7",
+      "kind": "frames derived from actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-contact-adjacent_contact.mp4",
+      "bytes": 111403,
+      "sha256": "8ef407ebc8808265feb7f68ea8022407e8fb4352c70355626ce46ac3395ce1a0",
+      "kind": "actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-duration-frames-121.jpg",
+      "bytes": 136004,
+      "sha256": "b53f88ef8d171071600c7159edcda61ee3b6ad01432edc9689a8baedbbea44d5",
+      "kind": "frames derived from actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-duration-frames-121.mp4",
+      "bytes": 230474,
+      "sha256": "56eee2821aee0ba0028bd4aaf7376a82f7231175945f47d2cf60954fb9bd944e",
+      "kind": "actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-duration-frames-241.jpg",
+      "bytes": 470892,
+      "sha256": "91e79543dce1ec0439b4cf7305d37f94f1125bccb87b406fd96299c74957089e",
+      "kind": "frames derived from actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-duration-frames-241.mp4",
+      "bytes": 350274,
+      "sha256": "d7fb89987735cacb2c8c514708ecf065e55cc36a1b6cbffdda316fb6428101f4",
+      "kind": "actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-duration-frames-397.jpg",
+      "bytes": 796573,
+      "sha256": "1d38d6b61deff567977f072a42be7b10b6c9033ac37fe3376eb0517a39379d09",
+      "kind": "frames derived from actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-duration-frames-397.mp4",
+      "bytes": 524243,
+      "sha256": "f35038e7a4704ea747ff65e65cf5f57cfc00144ba115c0fde2ff856b3ca2bd87",
+      "kind": "actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-motion-duration-moving_camera_frames_397.jpg",
+      "bytes": 470520,
+      "sha256": "0fd41655260230c732605701ebc28e789d195fd3a13e003edc4043c8f5f660e0",
+      "kind": "frames derived from actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-motion-duration-moving_camera_frames_397.mp4",
+      "bytes": 2031397,
+      "sha256": "6739e800826db5bff989dd0342a25d162c19be1520d1cca061865db323c7bdd6",
+      "kind": "actual generated output"
+    },
+    {
+      "file": "media/robustness/nano-pedestrian-detail.jpg",
+      "bytes": 93244,
+      "sha256": "86b02be4017aa45faf51492948a8dbd776c0ae40599155f5b4f12d752c895214",
+      "kind": "frames derived from actual generated output"
     }
   ]
 }

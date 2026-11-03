@@ -2,9 +2,31 @@
 
 本轮测试区分三个问题：能否生成并完整解码；是否遵循轨迹、天气与事件要求；同一段连续视频中，何时首次出现可观察的退化。文件检查通过不代表后两项通过。
 
+## Nano 实测结果
+
+12 次请求中，11 段视频实际生成并完整解码，1 次事故描述被官方 Guardrail 拒绝。[逐次机器记录](../reports/robustness/nano/) 保存原提示词、seed、耗时、显存峰值、SHA256 与解码诊断。以下为人工抽帧审阅，不能替代带真值的自动评测。
+
+| 请求 | 实际观察 | 视频 |
+| --- | --- | --- |
+| 固定相机 5 / 10 / 16.5 秒 | 背景稳定，但蓝车运动很弱；10 秒样本开头即出现不符合路边相机设定的车头和广角暗角，属于初始条件遵循失败 | [5秒](../media/robustness/nano-duration-frames-121.mp4) / [10秒](../media/robustness/nano-duration-frames-241.mp4) / [16.5秒](../media/robustness/nano-duration-frames-397.mp4) |
+| 持续行驶 16.5 秒，seed1 | 有持续前进视差，蓝车约 3 秒从左侧进入后前驶；按 1 秒抽帧未见整体画面崩溃，没有 3D 真值可证明全局一致 | [原视频](../media/robustness/nano-motion-duration-moving_camera_frames_397.mp4) |
+| 晴天左转 | 连续前进和左弯透视可见，前车大致保持身份 | [原视频](../media/robustness/nano-business-clear_turn.mp4) |
+| 大雨左转 | 湿路、水迹与雨刷可见；上缘有反复出现的黑色/粉色大块前景，需警惕不合理雨刷或前景结构 | [原视频](../media/robustness/nano-business-rain_turn.mp4) |
+| 降雪左转 | 可见降雪、积雪路沿、车辙和连续左弯；不代表雪地车辆动力学有效 | [原视频](../media/robustness/nano-business-snow_turn.mp4) |
+| 鬼探头 | 行人出现后经过路灯杆遮挡，frame81 / **3.375 秒**可辨两个人形，随后重影、融合；未保持单人身份，横穿自车车道的事件也不充分 | [原视频](../media/robustness/nano-business-occluded_pedestrian.mp4) |
+| 邻车事故原描述 | Guardrail 在采样前拒绝，0.71 秒退出；没有生成视频，不能计为质量失败 | [拒绝记录](../reports/robustness/nano/nano-business-20261103/adjacent_collision/result.json) |
+| 低速保险杠接触描述 | 保持安全检查，成功生成两辆邻车；相对位置变化很小，未清楚表现接近→接触→停止，不能计为事故复现成功 | [原视频](../media/robustness/nano-contact-adjacent_contact.mp4) |
+| 隧道入口 | 约 2 秒入洞，室外到暗部/暖灯的变化可见，0–5 秒抽帧中墙顶和道路大体连续 | [原视频](../media/robustness/nano-business-tunnel_entry.mp4) |
+
+**本轮没有测出统一的“第 N 秒世界必然不稳定”。** 已确认的更具体边界是：遮挡后行人身份失败可在约 3.4 秒发生；16.5 秒行驶样本仍可保持视觉连续；若动态事件根本没有生成，就不能用静止画面证明世界稳定。上述结论均只覆盖本次 seed 和提示词。
+
+![Nano pedestrian identity duplication after pole occlusion](../media/robustness/nano-pedestrian-detail.jpg)
+
+图中是实际视频的局部放大：原请求要求同一行人，3.375–3.875 秒出现可辨的人形重影。抽帧间隔为 3 帧 / 0.125 秒；3.375 秒是该审阅中首次明确辨认的时间，不是模型的通用极限。
+
 ## 测试设计
 
-模型、Framework、VAE 与低显存补丁沿用 [固定版本](../configs/versions.json)。模型权重不修改，安全检查保留。Nano 使用官方流式卸载、848×480、24 FPS、35 步、guidance 6；Transfer 使用四卡 CP4 / DP-shard4、480p、35 步、guidance 3、shift 10、官方逐视角 negative prompt。该配置下实际相机输出为 832×480。
+模型、Framework、VAE 与低显存补丁沿用 [固定版本](../configs/versions.json)。模型权重不修改，不关闭默认安全配置。Nano 使用官方流式卸载、848×480、24 FPS、35 步、guidance 6，safety checker 开启；Transfer 使用四卡 CP4 / DP-shard4、480p、35 步、guidance 3、shift 10、官方逐视角 negative prompt。该配置下实际相机输出为 832×480。官方 negative prompt 也包含抑制“雨雾严重遮挡附近车辆和车道”的描述；解释大雨结果时必须保留这一条件，不能把输出差异全部归因于模型本身。
 
 ### 七相机 + LiDAR 业务场景
 
@@ -21,6 +43,10 @@
 | 控制冲突 | 几何保持左弯，文字明确要求右转 | 遵循哪种控制，有无画面撕裂或控制失效 |
 
 左弯的短联合样本覆盖约 **31.3°**，不是完整 90° 转弯。行人从 t=0.4–1.6 秒横移 6 m，平滑轨迹峰值 7.5 m/s，属于快速冲刺压力测试。相机 WSM 已检查开头遮挡、约 1 秒时行人显露。车辆接触由轨迹直接指定，没有碰撞动力学、车身形变或碎片。隧道仅提供入口、屋顶边缘与每隔 4 m 的线框结构，**没有密集墙面和屋顶网格**。
+
+![Synthetic WSM inputs, not generated RGB](../media/robustness/input-controls.jpg)
+
+这张图是**合成输入 WSM 控制**。从上到下为鬼探头、邻车接触、隧道线框、左弯；每行是 0、0.5、1、2 秒。晴天、雨、雪、文字冲突四例的七路 WSM 视频与 LiDAR 控制数组一致，见 [实际比较记录](../reports/robustness/matched-controls.json)。
 
 雨、雪不会改变输入的道路几何或引入经过验证的 LiDAR 雨雪散射。几何控制第二通道为占用占位值，不是实测反射率。生成的 LiDAR 强度及天气变化不能据此解释成真实传感器物理。
 
@@ -49,6 +75,8 @@
 
 [LiDAR 几何诊断](../scripts/evaluate_joint_controls.py) 比较稀疏受控射线上的有效覆盖与 range 误差，没有物理精度通过阈值。[参与者支持诊断](../scripts/evaluate_actor_support.py) 统计预设 box 表面附近的生成点，使用扫描开始位姿，未 deskew；附近道路或其他物体可能造成假支持，不能当作目标检测或 RGB/LiDAR 语义一致性的证明。
 
+已执行的 [LiDAR 边界探针](../reports/robustness/lidar-boundaries.json) 直接调用未修改的官方编码与保存函数，未运行生成模型：2 m、4.99 m 和 100.01 m 的有效输入被置为无效；5 m 与 100 m 保留。默认 validity 阈值 0.5，0.49 被丢弃，0.5 保留。因此，发布配置下 **5 米内近场险情无法通过该 LiDAR 表示直接保真**；不能只看 RGB 是否生成了行人。探针脚本为 [probe_lidar_boundaries.py](../scripts/probe_lidar_boundaries.py)。
+
 CUDA OOM 单独记为该配置的容量限制。Sim 的 sm89 拒绝单独记为硬件兼容限制。这两类都不能说明“世界在某秒崩坏”。
 
 ## 复跑方式
@@ -74,6 +102,6 @@ python scripts/render_scene_wsm.py storage/scenarios/temporal_turn --frames 797
 python scripts/prepare_temporal_requests.py storage/scenarios/temporal_turn
 ```
 
-[RGB 时长执行器](../scripts/benchmark_transfer_rgb.py) 使用 `--scene storage/scenarios/temporal_turn` 和同样的 runtime / python / GPU 参数。Nano 的 [执行器](../scripts/benchmark_nano.py) 默认执行三档时长，也可通过 `--cases-config` 指定 [业务提示词](../configs/nano-business-cases.json) 或 [持续行驶长视频](../configs/nano-motion-duration.json)。所有安全检查保持开启。
+[RGB 时长执行器](../scripts/benchmark_transfer_rgb.py) 使用 `--scene storage/scenarios/temporal_turn` 和同样的 runtime / python / GPU 参数。Nano 的 [执行器](../scripts/benchmark_nano.py) 默认执行三档时长，也可通过 `--cases-config` 指定 [业务提示词](../configs/nano-business-cases.json) 或 [持续行驶长视频](../configs/nano-motion-duration.json)。Nano safety checker 保持开启；事故原提示词被 Guardrail 拒绝的结果须单独保留，不能计为画面质量失败。独立 VAE 恢复只做解码，不额外重跑 Guardrail。
 
 本轮机器使用已有隔离环境。可移植源码经过 CPU 检查不等于已在一台全新机器上重新安装并跑完全部 GPU 测试。

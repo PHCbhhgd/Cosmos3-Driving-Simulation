@@ -1,0 +1,8 @@
+[
+  {
+    "id": "adjacent_contact",
+    "frames": 121,
+    "seed": 0,
+    "prompt": "{\"scene\": \"A forward-facing dashcam shows a slow-moving car on a dry road in daylight. In the adjacent lane to the left, two passenger cars make low-speed bumper-to-bumper contact near the middle of the shot and then remain stopped, with a small change in heading. The dashcam car continues past. Maintain both cars as two distinct rigid vehicles throughout the continuous shot.\"}"
+  }
+]

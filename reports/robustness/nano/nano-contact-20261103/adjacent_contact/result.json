@@ -1,0 +1,18 @@
+{
+  "model": "Cosmos3-Nano",
+  "steps": 35,
+  "seed": 0,
+  "width": 848,
+  "height": 480,
+  "fps": 24,
+  "guidance": 6,
+  "safety_checker": true,
+  "prompt": "{\"scene\": \"A forward-facing dashcam shows a slow-moving car on a dry road in daylight. In the adjacent lane to the left, two passenger cars make low-speed bumper-to-bumper contact near the middle of the shot and then remain stopped, with a small change in heading. The dashcam car continues past. Maintain both cars as two distinct rigid vehicles throughout the continuous shot.\"}",
+  "id": "adjacent_contact",
+  "frames": 121,
+  "status": "generated",
+  "scope": "Independent T2V duration stress, not a continuation of shorter output; no geometry controls or physical GT.",
+  "video_sha256": "8ef407ebc8808265feb7f68ea8022407e8fb4352c70355626ce46ac3395ce1a0",
+  "elapsed_seconds": 219.6675467994064,
+  "peak_gpu_allocated_bytes": 5189018624
+}

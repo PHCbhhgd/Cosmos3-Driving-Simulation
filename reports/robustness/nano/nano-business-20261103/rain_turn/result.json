@@ -1,0 +1,18 @@
+{
+  "model": "Cosmos3-Nano",
+  "steps": 35,
+  "seed": 0,
+  "width": 848,
+  "height": 480,
+  "fps": 24,
+  "guidance": 6,
+  "safety_checker": true,
+  "prompt": "{\"scene\": \"Forward-facing dashcam footage from a car driving at a visible moderate speed. Roadside objects move past the camera continuously. Heavy rain in overcast daylight. Visible falling rain, wet dark asphalt, puddles, tire spray and reflections. Reduced visibility, consistent rainy weather across all views. The road curves left and the camera rig follows a smooth left turn. A car farther ahead follows the same left curve. Lane geometry and roadside objects move smoothly with the turning perspective. One continuous realistic shot with visible motion, no cuts.\"}",
+  "id": "rain_turn",
+  "frames": 121,
+  "status": "generated",
+  "scope": "Independent T2V duration stress, not a continuation of shorter output; no geometry controls or physical GT.",
+  "video_sha256": "7a68945d95cd570b40e0799eb69d8dffa799d3535d64ed578ea726713294be41",
+  "elapsed_seconds": 232.45095385797322,
+  "peak_gpu_allocated_bytes": 5189019136
+}
