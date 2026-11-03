@@ -1,0 +1,62 @@
+{
+  "collected_at": "2026-11-03T05:49:30.986222+00:00",
+  "scope": "Snapshot of files that exist. Running, missing and failed results are not visual-quality passes; original bundle hashes differ after release redaction.",
+  "cases": [
+    {
+      "request": "request-front-rgb-121.json",
+      "expected_frames": 121,
+      "chunks": 1,
+      "chunk_frames": 121,
+      "caption_ranges": [
+        [
+          0,
+          124
+        ]
+      ],
+      "scope": "One RGB view only; no LiDAR or seven-camera stability claim",
+      "case": "front-rgb-121",
+      "status": "generated_and_decoded",
+      "started_at": "2026-11-03T05:28:56.063952+00:00",
+      "inference_exit_code": 0,
+      "sampling_and_decode_seconds": 427.0637859068811,
+      "review_exit_code": 0,
+      "total_seconds": 427.5603834204376
+    },
+    {
+      "request": "request-front-rgb-241.json",
+      "expected_frames": 241,
+      "chunks": 1,
+      "chunk_frames": 241,
+      "caption_ranges": [
+        [
+          0,
+          244
+        ]
+      ],
+      "scope": "One RGB view only; no LiDAR or seven-camera stability claim",
+      "case": "front-rgb-241",
+      "status": "generated_and_decoded",
+      "started_at": "2026-11-03T05:36:03.939732+00:00",
+      "inference_exit_code": 0,
+      "sampling_and_decode_seconds": 757.3321497067809,
+      "review_exit_code": 0,
+      "total_seconds": 758.0311258677393
+    },
+    {
+      "request": "request-front-rgb-397.json",
+      "expected_frames": 397,
+      "chunks": 1,
+      "chunk_frames": 397,
+      "caption_ranges": [
+        [
+          0,
+          400
+        ]
+      ],
+      "scope": "One RGB view only; no LiDAR or seven-camera stability claim",
+      "case": "front-rgb-397",
+      "status": "running",
+      "started_at": "2026-11-03T05:48:42.335265+00:00"
+    }
+  ]
+}

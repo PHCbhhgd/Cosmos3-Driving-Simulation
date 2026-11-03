@@ -16,7 +16,7 @@ def chunk_ranges(frames, chunks=1, feedback=1):
     return [(i * (frames - feedback), i * (frames - feedback) + frames + 3) for i in range(chunks)]
 
 
-def prepare(scene):
+def prepare(scene, durations=((121, 1), (241, 1), (397, 1), (397, 2))):
     manifest = json.loads((scene / "scene_manifest.json").read_text())
     camera = "camera_front_wide_120fov"
     original = json.loads((scene / "captions" / f"{camera}.json").read_text())
@@ -25,7 +25,7 @@ def prepare(scene):
     if not (scene / control).is_file():
         raise FileNotFoundError(control)
     requests = []
-    for frames, chunks in [(121, 1), (241, 1), (397, 1), (397, 2)]:
+    for frames, chunks in durations:
         ranges = chunk_ranges(frames, chunks)
         if ranges[-1][1] > manifest["camera_frames"]:
             raise ValueError("Need controls covering every caption range, including alignment tail")
@@ -93,7 +93,14 @@ def prepare(scene):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("scene", type=Path)
-    print(json.dumps(prepare(p.parse_args().scene), indent=2))
+    p.add_argument("--single-chunk-frames", type=int, help="Prepare only this single-chunk request")
+    args = p.parse_args()
+    durations = (
+        ((args.single_chunk_frames, 1),)
+        if args.single_chunk_frames is not None
+        else ((121, 1), (241, 1), (397, 1), (397, 2))
+    )
+    print(json.dumps(prepare(args.scene, durations), indent=2))
 
 
 if __name__ == "__main__":

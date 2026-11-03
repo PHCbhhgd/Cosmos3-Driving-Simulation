@@ -198,10 +198,13 @@ def build(case, frames, output):
             line("3d_poles", [p, p + [0, 0, 5]])
     if case["geometry"] == "tunnel_entry":
         # Wireframe structural anchors only; no fake dense tunnel mesh is claimed.
-        for x in range(4, 100, 4):
+        entrance = case.get("tunnel_entry_x_m", 4)
+        if not np.isfinite(entrance) or not 0 < entrance < 96:
+            raise ValueError("Tunnel entrance must lie between 0 and 96 metres")
+        for x in np.arange(entrance, 100, 4):
             line("3d_poles", [[x, -5.5, 0], [x, -5.5, 5], [x, 5.5, 5], [x, 5.5, 0]])
-        line("3d_poles", [[4, -5.5, 5], [100, -5.5, 5]])
-        line("3d_poles", [[4, 5.5, 5], [100, 5.5, 5]])
+        line("3d_poles", [[entrance, -5.5, 5], [100, -5.5, 5]])
+        line("3d_poles", [[entrance, 5.5, 5], [100, 5.5, 5]])
     report = io.write_clip(
         scene,
         scene.name,
@@ -299,11 +302,18 @@ def main():
     p.add_argument("--frames", type=int, default=61)
     p.add_argument("--output", type=Path)
     p.add_argument("--lead-speed", type=float, help="Override lead speed in m/s; default 3")
+    p.add_argument(
+        "--tunnel-entry-x", type=float, help="Tunnel portal position in metres; default 4"
+    )
     args = p.parse_args()
     cases = json.loads((ROOT / "configs/robustness-cases.json").read_text())["cases"]
     case = next(c for c in cases if c["id"] == args.case)
     if args.lead_speed is not None:
         case = case | {"lead_speed_mps": args.lead_speed}
+    if args.tunnel_entry_x is not None:
+        if case["geometry"] != "tunnel_entry":
+            p.error("--tunnel-entry-x requires the tunnel_entry case")
+        case = case | {"tunnel_entry_x_m": args.tunnel_entry_x}
     build(case, args.frames, args.output or ROOT / "storage/scenarios" / case["id"])
 
 

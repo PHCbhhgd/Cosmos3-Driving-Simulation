@@ -1,0 +1,20 @@
+{
+  "request": "request-front-rgb-241.json",
+  "expected_frames": 241,
+  "chunks": 1,
+  "chunk_frames": 241,
+  "caption_ranges": [
+    [
+      0,
+      244
+    ]
+  ],
+  "scope": "One RGB view only; no LiDAR or seven-camera stability claim",
+  "case": "front-rgb-241",
+  "status": "generated_and_decoded",
+  "started_at": "2026-11-03T05:36:03.939732+00:00",
+  "inference_exit_code": 0,
+  "sampling_and_decode_seconds": 757.3321497067809,
+  "review_exit_code": 0,
+  "total_seconds": 758.0311258677393
+}

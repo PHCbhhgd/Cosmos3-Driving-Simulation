@@ -464,6 +464,16 @@
       "file": "media/robustness/transfer-contradictory_turn-timeline.jpg",
       "bytes": 340380,
       "sha256": "78a4a48f6d4b880e9d8c3e69f11640f1ccafc11ea6b8db3b1f1bc3120c1ee14b"
+    },
+    {
+      "file": "media/robustness/transfer-duration-front-rgb-121-controls.jpg",
+      "bytes": 308834,
+      "sha256": "733ba59855832b45be97d44461842a4f0c9c9cd218ac683d8b5e88124832087d"
+    },
+    {
+      "file": "media/robustness/transfer-duration-front-rgb-241-controls.jpg",
+      "bytes": 305922,
+      "sha256": "c7eb7f929eb6f02767ec9a031bd6ccba5b3c27e284a7ff2875be0e6ed7008f97"
     }
   ]
 }

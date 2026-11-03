@@ -16,6 +16,8 @@
 | [failure-summary.json](failure-summary.json) | 失败尝试及恢复范围 |
 | [robustness/nano/](robustness/nano/) | Nano 逐次业务与时长请求、Guardrail 拒绝、完整解码诊断 |
 | [robustness/transfer-business/](robustness/transfer-business/) | Transfer 各业务场景运行状态、七相机/点云检查、逐扫描控制一致性和事件细查 |
+| [robustness/transfer-duration/](robustness/transfer-duration/) | 单相机 RGB 独立时长/续生成请求、完整解码与对齐 WSM 抽帧；running 不算完成 |
+| [robustness/business-release-asset.json](robustness/business-release-asset.json) / [校验](robustness/business-release-audit.json) | 七场景完整传感器附件的大小、SHA256、内部清单与元数据审计 |
 | [robustness/matched-controls.json](robustness/matched-controls.json) | 晴雨雪与冲突文字测试的几何、控制数组/视频一致性 |
 | [robustness/lidar-boundaries.json](robustness/lidar-boundaries.json) | 官方 LiDAR 表示 5–100 m 与 validity 边界；不含生成模型运行 |
 | [robustness/sim-hardware.json](robustness/sim-hardware.json) | Sim 官方 sm89 硬件拒绝；没有生成视频 |

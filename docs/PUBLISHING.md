@@ -50,3 +50,17 @@ gh release create v0.1.0   release/cosmos3-trajectory-sensors.tar.gz   release/c
 ```
 
 仓库公开成功和 Release 上传是两个步骤，只有命令实际成功后才应在 README 填写在线链接。
+
+## 业务与时长附件
+
+七个联合场景的附件构建方式：
+
+```bash
+python scripts/build_robustness_release.py outputs/robustness/<业务suite> \
+  --output release/v0.2.0 --source-root /path/to/reproduction-parent
+python scripts/audit_release_archive.py release/v0.2.0/cosmos3-business-sensors.tar.gz
+```
+
+单相机时长附件使用 `build_duration_release.py`，提供 `--scene`、`--output` 和 `--source-root`；只有四档请求均为终态才构建，不把请求帧数当作实际输出帧数。`--cases` 和 `--archive-name` 可用于独立的单场景补测。构建时保留失败记录，已生成的 MP4 字节保持原样，JSON 路径脱敏后重新生成 SHA256。
+
+`audit_release_archive.py` 流式读取压缩包，不解压到文件系统，核对所有 bundle/时长清单、JSON 中的本地路径和凭据格式。该检查只证明分发完整性，不评价模型画面或传感器物理质量。公开预览由 `export_business_previews.py` / `export_duration_previews.py` 降码率导出；帧数、尺寸、FPS 和源视频 SHA256 另行记录。

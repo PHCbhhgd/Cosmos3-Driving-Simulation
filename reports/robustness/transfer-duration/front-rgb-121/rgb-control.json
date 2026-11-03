@@ -1,0 +1,16 @@
+{
+  "case": "front-rgb-121",
+  "frame_ids": [
+    0,
+    30,
+    60,
+    90,
+    120
+  ],
+  "fps": 30.0,
+  "rgb_sha256": "e0ad23b6c2def7406115a70f4efaa0083fb18a21282f8de94cfc1838754caf64",
+  "control_sha256": "75435dc9224023d4a6b8f9526b11a8957855a43e9b2f2a55e2e5c19afab16a8c",
+  "scope": "Compare generated RGB with the exact aligned control video saved by Framework.",
+  "alignment": "Use original saved Framework control; no further crop/retiming",
+  "sheet_sha256": "733ba59855832b45be97d44461842a4f0c9c9cd218ac683d8b5e88124832087d"
+}

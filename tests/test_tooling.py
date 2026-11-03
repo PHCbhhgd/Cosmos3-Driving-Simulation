@@ -7,6 +7,7 @@ import http.server
 import json
 from pathlib import Path
 import sys
+import tarfile
 import tempfile
 import threading
 import unittest
@@ -17,6 +18,8 @@ from build_release import copy_bundle, digest, verify  # noqa: E402
 from request_window import shorten_request  # noqa: E402
 from serve_replay import ReplayHandler  # noqa: E402
 from collect_robustness import collect  # noqa: E402
+from build_duration_release import build as build_duration  # noqa: E402
+from audit_release_archive import audit as audit_archive  # noqa: E402
 
 
 class BenchmarkCollectionTests(unittest.TestCase):
@@ -202,6 +205,81 @@ class ReleaseTests(unittest.TestCase):
         (self.source / "video.mp4").symlink_to(self.source / "sample.json")
         with self.assertRaisesRegex(ValueError, "Unsafe"):
             verify(self.source)
+
+
+class DurationReleaseTests(unittest.TestCase):
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.root = Path(self.temporary.name)
+        self.suite = self.root / "suite"
+        self.scene = self.root / "scene"
+        self.scene.mkdir()
+        (self.scene / "scene_manifest.json").write_text(
+            json.dumps({"benchmark_case": {"geometry": "tunnel_entry"}})
+        )
+        self.folder = self.suite / "front-rgb-121"
+        raw = self.folder / "raw/front-rgb-121"
+        raw.mkdir(parents=True)
+        self.video = raw / "vision_test.mp4"
+        self.video.write_bytes(b"original video byte-integrity fixture, not a real video")
+        (self.folder / "review").mkdir()
+        (self.folder / "review/video_diagnostics.json").write_text(
+            json.dumps({"full_decode": True, "frames": 121, "sha256": digest(self.video)})
+        )
+        self.row = {
+            "case": "front-rgb-121",
+            "status": "generated_and_decoded",
+            "expected_frames": 121,
+        }
+        self.write_records()
+
+    def tearDown(self):
+        self.temporary.cleanup()
+
+    def write_records(self):
+        (self.folder / "run.json").write_text(json.dumps(self.row | {"source": str(self.video)}))
+        (self.suite / "results.json").write_text(json.dumps([self.row]))
+
+    def build(self):
+        return build_duration(
+            self.suite,
+            self.scene,
+            self.root / "release",
+            self.root,
+            cases=["front-rgb-121"],
+            archive_name="tunnel",
+        )
+
+    def test_archive_preserves_original_bytes_and_redacts_metadata(self):
+        self.build()
+        self.assertEqual(audit_archive(self.root / "release/tunnel.tar.gz")["status"], "passed")
+        with tarfile.open(self.root / "release/tunnel.tar.gz") as archive:
+            prefix = "tunnel/runs/front-rgb-121/"
+            self.assertEqual(
+                archive.extractfile(prefix + "raw/front-rgb-121/vision_test.mp4").read(),
+                self.video.read_bytes(),
+            )
+            record = json.load(archive.extractfile(prefix + "run.json"))
+            self.assertFalse(record["source"].startswith(str(self.root)))
+        # Failed requests must remain visible, without requiring a non-existent video.
+        self.row["status"] = "failed"
+        self.write_records()
+        failure_output = self.root / "failure-release"
+        result = build_duration(
+            self.suite, self.scene, failure_output, self.root, cases=["front-rgb-121"]
+        )
+        self.assertEqual(result["generated_cases"], [])
+
+    def test_incomplete_and_tampered_output_cannot_be_released(self):
+        self.row["status"] = "running"
+        self.write_records()
+        with self.assertRaisesRegex(ValueError, "incomplete"):
+            self.build()
+        self.row["status"] = "generated_and_decoded"
+        self.write_records()
+        self.video.write_bytes(b"tampered")
+        with self.assertRaisesRegex(ValueError, "disagrees"):
+            self.build()
 
 
 if __name__ == "__main__":

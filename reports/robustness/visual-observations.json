@@ -367,6 +367,38 @@
       ],
       "description": "要求右转的文字与左弯WSM/LiDAR冲突，前广角和左侧视图车道、前车仍跟随左弯几何；没有右转主导证据，抽帧中未见整体崩坏。条件相互矛盾，遵循几何本身不计失败。",
       "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano-Transfer-Auto",
+      "suite": "transfer-duration-20261103",
+      "case": "front-rgb-121",
+      "review_interval_s": 1,
+      "issues": [
+        {
+          "category": "initial_hood_vignette",
+          "first_reviewed_timestamp_s": 0,
+          "description": "下缘有大面积车头/前景和黑色暗角，开头即存在，不是4秒后才出现的累积失稳。",
+          "confidence": "high"
+        }
+      ],
+      "description": "完整解码121帧30FPS。0–4秒有前进视差和可辨前车；实际Framework控制叠加后，远方道路趋直也见于控制，不能凭RGB独立接近直路认定过早转直。抽帧中未见整体崩坏；细微车道/边界偏差未作语义量化。",
+      "temporal_collapse_threshold_s": null
+    },
+    {
+      "model": "Cosmos3-Nano-Transfer-Auto",
+      "suite": "transfer-duration-20261103",
+      "case": "front-rgb-241",
+      "review_interval_s": 1,
+      "issues": [
+        {
+          "category": "initial_hood_vignette",
+          "first_reviewed_timestamp_s": 0,
+          "description": "下缘有大面积车头和黑色暗角，首帧即存在；8秒末段也有，不能当作8秒后失稳。",
+          "confidence": "high"
+        }
+      ],
+      "description": "完整解码241帧30FPS，按1秒抽帧0–8秒道路、挡墙和前车大体连续，有持续前进视差；未见明确整体崩坏。与4秒独立请求外观/前车不同，不共享同一初始世界。",
+      "temporal_collapse_threshold_s": null
     }
   ]
 }

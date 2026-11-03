@@ -9,7 +9,7 @@ import subprocess
 from build_release import digest
 
 
-def export(suite, output):
+def export(suite, output, prefix="transfer-duration"):
     output.mkdir(parents=True, exist_ok=True)
     records = []
     for run in json.loads((suite / "results.json").read_text()):
@@ -23,7 +23,7 @@ def export(suite, output):
         source = videos[0]
         if review["frames"] != run["expected_frames"] or digest(source) != review["sha256"]:
             raise ValueError("Source video disagrees with its full-decode record")
-        target = output / f"transfer-duration-{run['case']}.mp4"
+        target = output / f"{prefix}-{run['case']}.mp4"
         if target.exists():
             raise FileExistsError(target)
         subprocess.run(
@@ -99,7 +99,7 @@ def export(suite, output):
     report = dict(
         scope="One RGB view only; no LiDAR or seven-camera duration claim", videos=records
     )
-    (output / "transfer-duration-previews.json").write_text(json.dumps(report, indent=2) + "\n")
+    (output / f"{prefix}-previews.json").write_text(json.dumps(report, indent=2) + "\n")
     return report
 
 
@@ -107,8 +107,9 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("suite", type=Path)
     p.add_argument("--output", type=Path, required=True)
+    p.add_argument("--prefix", default="transfer-duration", help="Media filename prefix")
     args = p.parse_args()
-    print(json.dumps(export(args.suite, args.output), indent=2))
+    print(json.dumps(export(args.suite, args.output, args.prefix), indent=2))
 
 
 if __name__ == "__main__":

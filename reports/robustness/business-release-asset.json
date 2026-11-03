@@ -1,0 +1,15 @@
+{
+  "archive": "cosmos3-business-sensors.tar.gz",
+  "sha256": "ca1487d7f47acd8a0f71508ebd037258c29dea341ce34a8bd01c51c7a3714fe3",
+  "bytes": 1167223253,
+  "cases": [
+    "clear_turn",
+    "rain_turn",
+    "snow_turn",
+    "occluded_pedestrian",
+    "adjacent_collision",
+    "tunnel_entry",
+    "contradictory_turn"
+  ],
+  "bundle_checksums_verified": true
+}

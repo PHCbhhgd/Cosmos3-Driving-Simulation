@@ -16,7 +16,7 @@ An independent, evidence-backed reproduction of NVIDIA Cosmos3 driving models.
 
 </div>
 
-本项目参考 [Cosmos-Dreams-AlpaSim](https://github.com/GimpelZhang/Cosmos-Dreams-AlpaSim) 的展示与复现组织方式，整理 Cosmos3 系列的实际运行记录、可复用脚本和传感器回放。**主线已完成 Transfer-Auto 的直行／左横移两组开环生成**，包含七路 RGB、LiDAR range/intensity、标定点云导出及时间同步。
+本项目参考 [Cosmos-Dreams-AlpaSim](https://github.com/GimpelZhang/Cosmos-Dreams-AlpaSim) 的展示与复现组织方式，整理 Cosmos3 系列的实际运行记录、可复用脚本和传感器回放。**已完成 Transfer-Auto 直行／左横移及七组业务压力场景的开环生成**，包含七路 RGB、LiDAR range/intensity、标定点云导出及时间同步；同时公开 Nano 的天气、事件和时长测试。
 
 这里的轨迹是预设输入；当前未接入驾驶策略、车辆动力学、Radar、IMU 或 GNSS。生成数据有几何误差，不能直接当作高精度真值。Sim-Auto 在本次 RTX 4090 上未完成推理，原因和证据一并公开。
 
@@ -46,11 +46,26 @@ An independent, evidence-backed reproduction of NVIDIA Cosmos3 driving models.
 
 | 模型 | 输入与输出 | 本次状态 |
 | --- | --- | --- |
-| [Cosmos3-Nano](https://huggingface.co/nvidia/Cosmos3-Nano) | 本测试：文本 → 单路视频 | 已生成并完整解码 |
-| [Cosmos3-Nano-Transfer-Auto](https://huggingface.co/nvidia/Cosmos3-Nano-Transfer-Auto) | 逐视角 caption + 相机 WSM + LiDAR 几何控制 → 七路 RGB 与 LiDAR | 直行、左横移均已生成，独立官方 VAE 解码、打包和回放通过 |
+| [Cosmos3-Nano](https://huggingface.co/nvidia/Cosmos3-Nano) | 本测试：文本 → 单路视频 | 新增 12 次业务/时长请求：11 段完整解码，1 次 Guardrail 拒绝；最长 16.5 秒，有运动样本 |
+| [Cosmos3-Nano-Transfer-Auto](https://huggingface.co/nvidia/Cosmos3-Nano-Transfer-Auto) | 逐视角 caption + 相机 WSM + LiDAR 几何控制 → 七路 RGB 与 LiDAR | 直行、左横移及七组业务场景完成；联合输出最后时刻 2 秒，独立官方 VAE 解码与回放通过；单视角 RGB 时长测试另列 |
 | [Cosmos3-Nano-Sim-Auto](https://huggingface.co/nvidia/Cosmos3-Nano-Sim-Auto) | 因果滚动、蒸馏驾驶世界模型；固定四步路径 | 权重已准备；官方 `multiview_maskless_kv` 拒绝 sm89，未生成 |
 
 所有状态均针对固定版本和本次测试。没有重新训练，也没有复现论文的全部指标。[版本固定清单](configs/versions.json) · [测试矩阵](configs/test-matrix.json)
+
+### 业务场景：生成成功之外，还失败在哪里
+
+| 场景 | 本次实际观察 |
+| --- | --- |
+| 雨天转弯 | Transfer 前车从首帧起呈白色重影，稀疏 LiDAR 控制覆盖从晴天 92.82% 降至 64.08%；Nano 有较大黑/粉色前景伪影 |
+| 雪天转弯 | 可见积雪、车辙与连续左弯；短样本只有约 31.3°，未验证雪地动力学 |
+| 鬼探头 | Nano 约 3.375 秒发生行人身份分裂；Transfer 有横穿，但时间/位置偏离控制，且额外生成路边行人 |
+| 邻车事故 | Transfer 两车接近至接触外观；没有确证冲击和受撞响应，不能计为真实事故动力学复现 |
+| 隧道 | Nano 可见约 2 秒入洞；Transfer 联合样本起点过近，室外过渡证据不足，原输入限制保留 |
+| 近场 LiDAR | 官方表示只保留 5–100 m；5 m 内险情不能由该发布配置直接保真 |
+
+![Clear and rainy front-vehicle comparison from actual Transfer outputs](media/robustness/transfer-clear-rain-car-detail.jpg)
+
+[详细测试报告与所有视频](docs/ROBUSTNESS_TESTS.md) 包含原提示词、几何输入、逐次状态、密集事件抽帧和误差范围。单 seed 的缺陷证据不等于场景失败率；未见整体崩坏也不等于物理世界稳定。
 
 ## 处理流程
 
